@@ -88,9 +88,9 @@
 - **Train runtime:** 2,355 seconds (~39 min)
 
 ### Artifacts
-- LoRA adapter: `models/raft_checkpoint/` (161MB)
-- Merged model: Failed to save (transformers `NotImplementedError` during `merge_and_unload`)
-- Note: Adapter checkpoint is sufficient for DPO stage
+- LoRA adapter: `models/raft_checkpoint/` (648MB)
+- Merged model: `models/raft_checkpoint_merged/` (14GB, 3 safetensor shards)
+- Note: Initial `merge_and_unload()` failed with transformers 5.2 `NotImplementedError`. Fixed using Unsloth's `save_pretrained_merged()`.
 
 ### Observations
 - Initial OOM at batch_size=8 (RAFT sequences are 3-4K tokens). Fixed by reducing to batch_size=2 with grad_accum=16.
@@ -101,7 +101,53 @@
 
 ## DPO — Stage 3: Direct Preference Optimization
 
-*Pending — to be run after RAFT.*
+**Date:** 2026-03-10
+**GPU:** RTX A6000 (48GB VRAM)
+**Duration:** ~2 min 45 sec (18 steps)
+
+### Config
+- Base model: `models/raft_checkpoint` (from RAFT)
+- Method: QLoRA (4-bit NF4)
+- LoRA r/alpha: 16/32
+- Learning rate: 1e-5 (cosine schedule)
+- Epochs: 1
+- Batch size: 2, grad_accum: 16 (effective batch = 32)
+- Dataset: 560 train pairs
+- DPO beta: 0.1, loss_type: sigmoid
+- Max length: 1024, max prompt length: 256
+
+### Training Log (logged at step 10)
+
+| Metric | Value |
+|--------|-------|
+| Loss | 0.4482 |
+| Grad Norm | 0.3067 |
+| Learning Rate | 5.975e-06 |
+| Rewards/Chosen | 1.148 |
+| Rewards/Rejected | -1.673 |
+| Rewards/Accuracies | 0.8406 (84.1%) |
+| Rewards/Margins | 2.821 |
+| Logps/Chosen | -117.2 |
+| Logps/Rejected | -90.13 |
+| Logits/Chosen | -3.329 |
+| Logits/Rejected | -3.233 |
+
+### Final Metrics
+- **Train loss (avg):** 0.2653
+- **Rewards accuracy:** 84.1% (model correctly prefers chosen over rejected)
+- **Reward margin:** 2.821 (strong separation between chosen/rejected)
+- **Train runtime:** 165.9 seconds (~2.75 min)
+- **Throughput:** 3.376 samples/sec, 0.109 steps/sec
+
+### Artifacts
+- LoRA adapter: `models/dpo_checkpoint/` (409MB)
+- Merged model: `models/dpo_checkpoint_merged/` (14GB, 3 safetensor shards)
+
+### Observations
+- Required instance-level forward patch to handle Unsloth/DPO 4D attention mask incompatibility.
+- 84% reward accuracy indicates strong preference alignment after just 1 epoch.
+- Reward margin of 2.821 shows clear separation between chosen and rejected outputs.
+- Training was very fast (18 steps) due to small DPO dataset (560 pairs).
 
 ---
 
