@@ -1,41 +1,59 @@
 """DPO Trainer — Stage 3: Direct Preference Optimization on RAFT checkpoint.
 
-Uses Unsloth for model loading with a patch to fix attention mask
-shape mismatch in DPO's 2-pass forward.
+Uses Unsloth for model loading with instance-level forward patch to
+handle DPO's 4D attention masks.
 """
 
 from unsloth import FastLanguageModel, PatchDPOTrainer
 from trl import DPOTrainer, DPOConfig
+import torch
 import yaml
-import unsloth.models.llama as llama_module
-import types
 
 PatchDPOTrainer()
-
-
-def _patch_unsloth_attention_mask():
-    """Patch Unsloth's LlamaModel forward to handle 4D attention masks from DPO."""
-    original_forward = llama_module.LlamaModel_fast_forward
-
-    def patched_forward(self, *args, **kwargs):
-        # If attention_mask is 4D (from DPO), convert to 2D for Unsloth
-        attention_mask = kwargs.get("attention_mask", None)
-        if attention_mask is not None and attention_mask.dim() == 4:
-            # Convert 4D causal mask to 2D by taking the diagonal
-            kwargs["attention_mask"] = attention_mask[:, 0, 0, :].contiguous()
-            # Check if it's all the same value (padding mask embedded in causal)
-            if kwargs["attention_mask"].sum() == 0:
-                kwargs["attention_mask"] = None
-        elif attention_mask is not None and attention_mask.dim() == 3:
-            kwargs["attention_mask"] = attention_mask[:, 0, :].contiguous()
-        return original_forward(self, *args, **kwargs)
-
-    llama_module.LlamaModel_fast_forward = patched_forward
 
 
 def load_config(config_path: str) -> dict:
     with open(config_path, "r") as f:
         return yaml.safe_load(f)
+
+
+def _patch_model_for_dpo(model):
+    """Patch the model's inner LlamaModel to handle 4D attention masks from DPO.
+
+    Unsloth's LlamaModel_fast_forward expects 2D attention_mask [batch, seq]
+    but DPO's TRL creates 4D causal masks [batch, 1, seq, seq]. We intercept
+    the inner model's forward to convert 4D→2D before Unsloth processes it.
+    """
+    # Navigate to the inner model (PeftModel → base_model → model → model)
+    inner_model = model
+    for attr in ["model", "model", "model"]:
+        if hasattr(inner_model, attr):
+            inner_model = getattr(inner_model, attr)
+
+    original_forward = inner_model.forward
+
+    def patched_forward(*args, **kwargs):
+        attention_mask = kwargs.get("attention_mask", None)
+        if attention_mask is not None and attention_mask.dim() > 2:
+            # Convert ND mask to 2D: take the last row of each head's mask
+            # This extracts the padding pattern from the causal mask
+            if attention_mask.dim() == 4:
+                # [batch, heads, seq_q, seq_k] → [batch, seq_k]
+                kwargs["attention_mask"] = attention_mask[:, 0, -1, :]
+            elif attention_mask.dim() == 3:
+                # [batch, seq_q, seq_k] → [batch, seq_k]
+                kwargs["attention_mask"] = attention_mask[:, -1, :]
+            # Convert from float (0/-inf) to int (1/0) if needed
+            mask = kwargs["attention_mask"]
+            if mask.dtype in (torch.float16, torch.bfloat16, torch.float32):
+                kwargs["attention_mask"] = (mask != float("-inf")).to(torch.long)
+                # If mask has very negative values instead of -inf
+                if kwargs["attention_mask"].sum() == 0:
+                    kwargs["attention_mask"] = (mask > -1.0).to(torch.long)
+        return original_forward(*args, **kwargs)
+
+    inner_model.forward = patched_forward
+    return model
 
 
 def create_model_and_tokenizer(config: dict):
@@ -62,6 +80,9 @@ def create_model_and_tokenizer(config: dict):
         use_gradient_checkpointing="unsloth",
     )
 
+    # Patch the model to handle DPO's 4D attention masks
+    model = _patch_model_for_dpo(model)
+
     return model, tokenizer
 
 
@@ -77,9 +98,6 @@ def run_dpo(config_path: str):
             project=config["wandb"]["project"],
             name=config["wandb"].get("run_name"),
         )
-
-    # Patch Unsloth to handle DPO's attention mask format
-    _patch_unsloth_attention_mask()
 
     print("Loading model and tokenizer from RAFT checkpoint...")
     model, tokenizer = create_model_and_tokenizer(config)
