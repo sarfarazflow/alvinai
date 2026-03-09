@@ -1,7 +1,14 @@
-"""DPO Trainer — Stage 3: Direct Preference Optimization on RAFT checkpoint."""
+"""DPO Trainer — Stage 3: Direct Preference Optimization on RAFT checkpoint.
 
-from unsloth import FastLanguageModel
+Uses standard PEFT + transformers (not Unsloth fast forward) because
+Unsloth's attention mask patching is incompatible with DPO's 2-pass
+forward (causes tensor shape mismatch in attention mask handling).
+"""
+
+from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+from peft import get_peft_model, LoraConfig, PeftModel
 from trl import DPOTrainer, DPOConfig
+import torch
 import yaml
 
 
@@ -11,19 +18,28 @@ def load_config(config_path: str) -> dict:
 
 
 def create_model_and_tokenizer(config: dict):
-    """Load RAFT checkpoint with QLoRA via Unsloth."""
+    """Load RAFT checkpoint with standard QLoRA (no Unsloth patching)."""
     model_cfg = config["model"]
 
-    model, tokenizer = FastLanguageModel.from_pretrained(
-        model_name=model_cfg["base_model"],
-        max_seq_length=model_cfg["max_seq_length"],
-        load_in_4bit=model_cfg["load_in_4bit"],
-        dtype=None,  # auto-detect
+    bnb_config = BitsAndBytesConfig(
+        load_in_4bit=True,
+        bnb_4bit_quant_type="nf4",
+        bnb_4bit_compute_dtype=torch.bfloat16,
+        bnb_4bit_use_double_quant=True,
     )
 
-    # For DPO we need the model in training mode with LoRA
-    model = FastLanguageModel.get_peft_model(
-        model,
+    # Load the RAFT adapter — PEFT auto-resolves the base model
+    model = AutoModelForCausalLM.from_pretrained(
+        model_cfg["base_model"],
+        quantization_config=bnb_config,
+        device_map="auto",
+        torch_dtype=torch.bfloat16,
+        attn_implementation="eager",
+    )
+    tokenizer = AutoTokenizer.from_pretrained(model_cfg["base_model"])
+
+    # Add new LoRA adapter on top for DPO
+    lora_config = LoraConfig(
         r=16,
         lora_alpha=32,
         lora_dropout=0.05,
@@ -32,11 +48,10 @@ def create_model_and_tokenizer(config: dict):
             "gate_proj", "up_proj", "down_proj",
         ],
         bias="none",
-        use_gradient_checkpointing="unsloth",
+        task_type="CAUSAL_LM",
     )
-
-    # Switch to training mode explicitly
-    FastLanguageModel.for_training(model)
+    model = get_peft_model(model, lora_config)
+    model.enable_input_require_grads()
 
     return model, tokenizer
 
@@ -100,8 +115,7 @@ def run_dpo(config_path: str):
         logging_dir=output_cfg["logging_dir"],
         logging_steps=output_cfg["logging_steps"],
         report_to="wandb" if config.get("wandb", {}).get("enabled") else "none",
-        # Disable Unsloth's fast forward which causes attention mask issues
-        dataset_num_proc=1,
+        gradient_checkpointing=True,
     )
 
     print("Starting DPO training...")
@@ -124,7 +138,9 @@ def run_dpo(config_path: str):
 
     # Save merged model for AWQ export
     print(f"Saving merged model to {output_dir}_merged...")
-    model.save_pretrained_merged(f"{output_dir}_merged", tokenizer, save_method="merged_16bit")
+    merged_model = model.merge_and_unload()
+    merged_model.save_pretrained(f"{output_dir}_merged")
+    tokenizer.save_pretrained(f"{output_dir}_merged")
 
     print("DPO training complete!")
     return trainer
