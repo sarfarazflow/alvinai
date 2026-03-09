@@ -1,15 +1,36 @@
 """DPO Trainer — Stage 3: Direct Preference Optimization on RAFT checkpoint.
 
-Uses standard PEFT + transformers (not Unsloth fast forward) because
-Unsloth's attention mask patching is incompatible with DPO's 2-pass
-forward (causes tensor shape mismatch in attention mask handling).
+Uses Unsloth for model loading with a patch to fix attention mask
+shape mismatch in DPO's 2-pass forward.
 """
 
-from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
-from peft import get_peft_model, LoraConfig, PeftModel
+from unsloth import FastLanguageModel, PatchDPOTrainer
 from trl import DPOTrainer, DPOConfig
-import torch
 import yaml
+import unsloth.models.llama as llama_module
+import types
+
+PatchDPOTrainer()
+
+
+def _patch_unsloth_attention_mask():
+    """Patch Unsloth's LlamaModel forward to handle 4D attention masks from DPO."""
+    original_forward = llama_module.LlamaModel_fast_forward
+
+    def patched_forward(self, *args, **kwargs):
+        # If attention_mask is 4D (from DPO), convert to 2D for Unsloth
+        attention_mask = kwargs.get("attention_mask", None)
+        if attention_mask is not None and attention_mask.dim() == 4:
+            # Convert 4D causal mask to 2D by taking the diagonal
+            kwargs["attention_mask"] = attention_mask[:, 0, 0, :].contiguous()
+            # Check if it's all the same value (padding mask embedded in causal)
+            if kwargs["attention_mask"].sum() == 0:
+                kwargs["attention_mask"] = None
+        elif attention_mask is not None and attention_mask.dim() == 3:
+            kwargs["attention_mask"] = attention_mask[:, 0, :].contiguous()
+        return original_forward(self, *args, **kwargs)
+
+    llama_module.LlamaModel_fast_forward = patched_forward
 
 
 def load_config(config_path: str) -> dict:
@@ -18,28 +39,18 @@ def load_config(config_path: str) -> dict:
 
 
 def create_model_and_tokenizer(config: dict):
-    """Load RAFT checkpoint with standard QLoRA (no Unsloth patching)."""
+    """Load RAFT checkpoint via Unsloth."""
     model_cfg = config["model"]
 
-    bnb_config = BitsAndBytesConfig(
-        load_in_4bit=True,
-        bnb_4bit_quant_type="nf4",
-        bnb_4bit_compute_dtype=torch.bfloat16,
-        bnb_4bit_use_double_quant=True,
+    model, tokenizer = FastLanguageModel.from_pretrained(
+        model_name=model_cfg["base_model"],
+        max_seq_length=model_cfg["max_seq_length"],
+        load_in_4bit=model_cfg["load_in_4bit"],
+        dtype=None,
     )
 
-    # Load the RAFT adapter — PEFT auto-resolves the base model
-    model = AutoModelForCausalLM.from_pretrained(
-        model_cfg["base_model"],
-        quantization_config=bnb_config,
-        device_map="auto",
-        torch_dtype=torch.bfloat16,
-        attn_implementation="eager",
-    )
-    tokenizer = AutoTokenizer.from_pretrained(model_cfg["base_model"])
-
-    # Add new LoRA adapter on top for DPO
-    lora_config = LoraConfig(
+    model = FastLanguageModel.get_peft_model(
+        model,
         r=16,
         lora_alpha=32,
         lora_dropout=0.05,
@@ -48,10 +59,8 @@ def create_model_and_tokenizer(config: dict):
             "gate_proj", "up_proj", "down_proj",
         ],
         bias="none",
-        task_type="CAUSAL_LM",
+        use_gradient_checkpointing="unsloth",
     )
-    model = get_peft_model(model, lora_config)
-    model.enable_input_require_grads()
 
     return model, tokenizer
 
@@ -62,7 +71,6 @@ def run_dpo(config_path: str):
 
     config = load_config(config_path)
 
-    # Setup W&B if enabled
     if config.get("wandb", {}).get("enabled"):
         import wandb
         wandb.init(
@@ -70,10 +78,12 @@ def run_dpo(config_path: str):
             name=config["wandb"].get("run_name"),
         )
 
+    # Patch Unsloth to handle DPO's attention mask format
+    _patch_unsloth_attention_mask()
+
     print("Loading model and tokenizer from RAFT checkpoint...")
     model, tokenizer = create_model_and_tokenizer(config)
 
-    # DPO requires a pad token
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = "left"
@@ -115,7 +125,6 @@ def run_dpo(config_path: str):
         logging_dir=output_cfg["logging_dir"],
         logging_steps=output_cfg["logging_steps"],
         report_to="wandb" if config.get("wandb", {}).get("enabled") else "none",
-        gradient_checkpointing=True,
     )
 
     print("Starting DPO training...")
@@ -130,17 +139,13 @@ def run_dpo(config_path: str):
 
     trainer.train()
 
-    # Save final model
     output_dir = config["output"]["output_dir"]
     print(f"Saving DPO adapter to {output_dir}...")
     model.save_pretrained(output_dir)
     tokenizer.save_pretrained(output_dir)
 
-    # Save merged model for AWQ export
     print(f"Saving merged model to {output_dir}_merged...")
-    merged_model = model.merge_and_unload()
-    merged_model.save_pretrained(f"{output_dir}_merged")
-    tokenizer.save_pretrained(f"{output_dir}_merged")
+    model.save_pretrained_merged(f"{output_dir}_merged", tokenizer, save_method="merged_16bit")
 
     print("DPO training complete!")
     return trainer
