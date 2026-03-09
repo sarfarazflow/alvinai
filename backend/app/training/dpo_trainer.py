@@ -1,7 +1,8 @@
 """DPO Trainer — Stage 3: Direct Preference Optimization on RAFT checkpoint."""
 
 from unsloth import FastLanguageModel, PatchDPOTrainer
-from trl import DPOTrainer, DPOConfig
+from trl import DPOTrainer
+from transformers import TrainingArguments
 import yaml
 
 # Patch DPOTrainer for Unsloth compatibility (2x speed)
@@ -41,43 +42,6 @@ def create_model_and_tokenizer(config: dict):
     return model, tokenizer
 
 
-def create_dpo_config(config: dict) -> DPOConfig:
-    """Build DPOConfig from YAML config."""
-    train_cfg = config["training"]
-    eval_cfg = config["eval"]
-    output_cfg = config["output"]
-    dpo_cfg = config["dpo"]
-
-    return DPOConfig(
-        output_dir=output_cfg["output_dir"],
-        num_train_epochs=train_cfg["num_epochs"],
-        per_device_train_batch_size=train_cfg["per_device_train_batch_size"],
-        gradient_accumulation_steps=train_cfg["gradient_accumulation_steps"],
-        learning_rate=train_cfg["learning_rate"],
-        lr_scheduler_type=train_cfg["lr_scheduler_type"],
-        warmup_ratio=train_cfg["warmup_ratio"],
-        weight_decay=train_cfg["weight_decay"],
-        max_grad_norm=train_cfg["max_grad_norm"],
-        bf16=train_cfg.get("bf16", False),
-        fp16=train_cfg.get("fp16", False),
-        seed=train_cfg["seed"],
-        beta=dpo_cfg["beta"],
-        loss_type=dpo_cfg["loss_type"],
-        max_length=1024,
-        max_prompt_length=256,
-        eval_strategy=eval_cfg["eval_strategy"],
-        eval_steps=eval_cfg["eval_steps"],
-        save_strategy=eval_cfg["save_strategy"],
-        save_steps=eval_cfg["save_steps"],
-        save_total_limit=eval_cfg["save_total_limit"],
-        load_best_model_at_end=eval_cfg["load_best_model_at_end"],
-        metric_for_best_model=eval_cfg["metric_for_best_model"],
-        logging_dir=output_cfg["logging_dir"],
-        logging_steps=output_cfg["logging_steps"],
-        report_to="wandb" if config.get("wandb", {}).get("enabled") else "none",
-    )
-
-
 def run_dpo(config_path: str):
     """Full DPO training run."""
     from app.training.dpo_dataset import prepare_dpo_dataset
@@ -104,14 +68,48 @@ def run_dpo(config_path: str):
     train_ds, val_ds = prepare_dpo_dataset(data_cfg["train_file"], data_cfg["val_file"])
     print(f"Train: {len(train_ds)} pairs, Val: {len(val_ds)} pairs")
 
+    train_cfg = config["training"]
+    eval_cfg = config["eval"]
+    output_cfg = config["output"]
+    dpo_cfg = config["dpo"]
+
+    training_args = TrainingArguments(
+        output_dir=output_cfg["output_dir"],
+        num_train_epochs=train_cfg["num_epochs"],
+        per_device_train_batch_size=train_cfg["per_device_train_batch_size"],
+        gradient_accumulation_steps=train_cfg["gradient_accumulation_steps"],
+        learning_rate=train_cfg["learning_rate"],
+        lr_scheduler_type=train_cfg["lr_scheduler_type"],
+        warmup_ratio=train_cfg["warmup_ratio"],
+        weight_decay=train_cfg["weight_decay"],
+        max_grad_norm=train_cfg["max_grad_norm"],
+        bf16=train_cfg.get("bf16", False),
+        fp16=train_cfg.get("fp16", False),
+        seed=train_cfg["seed"],
+        eval_strategy=eval_cfg["eval_strategy"],
+        eval_steps=eval_cfg["eval_steps"],
+        save_strategy=eval_cfg["save_strategy"],
+        save_steps=eval_cfg["save_steps"],
+        save_total_limit=eval_cfg["save_total_limit"],
+        load_best_model_at_end=eval_cfg["load_best_model_at_end"],
+        metric_for_best_model=eval_cfg["metric_for_best_model"],
+        logging_dir=output_cfg["logging_dir"],
+        logging_steps=output_cfg["logging_steps"],
+        report_to="wandb" if config.get("wandb", {}).get("enabled") else "none",
+    )
+
     print("Starting DPO training...")
     trainer = DPOTrainer(
         model=model,
-        ref_model=None,  # Unsloth handles reference model internally
+        ref_model=None,
         train_dataset=train_ds,
         eval_dataset=val_ds,
         tokenizer=tokenizer,
-        args=create_dpo_config(config),
+        args=training_args,
+        beta=dpo_cfg["beta"],
+        loss_type=dpo_cfg["loss_type"],
+        max_length=config["model"]["max_seq_length"],
+        max_prompt_length=256,
     )
 
     trainer.train()
