@@ -1,0 +1,46 @@
+# Development overrides — NOT for production use.
+# This file is automatically loaded by `docker compose up` alongside docker-compose.yml.
+
+services:
+  # ─── Backend: hot reload + source mount ────────────────────────
+  backend:
+    volumes:
+      - ./backend:/app
+    command: uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+    environment:
+      APP_ENV: development
+
+  # ─── Celery: source mount for hot reload ───────────────────────
+  celery:
+    volumes:
+      - ./backend:/app
+
+  # ─── Beat: source mount for hot reload ─────────────────────────
+  beat:
+    volumes:
+      - ./backend:/app
+
+  # ─── Frontend: hot reload + source mount ───────────────────────
+  frontend:
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: pnpm dev --host 0.0.0.0 --port 3000
+
+  # ─── Ollama (Dev only — replaced by vLLM blue/green in production) ─
+  ollama:
+    image: ollama/ollama
+    container_name: alvinai-ollama
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollamadata:/root/.ollama
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  ollamadata:
