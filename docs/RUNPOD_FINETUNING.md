@@ -117,8 +117,8 @@ tail -50 /workspace/raft_training.log
 | LoRA r / alpha | 16 / 32 |
 | Learning rate | 5e-5 |
 | Epochs | 2 |
-| Batch size | 8 (A6000 48GB) |
-| Grad accumulation | 4 (effective batch = 32) |
+| Batch size | 2 (long RAFT sequences) |
+| Grad accumulation | 16 (effective batch = 32) |
 | Dataset | 3,200 train / 800 val |
 | Output | `models/raft_checkpoint/` |
 
@@ -138,7 +138,41 @@ tail -50 /workspace/raft_training.log
 
 ## DPO — Stage 3: Direct Preference Optimization
 
-*To be updated after RAFT completes.*
+### Run DPO Training
+
+```bash
+cd /workspace/alvinai
+
+# Pull latest code (DPO scripts)
+git pull
+
+# Run in background (survives SSH disconnect)
+nohup python -m scripts.run_dpo --config configs/dpo_config.yaml \
+  > /workspace/dpo_training.log 2>&1 &
+
+# Monitor live
+tail -f /workspace/dpo_training.log
+```
+
+### DPO Config Summary
+
+| Parameter | Value |
+|---|---|
+| Base model | `models/raft_checkpoint` (from Stage 2) |
+| Method | QLoRA + DPO (sigmoid loss) |
+| Beta (KL penalty) | 0.1 |
+| Learning rate | 1e-5 |
+| Epochs | 1 |
+| Batch size | 2 (DPO uses 2x VRAM) |
+| Grad accumulation | 16 (effective batch = 32) |
+| Dataset | 560 train / 140 val |
+| Output | `models/dpo_checkpoint/` |
+
+### Expected Output
+
+- Checkpoint saved to `/workspace/models/dpo_checkpoint/`
+- Merged model at `/workspace/models/dpo_checkpoint_merged/`
+- Training log at `/workspace/dpo_training.log`
 
 ---
 
