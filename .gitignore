@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+*.egg
+.eggs/
+dist/
+build/
+*.whl
+.venv/
+venv/
+env/
+
+# Node
+node_modules/
+.svelte-kit/
+dist/
+
+# Docker
+*.log
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Model weights — never commit
+*.safetensors
+*.bin
+*.gguf
+*.pt
+*.pth
+models/sft_checkpoint/*
+models/raft_checkpoint/*
+models/dpo_checkpoint/*
+models/production/*
+!models/**/.gitkeep
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Misc
+*.bak
+*.tmp
