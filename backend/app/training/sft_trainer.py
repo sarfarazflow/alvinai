@@ -109,11 +109,9 @@ def run_sft(config_path: str):
     model.save_pretrained(output_dir)
     tokenizer.save_pretrained(output_dir)
 
-    # Also save merged model (LoRA merged into base) for next stage
+    # Save merged model (LoRA merged into base) for next stage
     print(f"Saving merged model to {output_dir}_merged...")
-    merged_model = model.merge_and_unload()
-    merged_model.save_pretrained(f"{output_dir}_merged")
-    tokenizer.save_pretrained(f"{output_dir}_merged")
+    model.save_pretrained_merged(f"{output_dir}_merged", tokenizer, save_method="merged_16bit")
 
     print("SFT training complete!")
     return trainer
