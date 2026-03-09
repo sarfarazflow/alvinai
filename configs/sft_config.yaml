@@ -8,7 +8,7 @@ model:
   base_model: "mistralai/Mistral-7B-Instruct-v0.3"
   max_seq_length: 4096
   load_in_4bit: true          # QLoRA — NF4 quantization during training
-  dtype: "float16"            # compute dtype for LoRA layers
+  dtype: "bfloat16"           # compute dtype for LoRA layers (A6000 supports bf16)
 
 # ─── LoRA ─────────────────────────────────────────────────────
 lora:
@@ -41,7 +41,7 @@ training:
   warmup_ratio: 0.05
   weight_decay: 0.01
   max_grad_norm: 1.0
-  fp16: true
+  bf16: true
   seed: 42
 
 # ─── Eval ─────────────────────────────────────────────────────

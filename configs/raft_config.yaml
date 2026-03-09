@@ -9,7 +9,7 @@ model:
   base_model: "models/sft_checkpoint"   # start from SFT output
   max_seq_length: 4096
   load_in_4bit: true
-  dtype: "float16"
+  dtype: "bfloat16"
 
 # ─── LoRA ─────────────────────────────────────────────────────
 lora:
@@ -44,7 +44,7 @@ training:
   warmup_ratio: 0.05
   weight_decay: 0.01
   max_grad_norm: 1.0
-  fp16: true
+  bf16: true
   seed: 42
 
 # ─── Eval ─────────────────────────────────────────────────────
