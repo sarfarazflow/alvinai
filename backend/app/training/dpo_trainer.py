@@ -1,11 +1,8 @@
 """DPO Trainer — Stage 3: Direct Preference Optimization on RAFT checkpoint."""
 
-from unsloth import FastLanguageModel, PatchDPOTrainer
+from unsloth import FastLanguageModel
 from trl import DPOTrainer, DPOConfig
 import yaml
-
-# Patch DPOTrainer for Unsloth compatibility (2x speed)
-PatchDPOTrainer()
 
 
 def load_config(config_path: str) -> dict:
@@ -38,6 +35,9 @@ def create_model_and_tokenizer(config: dict):
         use_gradient_checkpointing="unsloth",
     )
 
+    # Switch to training mode explicitly
+    FastLanguageModel.for_training(model)
+
     return model, tokenizer
 
 
@@ -58,7 +58,7 @@ def run_dpo(config_path: str):
     print("Loading model and tokenizer from RAFT checkpoint...")
     model, tokenizer = create_model_and_tokenizer(config)
 
-    # DPO requires a pad token; set padding side to left for generation
+    # DPO requires a pad token
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = "left"
@@ -100,6 +100,8 @@ def run_dpo(config_path: str):
         logging_dir=output_cfg["logging_dir"],
         logging_steps=output_cfg["logging_steps"],
         report_to="wandb" if config.get("wandb", {}).get("enabled") else "none",
+        # Disable Unsloth's fast forward which causes attention mask issues
+        dataset_num_proc=1,
     )
 
     print("Starting DPO training...")
