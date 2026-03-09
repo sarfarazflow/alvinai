@@ -1,8 +1,7 @@
 """DPO Trainer — Stage 3: Direct Preference Optimization on RAFT checkpoint."""
 
 from unsloth import FastLanguageModel, PatchDPOTrainer
-from trl import DPOTrainer
-from transformers import TrainingArguments
+from trl import DPOTrainer, DPOConfig
 import yaml
 
 # Patch DPOTrainer for Unsloth compatibility (2x speed)
@@ -59,9 +58,10 @@ def run_dpo(config_path: str):
     print("Loading model and tokenizer from RAFT checkpoint...")
     model, tokenizer = create_model_and_tokenizer(config)
 
-    # DPO requires a pad token
+    # DPO requires a pad token; set padding side to left for generation
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
+    tokenizer.padding_side = "left"
 
     print("Loading DPO datasets...")
     data_cfg = config["data"]
@@ -73,7 +73,7 @@ def run_dpo(config_path: str):
     output_cfg = config["output"]
     dpo_cfg = config["dpo"]
 
-    training_args = TrainingArguments(
+    dpo_config = DPOConfig(
         output_dir=output_cfg["output_dir"],
         num_train_epochs=train_cfg["num_epochs"],
         per_device_train_batch_size=train_cfg["per_device_train_batch_size"],
@@ -86,6 +86,10 @@ def run_dpo(config_path: str):
         bf16=train_cfg.get("bf16", False),
         fp16=train_cfg.get("fp16", False),
         seed=train_cfg["seed"],
+        beta=dpo_cfg["beta"],
+        loss_type=dpo_cfg["loss_type"],
+        max_length=config["model"]["max_seq_length"],
+        max_prompt_length=256,
         eval_strategy=eval_cfg["eval_strategy"],
         eval_steps=eval_cfg["eval_steps"],
         save_strategy=eval_cfg["save_strategy"],
@@ -104,12 +108,8 @@ def run_dpo(config_path: str):
         ref_model=None,
         train_dataset=train_ds,
         eval_dataset=val_ds,
-        tokenizer=tokenizer,
-        args=training_args,
-        beta=dpo_cfg["beta"],
-        loss_type=dpo_cfg["loss_type"],
-        max_length=config["model"]["max_seq_length"],
-        max_prompt_length=256,
+        processing_class=tokenizer,
+        args=dpo_config,
     )
 
     trainer.train()
