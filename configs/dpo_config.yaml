@@ -7,7 +7,7 @@
 # ─── Model ────────────────────────────────────────────────────
 model:
   base_model: "models/raft_checkpoint"  # start from RAFT output
-  max_seq_length: 4096
+  max_seq_length: 1024              # DPO prompts/responses are short
   load_in_4bit: true
   dtype: "bfloat16"
 
