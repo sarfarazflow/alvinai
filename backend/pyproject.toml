@@ -1,0 +1,49 @@
+[project]
+name = "alvinai-backend"
+version = "0.1.0"
+description = "AlvinAI backend — fine-tuned RAG for automotive"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.111",
+    "uvicorn[standard]>=0.30",
+    "sqlalchemy[asyncio]>=2.0",
+    "asyncpg>=0.29",
+    "alembic>=1.13",
+    "redis>=5.0",
+    "celery>=5.4",
+    "minio>=7.2",
+    "passlib[bcrypt]>=1.7",
+    "python-jose[cryptography]>=3.3",
+    "pydantic>=2.7",
+    "pydantic-settings>=2.3",
+    "sentence-transformers>=3.0",
+    "rank-bm25>=0.2",
+    "ragas>=0.1",
+    "httpx>=0.27",
+]
+
+[project.optional-dependencies]
+training = [
+    "torch>=2.1",
+    "transformers>=4.40",
+    "datasets>=2.19",
+    "trl>=0.9",
+    "peft>=0.11",
+    "accelerate>=0.30",
+    "bitsandbytes>=0.43",
+    "pyyaml>=6.0",
+    "wandb>=0.17",
+]
+dev = [
+    "pytest>=8.2",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.4",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

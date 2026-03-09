@@ -1,0 +1,67 @@
+# ──────────────────────────────────────────────────────────────
+# AlvinAI — SFT Training Configuration
+# Stage 1 of 3: Supervised Fine-Tuning on automotive + HR data
+# ──────────────────────────────────────────────────────────────
+
+# ─── Model ────────────────────────────────────────────────────
+model:
+  base_model: "mistralai/Mistral-7B-Instruct-v0.3"
+  max_seq_length: 4096
+  load_in_4bit: true          # QLoRA — NF4 quantization during training
+  dtype: "float16"            # compute dtype for LoRA layers
+
+# ─── LoRA ─────────────────────────────────────────────────────
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+
+# ─── Data ─────────────────────────────────────────────────────
+data:
+  train_file: "data/sft/train.jsonl"
+  val_file: "data/sft/val.jsonl"
+  format: "openai_messages"   # {"messages": [{"role":...,"content":...}]}
+  chat_template: "mistral"    # <s>[INST] {prompt} [/INST] {response}</s>
+
+# ─── Training ─────────────────────────────────────────────────
+training:
+  num_epochs: 3
+  per_device_train_batch_size: 8
+  gradient_accumulation_steps: 4    # effective batch size = 32
+  learning_rate: 2.0e-4
+  lr_scheduler_type: "cosine"
+  warmup_ratio: 0.05
+  weight_decay: 0.01
+  max_grad_norm: 1.0
+  fp16: true
+  seed: 42
+
+# ─── Eval ─────────────────────────────────────────────────────
+eval:
+  eval_strategy: "steps"
+  eval_steps: 100
+  save_strategy: "steps"
+  save_steps: 200
+  save_total_limit: 3
+  load_best_model_at_end: true
+  metric_for_best_model: "eval_loss"
+
+# ─── Output ───────────────────────────────────────────────────
+output:
+  output_dir: "models/sft_checkpoint"
+  logging_dir: "models/sft_checkpoint/logs"
+  logging_steps: 10
+
+# ─── W&B (optional) ──────────────────────────────────────────
+wandb:
+  enabled: false              # set true + WANDB_API_KEY env var on RunPod
+  project: "alvinai-sft"
+  run_name: null              # auto-generated if null
