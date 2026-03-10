@@ -25,11 +25,11 @@ async def structured_lookup(
 
     sql = sql_text("""
         SELECT dc.content, d.title,
-               1 - (dc.embedding <=> :embedding::vector) AS similarity
+               1 - (dc.embedding <=> cast(:embedding AS vector)) AS similarity
         FROM document_chunks dc
         JOIN documents d ON dc.document_id = d.id
         WHERE d.namespace = :namespace
-        ORDER BY dc.embedding <=> :embedding::vector
+        ORDER BY dc.embedding <=> cast(:embedding AS vector)
         LIMIT 1
     """)
 

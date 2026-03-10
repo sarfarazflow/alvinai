@@ -37,6 +37,7 @@ async def query(
         result = await run_query(query=req.query, namespace=req.namespace, db=db)
     except Exception as e:
         logger.error("Pipeline error: %s", e)
+        await db.rollback()
         result = {
             "answer": "I'm sorry, I couldn't process your request. The inference service may be warming up — please try again in a moment.",
             "namespace": req.namespace,
@@ -45,14 +46,18 @@ async def query(
         }
 
     # Save assistant message
-    assistant_msg = Message(
-        conversation_id=conv_id,
-        role="assistant",
-        content=result["answer"],
-        metadata_={"sources": result["sources"], "latency_ms": result["latency_ms"]},
-    )
-    db.add(assistant_msg)
-    await db.commit()
+    try:
+        assistant_msg = Message(
+            conversation_id=conv_id,
+            role="assistant",
+            content=result["answer"],
+            metadata_={"sources": result["sources"], "latency_ms": result["latency_ms"]},
+        )
+        db.add(assistant_msg)
+        await db.commit()
+    except Exception as e:
+        logger.error("Failed to save message: %s", e)
+        await db.rollback()
 
     return QueryResponse(
         answer=result["answer"],

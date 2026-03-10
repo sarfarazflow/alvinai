@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.ai.llm_client import generate
 from app.ai.prompt import get_system_prompt, format_context
-from app.ai.query_classifier import classify_query_type
+from app.ai.query_classifier import classify_query_type, extract_document_ref, is_greeting
 from app.ai.retriever import retrieve
 from app.ai.reranker import rerank
 from app.ai.structured import structured_lookup
@@ -29,8 +29,21 @@ async def run_query(
        - general → LLM only, no retrieval
     """
     metrics = QueryMetrics()
+
+    # --- greeting: instant response, no LLM ---
+    if is_greeting(query):
+        logger.info("Greeting detected, returning canned response")
+        return {
+            "answer": "Hello! I'm Alvin, your AI assistant. How can I help you today?",
+            "namespace": namespace,
+            "sources": [],
+            "latency_ms": metrics.elapsed_ms(),
+            "query_type": "greeting",
+        }
+
     query_type = classify_query_type(query)
-    logger.info("Query classified as '%s' for namespace '%s'", query_type, namespace)
+    doc_ref = extract_document_ref(query)
+    logger.info("Query classified as '%s' for namespace '%s' (doc_ref=%s)", query_type, namespace, doc_ref)
 
     # --- factual_lookup: direct DB search, no LLM ---
     if query_type == "factual_lookup" and db is not None:
@@ -41,8 +54,8 @@ async def run_query(
 
     # --- document_search: full RAG pipeline ---
     if query_type == "document_search" and db is not None:
-        # 1. Retrieve
-        chunks = await retrieve(db, query, namespace, top_k=settings.RAG_TOP_K)
+        # 1. Retrieve (filter by document if referenced in query)
+        chunks = await retrieve(db, query, namespace, top_k=settings.RAG_TOP_K, doc_title_filter=doc_ref)
 
         # 2. Rerank
         if chunks:

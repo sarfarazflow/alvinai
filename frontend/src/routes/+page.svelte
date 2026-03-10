@@ -1,16 +1,28 @@
 <script>
+  import { tick } from 'svelte';
   import { sendQuery, getToken } from '$lib/api';
   import { NAMESPACES } from '$lib/ai';
 
   let messages = $state([]);
   let input = $state('');
   let loading = $state(false);
-  let namespace = $state('customer_support');
+  let namespace = $state('employee_hr');
   let conversationId = $state(null);
   let isLoggedIn = $state(false);
+  let scrollEnd;
+
+  function scrollToBottom() {
+    scrollEnd?.scrollIntoView({ behavior: 'smooth' });
+  }
 
   $effect(() => {
     isLoggedIn = !!getToken();
+  });
+
+  $effect(() => {
+    messages.length;
+    loading;
+    tick().then(() => scrollToBottom());
   });
 
   async function send() {
@@ -120,6 +132,7 @@
             </div>
           </div>
         {/if}
+        <div bind:this={scrollEnd}></div>
       </div>
 
       <!-- Input -->

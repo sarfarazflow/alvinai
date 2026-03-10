@@ -29,10 +29,16 @@ async def ingest_file(
     if not chunks:
         raise ValueError(f"No chunks generated from {file_path}")
 
+    # Use original filename as title if available (for uploads via temp files)
+    title = parsed["title"]
+    if metadata and "original_filename" in metadata:
+        from pathlib import Path
+        title = Path(metadata["original_filename"]).stem
+
     # 3. Embed + Index
     doc = await index_document(
         db=db,
-        title=parsed["title"],
+        title=title,
         source_path=file_path,
         namespace=namespace,
         doc_type=parsed["doc_type"],

@@ -1,5 +1,19 @@
 import re
 
+# --- Greeting / Small-talk Detection ---
+_GREETING_PATTERNS = re.compile(
+    r"^\s*(hi|hello|hey|good\s*(morning|afternoon|evening)|howdy|sup|yo|"
+    r"what'?s?\s*up|how\s*are\s*you|thanks|thank\s*you|ok|okay|bye|goodbye|"
+    r"see\s*you|cheers|hola|namaste)\s*[!?.]*\s*$",
+    re.IGNORECASE,
+)
+
+
+def is_greeting(query: str) -> bool:
+    """Return True if the query is a simple greeting or small-talk."""
+    return bool(_GREETING_PATTERNS.match(query.strip()))
+
+
 # --- Query Type Classification ---
 # Routes queries to: factual_lookup | document_search | general
 
@@ -47,6 +61,24 @@ def classify_query_type(query: str) -> str:
         return "document_search"
 
     return "general"
+
+
+# --- Document Reference Extraction ---
+# Matches patterns like HR-POL-003, TSB-2024-001, FMVSS-301, etc.
+_DOC_REF_PATTERN = re.compile(
+    r"\b([A-Z]{2,}[-_][A-Z]{2,}[-_]\d{2,})\b", re.IGNORECASE
+)
+
+
+def extract_document_ref(query: str) -> str | None:
+    """Extract a document ID reference from the query (e.g. 'HR-POL-003').
+
+    Returns the uppercased document reference if found, else None.
+    """
+    match = _DOC_REF_PATTERN.search(query)
+    if match:
+        return match.group(1).upper()
+    return None
 
 
 # --- Namespace Classification ---

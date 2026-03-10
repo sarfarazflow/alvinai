@@ -88,29 +88,47 @@ async def _dense_search(
     query: str,
     namespace: str,
     top_k: int = 10,
+    doc_title_filter: str | None = None,
 ) -> list[RetrievedChunk]:
     """pgvector cosine similarity search with namespace filter."""
     query_embedding = embed_query(query)
 
-    sql = text("""
-        SELECT dc.id, dc.document_id, dc.chunk_index, dc.content,
-               d.title, d.namespace,
-               1 - (dc.embedding <=> :embedding::vector) AS similarity
-        FROM document_chunks dc
-        JOIN documents d ON dc.document_id = d.id
-        WHERE d.namespace = :namespace
-        ORDER BY dc.embedding <=> :embedding::vector
-        LIMIT :top_k
-    """)
-
-    result = await db.execute(
-        sql,
-        {
+    if doc_title_filter:
+        sql = text("""
+            SELECT dc.id, dc.document_id, dc.chunk_index, dc.content,
+                   d.title, d.namespace,
+                   1 - (dc.embedding <=> cast(:embedding AS vector)) AS similarity
+            FROM document_chunks dc
+            JOIN documents d ON dc.document_id = d.id
+            WHERE d.namespace = :namespace
+              AND UPPER(d.title) LIKE :title_filter
+            ORDER BY dc.embedding <=> cast(:embedding AS vector)
+            LIMIT :top_k
+        """)
+        params = {
+            "embedding": str(query_embedding),
+            "namespace": namespace,
+            "title_filter": f"%{doc_title_filter}%",
+            "top_k": top_k,
+        }
+    else:
+        sql = text("""
+            SELECT dc.id, dc.document_id, dc.chunk_index, dc.content,
+                   d.title, d.namespace,
+                   1 - (dc.embedding <=> cast(:embedding AS vector)) AS similarity
+            FROM document_chunks dc
+            JOIN documents d ON dc.document_id = d.id
+            WHERE d.namespace = :namespace
+            ORDER BY dc.embedding <=> cast(:embedding AS vector)
+            LIMIT :top_k
+        """)
+        params = {
             "embedding": str(query_embedding),
             "namespace": namespace,
             "top_k": top_k,
-        },
-    )
+        }
+
+    result = await db.execute(sql, params)
     rows = result.fetchall()
 
     return [
@@ -133,6 +151,7 @@ async def _sparse_search(
     query: str,
     namespace: str,
     top_k: int = 10,
+    doc_title_filter: str | None = None,
 ) -> list[RetrievedChunk]:
     """BM25 sparse search over chunk texts for a namespace."""
     idx = await _build_bm25_index(db, namespace)
@@ -142,22 +161,31 @@ async def _sparse_search(
     tokenized_query = query.lower().split()
     scores = idx.index.get_scores(tokenized_query)
 
-    scored_indices = sorted(enumerate(scores), key=lambda x: x[1], reverse=True)[:top_k]
+    scored_indices = sorted(enumerate(scores), key=lambda x: x[1], reverse=True)
 
-    return [
-        RetrievedChunk(
-            chunk_id=idx.chunk_ids[i],
-            document_id=idx.doc_ids[i],
-            document_title=idx.doc_titles[i],
-            namespace=idx.namespaces[i],
-            content=idx.corpus[i],
-            chunk_index=idx.chunk_indices[i],
-            score=float(score),
-            source="sparse",
+    results = []
+    for i, score in scored_indices:
+        if score <= 0:
+            continue
+        # Filter by document title if specified
+        if doc_title_filter and doc_title_filter not in idx.doc_titles[i].upper():
+            continue
+        results.append(
+            RetrievedChunk(
+                chunk_id=idx.chunk_ids[i],
+                document_id=idx.doc_ids[i],
+                document_title=idx.doc_titles[i],
+                namespace=idx.namespaces[i],
+                content=idx.corpus[i],
+                chunk_index=idx.chunk_indices[i],
+                score=float(score),
+                source="sparse",
+            )
         )
-        for i, score in scored_indices
-        if score > 0
-    ]
+        if len(results) >= top_k:
+            break
+
+    return results
 
 
 def _rrf_fusion(
@@ -202,12 +230,16 @@ async def retrieve(
     namespace: str,
     top_k: int = 10,
     use_cache: bool = True,
+    doc_title_filter: str | None = None,
 ) -> list[RetrievedChunk]:
     """Hybrid retrieval: dense + sparse + RRF fusion.
 
     Applies namespace-specific similarity threshold:
     - compliance: 0.80
     - all others: 0.72
+
+    If doc_title_filter is provided, only retrieves chunks from documents
+    whose title contains the filter string (case-insensitive).
     """
     # Check cache
     if use_cache:
@@ -217,26 +249,27 @@ async def retrieve(
             logger.info("Cache hit for query in namespace '%s'", namespace)
             return [RetrievedChunk(**c) for c in cached]
 
-    # Run dense + sparse in parallel concept (sequential here for simplicity)
-    dense_results = await _dense_search(db, query, namespace, top_k=top_k)
-    sparse_results = await _sparse_search(db, query, namespace, top_k=top_k)
+    # Run dense + sparse searches
+    dense_results = await _dense_search(db, query, namespace, top_k=top_k, doc_title_filter=doc_title_filter)
+    sparse_results = await _sparse_search(db, query, namespace, top_k=top_k, doc_title_filter=doc_title_filter)
+
+    # Capture dense cosine scores BEFORE fusion overwrites them
+    dense_cosine_scores = {c.chunk_id: c.score for c in dense_results}
 
     # Fuse results
     fused = _rrf_fusion(dense_results, sparse_results)
 
-    # Apply similarity threshold
+    # Apply similarity threshold using original dense cosine scores
     threshold = (
         settings.RAG_COMPLIANCE_SIMILARITY_THRESHOLD
         if namespace == "compliance"
         else settings.RAG_SIMILARITY_THRESHOLD
     )
 
-    # For RRF scores, filter using dense similarity scores as reference
-    dense_scores = {c.chunk_id: c.score for c in dense_results}
     filtered = []
     for chunk in fused:
-        dense_score = dense_scores.get(chunk.chunk_id, 0)
-        if dense_score >= threshold:
+        cosine_score = dense_cosine_scores.get(chunk.chunk_id, 0)
+        if cosine_score >= threshold:
             filtered.append(chunk)
 
     results = filtered[:top_k]

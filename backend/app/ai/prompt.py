@@ -35,14 +35,11 @@ SYSTEM_PROMPTS = {
     ),
 }
 
-CONTEXT_TEMPLATE = """The following documents have been retrieved as context for your answer.
-Base your response on these documents. Cite the document title and relevant section.
-If the answer is not found in these documents, say so clearly.
+CONTEXT_TEMPLATE = """Reference material:
 
 {context_blocks}
 
----
-Now answer the user's question based on the documents above."""
+Using only the reference material above, provide a clear and well-structured answer. Cite the source document by name where relevant. Do not reproduce the reference material verbatim — summarise and explain in your own words. If the answer is not in the reference material, say so."""
 
 
 def get_system_prompt(namespace: str) -> str:
@@ -58,7 +55,7 @@ def format_context(chunks: list) -> str:
     for i, chunk in enumerate(chunks, 1):
         title = getattr(chunk, "document_title", "Unknown")
         content = chunk.content if hasattr(chunk, "content") else str(chunk)
-        blocks.append(f"[Document {i}: {title}]\n{content}")
+        blocks.append(f"Source: {title}\n{content}")
 
     context_blocks = "\n\n".join(blocks)
     return CONTEXT_TEMPLATE.format(context_blocks=context_blocks)
