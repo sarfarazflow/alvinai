@@ -1,8 +1,5 @@
-# AlvinAI — Caddy Reverse Proxy Configuration
-# TLS is managed automatically via ACME (Let's Encrypt). No certbot needed.
-
-autoai.company.com {
-	# ─── WebSocket upgrade (must be before /api/ matcher) ────────
+:80 {
+	# WebSocket upgrade
 	@websocket {
 		path /ws/*
 		header Connection *Upgrade*
@@ -10,12 +7,12 @@ autoai.company.com {
 	}
 	reverse_proxy @websocket backend:8000
 
-	# ─── API routes → FastAPI backend ────────────────────────────
+	# API routes -> FastAPI backend
 	handle /api/* {
 		reverse_proxy backend:8000
 	}
 
-	# ─── All other routes → SvelteKit frontend ──────────────────
+	# All other routes -> SvelteKit frontend
 	handle {
 		reverse_proxy frontend:3000
 	}
