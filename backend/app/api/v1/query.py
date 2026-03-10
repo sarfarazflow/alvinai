@@ -34,7 +34,7 @@ async def query(
 
     # Run AI pipeline (never crashes — returns error message on failure)
     try:
-        result = await run_query(query=req.query, namespace=req.namespace)
+        result = await run_query(query=req.query, namespace=req.namespace, db=db)
     except Exception as e:
         logger.error("Pipeline error: %s", e)
         result = {
