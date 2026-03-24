@@ -1,4 +1,4 @@
-alvin.sarfarazmulla.com {
+alvin.sarfarazmulla.com, alvin.valuecurve.co, alvin.valuecurve.ai {
 	@websocket {
 		path /ws/*
 		header Connection *Upgrade*
