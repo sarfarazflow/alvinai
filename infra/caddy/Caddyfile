@@ -1,5 +1,6 @@
-:80 {
-	# WebSocket upgrade
+https://157.180.85.151 {
+	tls internal
+
 	@websocket {
 		path /ws/*
 		header Connection *Upgrade*
@@ -7,13 +8,16 @@
 	}
 	reverse_proxy @websocket backend:8000
 
-	# API routes -> FastAPI backend
 	handle /api/* {
 		reverse_proxy backend:8000
 	}
 
-	# All other routes -> SvelteKit frontend
 	handle {
 		reverse_proxy frontend:3000
 	}
+}
+
+# Redirect HTTP to HTTPS
+http://157.180.85.151 {
+	redir https://157.180.85.151{uri} permanent
 }
