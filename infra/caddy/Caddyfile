@@ -1,5 +1,7 @@
-https://157.180.85.151 {
-	tls internal
+:443 {
+	tls internal {
+		on_demand
+	}
 
 	@websocket {
 		path /ws/*
@@ -17,7 +19,6 @@ https://157.180.85.151 {
 	}
 }
 
-# Redirect HTTP to HTTPS
-http://157.180.85.151 {
+:80 {
 	redir https://157.180.85.151{uri} permanent
 }
