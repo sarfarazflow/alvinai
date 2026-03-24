@@ -11,7 +11,8 @@ _GREETING_PATTERNS = re.compile(
 
 def is_greeting(query: str) -> bool:
     """Return True if the query is a simple greeting or small-talk."""
-    return bool(_GREETING_PATTERNS.match(query.strip()))
+    cleaned = re.sub(r"[^a-zA-Z\s']", "", query).strip()
+    return bool(_GREETING_PATTERNS.match(cleaned))
 
 
 # --- Query Type Classification ---
