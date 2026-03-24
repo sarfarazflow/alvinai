@@ -1,8 +1,4 @@
-:443 {
-	tls internal {
-		on_demand
-	}
-
+alvin.sarfarazmulla.com {
 	@websocket {
 		path /ws/*
 		header Connection *Upgrade*
@@ -17,8 +13,4 @@
 	handle {
 		reverse_proxy frontend:3000
 	}
-}
-
-:80 {
-	redir https://157.180.85.151{uri} permanent
 }
