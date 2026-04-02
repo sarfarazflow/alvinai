@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Run SFT training. Execute from the repo root:
 
-    python -m scripts.run_sft --config configs/sft_config.yaml
+    python -m scripts.run_sft --config experiments/mistral-nemo-12b-v1/configs/sft_config.yaml
 """
 
 import argparse
@@ -17,14 +17,20 @@ def main():
     parser.add_argument(
         "--config",
         type=str,
-        default="configs/sft_config.yaml",
-        help="Path to SFT config YAML",
+        required=True,
+        help="Path to SFT config YAML (e.g., experiments/mistral-nemo-12b-v1/configs/sft_config.yaml)",
     )
     args = parser.parse_args()
 
     from app.training.sft_trainer import run_sft
+    from app.training.experiment_tracker import update_experiment_status
 
-    run_sft(args.config)
+    try:
+        run_sft(args.config)
+        update_experiment_status(args.config, "sft", "sft_done")
+    except Exception as e:
+        update_experiment_status(args.config, "sft", "failed")
+        raise
 
 
 if __name__ == "__main__":

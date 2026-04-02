@@ -1,0 +1,15 @@
+name: mistral-nemo-12b-v1
+description: "Mistral Nemo 12B — RunPod A6000 48GB, 128K context model, v2 balanced data"
+created: 2026-04-01
+base_model: mistralai/Mistral-Nemo-Instruct-2407
+chat_template: mistral
+data_version: v2
+hardware: runpod-a6000-48gb
+cost_per_hour_usd: 0.79
+total_training_hours: null
+total_cost_usd: null
+status: pending
+notes: |
+  A6000 48GB: SFT/DPO batch_size=4, RAFT batch_size=2 (long seqs).
+  W&B enabled for live monitoring.
+  If RAFT OOMs: reduce to batch_size=1, grad_accum=32.

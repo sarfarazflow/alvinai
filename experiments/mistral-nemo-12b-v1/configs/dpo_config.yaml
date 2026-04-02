@@ -1,0 +1,66 @@
+# ──────────────────────────────────────────────────────────────
+# AlvinAI — DPO Training Configuration
+# Stage 3 of 3: Direct Preference Optimization
+# Aligns output quality with human preferences
+# ──────────────────────────────────────────────────────────────
+
+# ─── Model ────────────────────────────────────────────────────
+model:
+  base_model: "experiments/mistral-nemo-12b-v1/models/raft_checkpoint"  # start from RAFT output
+  max_seq_length: 1024              # DPO prompts/responses are short
+  load_in_4bit: true
+  dtype: "bfloat16"
+
+# ─── Data ─────────────────────────────────────────────────────
+data:
+  train_file: "data/v2/dpo/train.jsonl"
+  val_file: "data/v2/dpo/val.jsonl"
+  format: "dpo_pairs"          # {"prompt":..., "chosen":..., "rejected":...}
+  chat_template: "mistral"
+
+# ─── DPO Training ────────────────────────────────────────────
+training:
+  num_epochs: 1
+  per_device_train_batch_size: 4    # A6000 48GB — DPO seqs are short (1024)
+  gradient_accumulation_steps: 8    # effective batch size = 32
+  learning_rate: 8.0e-6             # conservative for preference alignment
+  lr_scheduler_type: "cosine"
+  warmup_ratio: 0.10
+  weight_decay: 0.01
+  max_grad_norm: 1.0
+  bf16: true
+  seed: 42
+
+# ─── DPO Parameters ──────────────────────────────────────────
+dpo:
+  beta: 0.1                   # KL penalty coefficient
+  loss_type: "sigmoid"        # standard DPO loss
+
+# ─── Eval ─────────────────────────────────────────────────────
+eval:
+  eval_strategy: "steps"
+  eval_steps: 50
+  save_strategy: "steps"
+  save_steps: 100
+  save_total_limit: 3
+  load_best_model_at_end: true
+  metric_for_best_model: "eval_loss"
+
+# ─── DPO Eval Target ─────────────────────────────────────────
+# Win rate vs RAFT-only model (GPT-4-judge SxS) must be >= 15%
+dpo_eval:
+  win_rate_threshold: 0.15
+
+# ─── Output ───────────────────────────────────────────────────
+output:
+  output_dir: "experiments/mistral-nemo-12b-v1/models/dpo_checkpoint"
+  logging_dir: "experiments/mistral-nemo-12b-v1/models/dpo_checkpoint/logs"
+  logging_steps: 10
+
+# ─── W&B (optional) ──────────────────────────────────────────
+wandb:
+  enabled: true
+  project: "alvinai-training"
+  run_name: "mistral-nemo-12b-v1-dpo"
+  group: "mistral-nemo-12b-v1"
+  tags: ["mistral-nemo-12b", "dpo", "v2", "azure", "a10"]

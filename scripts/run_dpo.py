@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Run DPO training. Execute from the repo root:
 
-    python -m scripts.run_dpo --config configs/dpo_config.yaml
+    python -m scripts.run_dpo --config experiments/mistral-nemo-12b-v1/configs/dpo_config.yaml
 """
 
 import argparse
@@ -17,14 +17,20 @@ def main():
     parser.add_argument(
         "--config",
         type=str,
-        default="configs/dpo_config.yaml",
-        help="Path to DPO config YAML",
+        required=True,
+        help="Path to DPO config YAML (e.g., experiments/mistral-nemo-12b-v1/configs/dpo_config.yaml)",
     )
     args = parser.parse_args()
 
     from app.training.dpo_trainer import run_dpo
+    from app.training.experiment_tracker import update_experiment_status
 
-    run_dpo(args.config)
+    try:
+        run_dpo(args.config)
+        update_experiment_status(args.config, "dpo", "dpo_done")
+    except Exception as e:
+        update_experiment_status(args.config, "dpo", "failed")
+        raise
 
 
 if __name__ == "__main__":

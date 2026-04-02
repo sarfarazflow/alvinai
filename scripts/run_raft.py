@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Run RAFT training. Execute from the repo root:
 
-    python -m scripts.run_raft --config configs/raft_config.yaml
+    python -m scripts.run_raft --config experiments/mistral-nemo-12b-v1/configs/raft_config.yaml
 """
 
 import argparse
@@ -17,14 +17,20 @@ def main():
     parser.add_argument(
         "--config",
         type=str,
-        default="configs/raft_config.yaml",
-        help="Path to RAFT config YAML",
+        required=True,
+        help="Path to RAFT config YAML (e.g., experiments/mistral-nemo-12b-v1/configs/raft_config.yaml)",
     )
     args = parser.parse_args()
 
     from app.training.raft_trainer import run_raft
+    from app.training.experiment_tracker import update_experiment_status
 
-    run_raft(args.config)
+    try:
+        run_raft(args.config)
+        update_experiment_status(args.config, "raft", "raft_done")
+    except Exception as e:
+        update_experiment_status(args.config, "raft", "failed")
+        raise
 
 
 if __name__ == "__main__":
