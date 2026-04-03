@@ -25,17 +25,32 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "backend"))
 
 
 def load_model(checkpoint_path, max_seq_length=4096):
-    """Load model from checkpoint using Unsloth."""
-    from unsloth import FastLanguageModel
+    """Load model — supports both merged checkpoints and LoRA adapters."""
+    from transformers import AutoModelForCausalLM, AutoTokenizer
+    import torch
+    import os
 
     print(f"Loading model from {checkpoint_path}...")
-    model, tokenizer = FastLanguageModel.from_pretrained(
-        model_name=checkpoint_path,
-        max_seq_length=max_seq_length,
-        load_in_4bit=True,
-        dtype=None,
-    )
-    FastLanguageModel.for_inference(model)
+    tokenizer = AutoTokenizer.from_pretrained(checkpoint_path)
+
+    # Check if this is a LoRA adapter (has adapter_config.json) or merged model
+    if os.path.exists(os.path.join(checkpoint_path, "adapter_config.json")):
+        from peft import AutoPeftModelForCausalLM
+        print("  Detected LoRA adapter — loading with PEFT...")
+        model = AutoPeftModelForCausalLM.from_pretrained(
+            checkpoint_path,
+            torch_dtype=torch.bfloat16,
+            device_map="auto",
+        )
+    else:
+        model = AutoModelForCausalLM.from_pretrained(
+            checkpoint_path,
+            torch_dtype=torch.bfloat16,
+            device_map="auto",
+        )
+
+    model.eval()
+    print("Model loaded.")
     return model, tokenizer
 
 
