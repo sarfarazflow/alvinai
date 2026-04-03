@@ -6,7 +6,7 @@
 
 # ─── Model ────────────────────────────────────────────────────
 model:
-  base_model: "models/sft_checkpoint"   # start from SFT output
+  base_model: "experiments/mistral-7b-v1/models/sft_checkpoint"   # start from SFT output
   max_seq_length: 4096
   load_in_4bit: true
   dtype: "bfloat16"
@@ -66,12 +66,14 @@ raft_thresholds:
 
 # ─── Output ───────────────────────────────────────────────────
 output:
-  output_dir: "models/raft_checkpoint"
-  logging_dir: "models/raft_checkpoint/logs"
+  output_dir: "experiments/mistral-7b-v1/models/raft_checkpoint"
+  logging_dir: "experiments/mistral-7b-v1/models/raft_checkpoint/logs"
   logging_steps: 10
 
 # ─── W&B (optional) ──────────────────────────────────────────
 wandb:
   enabled: false
-  project: "alvinai-raft"
-  run_name: null
+  project: "alvinai-training"
+  run_name: "mistral-7b-v1-raft"
+  group: "mistral-7b-v1"
+  tags: ["mistral-7b", "raft", "v1"]

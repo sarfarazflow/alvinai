@@ -1,0 +1,49 @@
+stage: raft_validation
+experiment: mistral-nemo-12b-v1
+date: 2026-04-03
+val_data: data/v2/raft/val.jsonl
+num_samples: 100
+
+# Pre-RAFT (SFT checkpoint-200 evaluated on RAFT val data)
+sft_baseline:
+  checkpoint: sft_checkpoint/checkpoint-200
+  eval_file: eval/sft_on_raft_eval.json
+  oracle_examples: 63
+  oracle_free_examples: 37
+  metrics:
+    oracle_citation_rate: 0.587    # FAIL (target >= 0.80)
+    distractor_rejection_rate: 1.000    # PASS
+    abstention_rate: 0.000    # FAIL — never abstains, always fabricates
+  eval_time_seconds: 524
+
+# Post-RAFT (RAFT checkpoint-519 evaluated on RAFT val data)
+raft_trained:
+  checkpoint: raft_checkpoint (step 519, eval_loss=0.113)
+  eval_file: eval/raft_on_raft_eval.json
+  oracle_examples: 63
+  oracle_free_examples: 37
+  metrics:
+    oracle_citation_rate: 1.000    # PASS — perfect citation
+    distractor_rejection_rate: 1.000    # PASS — perfect rejection
+    abstention_rate: 0.946    # PASS — 35/37 correctly abstained
+  eval_time_seconds: 375
+
+# Improvement summary
+improvement:
+  oracle_citation_rate: "+41.3%  (0.587 → 1.000)"
+  distractor_rejection_rate: "unchanged (1.000 → 1.000)"
+  abstention_rate: "+94.6%  (0.000 → 0.946)"
+
+verdict: ALL PASS — proceed to DPO
+
+observations: |
+  RAFT training dramatically improved the model's retrieval grounding:
+  - Citation: Model now always uses ##begin_quote## markers (was 59%)
+  - Abstention: Model learned to say "not found" 95% of the time when
+    the answer isn't in context (was 0% — SFT model always fabricated)
+  - The 2 abstention failures (5.4%) were cases where the model
+    incorrectly cited from distractor documents instead of abstaining
+
+  Key finding: SFT-only model is dangerous for RAG — it never abstains
+  and will confidently fabricate answers from distractor documents.
+  RAFT is essential before production deployment.

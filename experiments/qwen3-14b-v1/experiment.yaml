@@ -1,0 +1,12 @@
+name: qwen3-14b-v1
+description: ""
+created: 2026-04-01
+base_model: Qwen/Qwen3-14B
+chat_template: qwen
+data_version: v1
+hardware: null
+cost_per_hour_usd: null
+total_training_hours: null
+total_cost_usd: null
+status: pending  # pending | sft_done | raft_done | dpo_done | completed
+notes: ""

@@ -77,9 +77,12 @@ def run_raft(config_path: str):
     # Setup W&B if enabled
     if config.get("wandb", {}).get("enabled"):
         import wandb
+        wandb_cfg = config["wandb"]
         wandb.init(
-            project=config["wandb"]["project"],
-            name=config["wandb"].get("run_name"),
+            project=wandb_cfg["project"],
+            name=wandb_cfg.get("run_name"),
+            group=wandb_cfg.get("group"),
+            tags=wandb_cfg.get("tags"),
         )
 
     print("Loading model and tokenizer from SFT checkpoint...")
@@ -87,7 +90,10 @@ def run_raft(config_path: str):
 
     print("Loading RAFT datasets...")
     data_cfg = config["data"]
-    train_ds, val_ds = prepare_raft_dataset(data_cfg["train_file"], data_cfg["val_file"])
+    chat_template = data_cfg.get("chat_template", "mistral")
+    train_ds, val_ds = prepare_raft_dataset(
+        data_cfg["train_file"], data_cfg["val_file"], chat_template=chat_template
+    )
     print(f"Train: {len(train_ds)} examples, Val: {len(val_ds)} examples")
 
     print("Starting RAFT training...")

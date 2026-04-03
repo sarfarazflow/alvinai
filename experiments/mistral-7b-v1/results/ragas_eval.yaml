@@ -1,0 +1,43 @@
+experiment: mistral-7b-v1
+model: null
+eval_date: null
+eval_dataset: data/v1/eval/
+
+namespaces:
+  customer_support:
+    faithfulness: null
+    answer_relevance: null
+    context_precision: null
+    context_recall: null
+  engineering:
+    faithfulness: null
+    answer_relevance: null
+    context_precision: null
+    context_recall: null
+  dealer_sales:
+    faithfulness: null
+    answer_relevance: null
+    context_precision: null
+    context_recall: null
+  compliance:
+    faithfulness: null
+    answer_relevance: null
+    context_precision: null
+    context_recall: null
+  employee_hr:
+    faithfulness: null
+    answer_relevance: null
+    context_precision: null
+    context_recall: null
+  vendor:
+    faithfulness: null
+    answer_relevance: null
+    context_precision: null
+    context_recall: null
+
+overall:
+  faithfulness_avg: null
+  answer_relevance_avg: null
+  context_precision_avg: null
+  context_recall_avg: null
+  all_targets_met: null

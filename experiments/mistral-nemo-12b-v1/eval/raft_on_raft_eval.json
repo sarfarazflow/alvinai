@@ -1,0 +1,877 @@
+{
+  "summary": {
+    "stage": "raft",
+    "checkpoint": "experiments/mistral-nemo-12b-v1/models/raft_checkpoint",
+    "num_samples": 100,
+    "oracle_citation_rate": 1.0,
+    "distractor_rejection_rate": 1.0,
+    "abstention_rate": 0.9459,
+    "all_pass": true,
+    "elapsed_seconds": 374.5
+  },
+  "results": [
+    {
+      "type": "oracle_free",
+      "category": "vendor",
+      "correctly_abstained": true,
+      "response_length": 140,
+      "non_empty": true,
+      "response_preview": "The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance."
+    },
+    {
+      "type": "oracle",
+      "category": "vendor",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 186,
+      "non_empty": true,
+      "response_preview": "##begin_quote## The Material Review Board reviews and disposes of all non-conforming material detected during incoming inspection. ##end_quote## See PROC-STD-002-S9 for complete details."
+    },
+    {
+      "type": "oracle",
+      "category": "compliance",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 766,
+      "non_empty": true,
+      "response_preview": "##begin_quote## | Test | Standard | Condition | Result |\n|---|---|---|---|\n| Temperature cycling | ISO 16750-4 | -40\u00b0C to +150\u00b0C, 100 cycles | **PASS** |\n| Vibration (random) | ISO 16750-3 | 10\u20132000 H"
+    },
+    {
+      "type": "oracle",
+      "category": "compliance",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 327,
+      "non_empty": true,
+      "response_preview": "##begin_quote## | Parameter | Specification |\n|---|---|\n| Type | Single-roll (48-inch dia.) or twin-roll (8.65-inch dia.) |\n| Road load simulation | Coefficient-based (A + Bv + Cv\u00b2) or target coeffici"
+    },
+    {
+      "type": "oracle",
+      "category": "employee_hr",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 150,
+      "non_empty": true,
+      "response_preview": "##begin_quote## This policy applies to all AlvinAI employees whose roles are eligible for remote ##end_quote## See HR-POL-003-S3 for complete details."
+    },
+    {
+      "type": "oracle",
+      "category": "compliance",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 255,
+      "non_empty": true,
+      "response_preview": "##begin_quote## - All high-voltage components must achieve a protection degree of at least **IPXXB** (protection against access with a jointed test finger, 12 mm diameter, 80 mm length). ##end_quote##"
+    },
+    {
+      "type": "oracle",
+      "category": "compliance",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 441,
+      "non_empty": true,
+      "response_preview": "The system must warn the driver within **10 minutes of cumulative driving time** after the onset of a 20% (or greater) pressure loss. ##begin_quote## The system must warn the driver within **10 minute"
+    },
+    {
+      "type": "oracle_free",
+      "category": "employee_hr",
+      "correctly_abstained": false,
+      "response_length": 208,
+      "non_empty": true,
+      "response_preview": "##begin_quote## Fees include course materials, examination, and certification card. Fees include course materials, examination, and certification card. ##end_quote## See HR-TRAIN-001-S11 for complete "
+    },
+    {
+      "type": "oracle_free",
+      "category": "dealer_sales",
+      "correctly_abstained": true,
+      "response_length": 157,
+      "non_empty": true,
+      "response_preview": "After reviewing the provided context, I cannot locate the information needed. Please check the original source documentation or contact the appropriate team."
+    },
+    {
+      "type": "oracle_free",
+      "category": "vendor",
+      "correctly_abstained": true,
+      "response_length": 148,
+      "non_empty": true,
+      "response_preview": "The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information."
+    },
+    {
+      "type": "oracle",
+      "category": "vendor",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 152,
+      "non_empty": true,
+      "response_preview": "##begin_quote## This standard applies to all direct material deliveries at AlvinAI manufacturing ##end_quote## See PROC-STD-002-S3 for complete details."
+    },
+    {
+      "type": "oracle_free",
+      "category": "customer_support",
+      "correctly_abstained": true,
+      "response_length": 148,
+      "non_empty": true,
+      "response_preview": "The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information."
+    },
+    {
+      "type": "oracle",
+      "category": "vendor",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 193,
+      "non_empty": true,
+      "response_preview": "##begin_quote## This standard applies to: ##end_quote## Specifically, Exclusions: indirect material suppliers (office supplies, MRO) with annual spend. See PROC-STD-001-S3 for complete details."
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 195,
+      "non_empty": true,
+      "response_preview": "**Algorithm Overview:** ##begin_quote## The software update adds a rain echo discrimination algorithm to the PSM: ** Algorithm Overview: ##end_quote## See TSB-2025-SE-002-S7 for complete details."
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 313,
+      "non_empty": true,
+      "response_preview": "##begin_quote## | Parameter | Requirement |\n|---|---|\n| Location | Behind front bumper fascia, centerline \u00b1 20 mm |\n| Height | 400\u2013700 mm from ground (per vehicle platform) |\n| Tilt (vertical) | 0\u00b0 \u00b1 "
+    },
+    {
+      "type": "oracle",
+      "category": "dealer_sales",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 285,
+      "non_empty": true,
+      "response_preview": "##begin_quote## | Part # | Description | Application | MSRP | Dealer Net | Core Charge |\n|---|---|---|---|---|---|\n| BRK-ROT-F-2001 | Front Rotor \u2014 Vented | Sedan | $129.99 | $84.49 | $15.00 |\n| BRK-R"
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 636,
+      "non_empty": true,
+      "response_preview": "##begin_quote## | Component | Gen 1 (no lidar) | Gen 2 + Hesai | Gen 2 + Seyond | Gen 2 + Luminar |\n|---|---|---|---|---|\n| Radar (SS-RAD-77F) | $180 | $180 | $180 | $180 |\n| Camera (SS-CAM-F200) | $4"
+    },
+    {
+      "type": "oracle_free",
+      "category": "vendor",
+      "correctly_abstained": true,
+      "response_length": 140,
+      "non_empty": true,
+      "response_preview": "The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance."
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 288,
+      "non_empty": true,
+      "response_preview": "**Customer-observable symptoms:** ##begin_quote## - ADAS warning light illuminated on dashboard (amber camera icon) ##end_quote## Specifically, Customer-observable symptoms: ** - ADAS warning light il"
+    },
+    {
+      "type": "oracle",
+      "category": "dealer_sales",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 264,
+      "non_empty": true,
+      "response_preview": "##begin_quote## BrakeGuard Pro offers the most comprehensive brake pad warranty in the market: ##end_quote## Specifically, Talking Point: ** \"Our warranty is in writing with specific coverage periods."
+    },
+    {
+      "type": "oracle_free",
+      "category": "customer_support",
+      "correctly_abstained": true,
+      "response_length": 148,
+      "non_empty": true,
+      "response_preview": "The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information."
+    },
+    {
+      "type": "oracle_free",
+      "category": "compliance",
+      "correctly_abstained": true,
+      "response_length": 140,
+      "non_empty": true,
+      "response_preview": "The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance."
+    },
+    {
+      "type": "oracle",
+      "category": "customer_support",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 155,
+      "non_empty": true,
+      "response_preview": "##begin_quote## - **Keep your sensors clean.** Make it a habit to wipe the front bumper radar ##end_quote## See CUST-DTC-ADAS-2025-S8 for complete details."
+    },
+    {
+      "type": "oracle",
+      "category": "employee_hr",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 308,
+      "non_empty": true,
+      "response_preview": "The points system applies to non-exempt (hourly) manufacturing and warehouse ##begin_quote## employees. Office-based exempt employees are not subject to the points system. ##end_quote## Specifically, "
+    },
+    {
+      "type": "oracle",
+      "category": "customer_support",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 182,
+      "non_empty": true,
+      "response_preview": "##begin_quote## 1. With insulating gloves on, open the service disconnect cover (hinged, lifts up). ##end_quote## See SM-EV-001_HV_Battery_Safety_Disconnect-S10 for complete details."
+    },
+    {
+      "type": "oracle_free",
+      "category": "compliance",
+      "correctly_abstained": true,
+      "response_length": 140,
+      "non_empty": true,
+      "response_preview": "The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance."
+    },
+    {
+      "type": "oracle",
+      "category": "vendor",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 207,
+      "non_empty": true,
+      "response_preview": "##begin_quote## - **Buyer:** AlvinAI Automotive Corporation (\"AlvinAI\") ##end_quote## Specifically, Parties: **Buyer:** AlvinAI Automotive Corporation (\"AlvinAI\"). See VENDOR-CTR-001-S2 for complete d"
+    },
+    {
+      "type": "oracle_free",
+      "category": "customer_support",
+      "correctly_abstained": true,
+      "response_length": 148,
+      "non_empty": true,
+      "response_preview": "The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information."
+    },
+    {
+      "type": "oracle_free",
+      "category": "dealer_sales",
+      "correctly_abstained": true,
+      "response_length": 149,
+      "non_empty": true,
+      "response_preview": "I cannot find an answer to this question in the provided context documents. Please refer to the primary source or contact the appropriate specialist."
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 156,
+      "non_empty": true,
+      "response_preview": "##begin_quote## Vehicles equipped with the PowerCell Battery Management System (BMS) firmware v2. ##end_quote## See TSB-2025-EV-002-S2 for complete details."
+    },
+    {
+      "type": "oracle_free",
+      "category": "vendor",
+      "correctly_abstained": true,
+      "response_length": 148,
+      "non_empty": true,
+      "response_preview": "The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information."
+    },
+    {
+      "type": "oracle",
+      "category": "customer_support",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 218,
+      "non_empty": true,
+      "response_preview": "##begin_quote## 1. With engine OFF, press the brake pedal firmly and release. Repeat 15-20 times until the pedal feels firm at normal height. ##end_quote## See SM-BRK-001_Brake_Pad_Replacement-S17 for"
+    },
+    {
+      "type": "oracle",
+      "category": "compliance",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 306,
+      "non_empty": true,
+      "response_preview": "##begin_quote## This regulation establishes requirements for vehicle lighting equipment to reduce accidents and fatalities by ensuring adequate roadway illumination and enhancing vehicle conspicuity i"
+    },
+    {
+      "type": "oracle",
+      "category": "compliance",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 580,
+      "non_empty": true,
+      "response_preview": "- **ESC System**: A computer-controlled system that applies individual wheel brake torques to induce correcting yaw moments, with capabilities to determine yaw rate, estimate side slip, monitor steeri"
+    },
+    {
+      "type": "oracle",
+      "category": "customer_support",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 157,
+      "non_empty": true,
+      "response_preview": "##begin_quote## 1. Verify TPMS warning light is OFF on the instrument cluster. ##end_quote## See SM-SNS-001_TPMS_Sensor_Replacement-S14 for complete details."
+    },
+    {
+      "type": "oracle",
+      "category": "vendor",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 152,
+      "non_empty": true,
+      "response_preview": "##begin_quote## This standard applies to all direct material deliveries at AlvinAI manufacturing ##end_quote## See PROC-STD-002-S3 for complete details."
+    },
+    {
+      "type": "oracle_free",
+      "category": "employee_hr",
+      "correctly_abstained": true,
+      "response_length": 140,
+      "non_empty": true,
+      "response_preview": "The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance."
+    },
+    {
+      "type": "oracle_free",
+      "category": "engineering",
+      "correctly_abstained": true,
+      "response_length": 148,
+      "non_empty": true,
+      "response_preview": "The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information."
+    },
+    {
+      "type": "oracle",
+      "category": "customer_support",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 169,
+      "non_empty": true,
+      "response_preview": "##begin_quote## The rear procedure is identical to the front with the following differences: ##end_quote## See SM-BRK-001_Brake_Pad_Replacement-S16 for complete details."
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 297,
+      "non_empty": true,
+      "response_preview": "##begin_quote## | Parameter | Value |\n|---|---|\n| Physical layer | 100BASE-T1 (IEEE 802.3bw) |\n| Connector | TE MATEnet (2-pin shielded) |\n| Cable | STP, max 15 m |\n| VLAN | VLAN 10 (radar traffic iso"
+    },
+    {
+      "type": "oracle_free",
+      "category": "engineering",
+      "correctly_abstained": true,
+      "response_length": 148,
+      "non_empty": true,
+      "response_preview": "The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information."
+    },
+    {
+      "type": "oracle_free",
+      "category": "compliance",
+      "correctly_abstained": true,
+      "response_length": 140,
+      "non_empty": true,
+      "response_preview": "The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance."
+    },
+    {
+      "type": "oracle",
+      "category": "employee_hr",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 145,
+      "non_empty": true,
+      "response_preview": "##begin_quote## AlvinAI conducts an annual compensation review in March, effective April 1. ##end_quote## See HR-POL-004-S5 for complete details."
+    },
+    {
+      "type": "oracle",
+      "category": "employee_hr",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 150,
+      "non_empty": true,
+      "response_preview": "##begin_quote## A conflict of interest exists when an employee's personal interests \u2014 financial, ##end_quote## See HR-POL-002-S5 for complete details."
+    },
+    {
+      "type": "oracle_free",
+      "category": "vendor",
+      "correctly_abstained": true,
+      "response_length": 149,
+      "non_empty": true,
+      "response_preview": "I cannot find an answer to this question in the provided context documents. Please refer to the primary source or contact the appropriate specialist."
+    },
+    {
+      "type": "oracle",
+      "category": "dealer_sales",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 998,
+      "non_empty": true,
+      "response_preview": "##begin_quote## | Part # | Description | Size | MSRP | Dealer Net | Core Charge |\n|---|---|---|---|---|---|\n| BRK-FLD-8001 | DOT 4 Brake Fluid | 1 Liter | $18.99 | $12.34 | \u2014 |\n| BRK-FLD-8002 | DOT 4 "
+    },
+    {
+      "type": "oracle",
+      "category": "customer_support",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 257,
+      "non_empty": true,
+      "response_preview": "##begin_quote## > **NOTE**: Always replace the valve stem service kit components when installing a new TPMS sensor. The grommet/seal is a one-time-use item and must not be reused. ##end_quote## See SM"
+    },
+    {
+      "type": "oracle",
+      "category": "customer_support",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 457,
+      "non_empty": true,
+      "response_preview": "This procedure covers the safe de-energization of the high-voltage (HV) battery system on PowerCell electric vehicles. ##begin_quote## This procedure covers the safe de-energization of the high-voltag"
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 109,
+      "non_empty": true,
+      "response_preview": "##begin_quote## 1. Connect DiagSuite v4.1 or later ##end_quote## See TSB-2025-AD-002-S9 for complete details."
+    },
+    {
+      "type": "oracle_free",
+      "category": "compliance",
+      "correctly_abstained": true,
+      "response_length": 148,
+      "non_empty": true,
+      "response_preview": "The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information."
+    },
+    {
+      "type": "oracle",
+      "category": "customer_support",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 155,
+      "non_empty": true,
+      "response_preview": "##begin_quote## If the battery SOH falls below 70% during the warranty period, the customer is ##end_quote## See WARRANTY-BAT-2025-S4 for complete details."
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 370,
+      "non_empty": true,
+      "response_preview": "##begin_quote## | Component | Specification |\n|---|---|\n| Main contactors (\u00d72) | TE Kilovac EV200, 400 VDC, 500 A continuous |\n| Precharge contactor | Kilovac LEV100, with 150 \u03a9 precharge resistor |\n|"
+    },
+    {
+      "type": "oracle_free",
+      "category": "vendor",
+      "correctly_abstained": true,
+      "response_length": 140,
+      "non_empty": true,
+      "response_preview": "The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance."
+    },
+    {
+      "type": "oracle_free",
+      "category": "compliance",
+      "correctly_abstained": true,
+      "response_length": 148,
+      "non_empty": true,
+      "response_preview": "The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information."
+    },
+    {
+      "type": "oracle",
+      "category": "employee_hr",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 135,
+      "non_empty": true,
+      "response_preview": "##begin_quote## The program consists of three progressive certification levels: ##end_quote## See HR-TRAIN-001-S4 for complete details."
+    },
+    {
+      "type": "oracle_free",
+      "category": "compliance",
+      "correctly_abstained": true,
+      "response_length": 140,
+      "non_empty": true,
+      "response_preview": "The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance."
+    },
+    {
+      "type": "oracle",
+      "category": "employee_hr",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 152,
+      "non_empty": true,
+      "response_preview": "##begin_quote## This Code of Conduct establishes the ethical standards and behavioral expectations ##end_quote## See HR-POL-002-S2 for complete details."
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 1643,
+      "non_empty": true,
+      "response_preview": "##begin_quote## | DTC | System | Description | ADAS Impact |\n|---|---|---|---|\n| U0401 | CAN Bus | Invalid data from ACM | All ADAS disabled |\n| C2200 | Forward Radar | Performance/blockage | ACC + FC"
+    },
+    {
+      "type": "oracle",
+      "category": "dealer_sales",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 273,
+      "non_empty": true,
+      "response_preview": "##begin_quote## | Property | BrakeGuard Pro Value |\n|---|---|\n| Compound Type | AlvinCeram nano-ceramic |\n| Friction Coefficient (mu) | 0.38\u20130.42 (stable across temperature range) |\n| Operating Temper"
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 222,
+      "non_empty": true,
+      "response_preview": "**Customer-observable symptoms:** ##begin_quote## - ADAS warning light illuminated on dashboard (amber camera icon) ##end_quote## Specifically, Customer-observable symptoms: **. See TSB-2025-AD-002-S7"
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 297,
+      "non_empty": true,
+      "response_preview": "##begin_quote## | Document | Title |\n|---|---|\n| UN R100 | Uniform provisions -- Battery electric vehicles (safety) |\n| UN R136 | Electric vehicles of category L (reference for 48V safety) |\n| IEC 626"
+    },
+    {
+      "type": "oracle_free",
+      "category": "dealer_sales",
+      "correctly_abstained": true,
+      "response_length": 149,
+      "non_empty": true,
+      "response_preview": "I cannot find an answer to this question in the provided context documents. Please refer to the primary source or contact the appropriate specialist."
+    },
+    {
+      "type": "oracle",
+      "category": "employee_hr",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 148,
+      "non_empty": true,
+      "response_preview": "##begin_quote## Remote employees must complete the AlvinAI Home Workspace Ergonomic Assessment ##end_quote## See HR-POL-003-S8 for complete details."
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 153,
+      "non_empty": true,
+      "response_preview": "##begin_quote## The original filter validation testing (BG-VAL-2024-ABS-012) was conducted on: ##end_quote## See TSB-2025-BR-002-S9 for complete details."
+    },
+    {
+      "type": "oracle",
+      "category": "vendor",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 152,
+      "non_empty": true,
+      "response_preview": "##begin_quote## Continental shall submit PPAP Level 3 documentation for all initial production ##end_quote## See VENDOR-SLA-002-S4 for complete details."
+    },
+    {
+      "type": "oracle_free",
+      "category": "employee_hr",
+      "correctly_abstained": true,
+      "response_length": 140,
+      "non_empty": true,
+      "response_preview": "The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance."
+    },
+    {
+      "type": "oracle",
+      "category": "employee_hr",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 188,
+      "non_empty": true,
+      "response_preview": "AlvinAI strictly complies with the U. ##begin_quote## AlvinAI strictly complies with the U.S. Foreign Corrupt Practices Act (FCPA) and ##end_quote## See HR-POL-002-S4 for complete details."
+    },
+    {
+      "type": "oracle",
+      "category": "dealer_sales",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 136,
+      "non_empty": true,
+      "response_preview": "##begin_quote## The PowerCell BMS monitors every cell in real time and manages: ##end_quote## See BRCH-BAT-2025-S8 for complete details."
+    },
+    {
+      "type": "oracle",
+      "category": "employee_hr",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 146,
+      "non_empty": true,
+      "response_preview": "##begin_quote## ALL incidents, injuries, near-misses, and unsafe conditions must be reported ##end_quote## See HR-POL-005-S7 for complete details."
+    },
+    {
+      "type": "oracle_free",
+      "category": "engineering",
+      "correctly_abstained": true,
+      "response_length": 148,
+      "non_empty": true,
+      "response_preview": "The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information."
+    },
+    {
+      "type": "oracle_free",
+      "category": "customer_support",
+      "correctly_abstained": true,
+      "response_length": 140,
+      "non_empty": true,
+      "response_preview": "The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance."
+    },
+    {
+      "type": "oracle",
+      "category": "compliance",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 226,
+      "non_empty": true,
+      "response_preview": "##begin_quote## - Conducted in darkroom with calibrated photometer ##end_quote## Specifically, Lamp lenses must resist: - Gasoline exposure (30-second immersion). See FMVSS_108_Lamps_Reflective_Device"
+    },
+    {
+      "type": "oracle",
+      "category": "compliance",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 298,
+      "non_empty": true,
+      "response_preview": "##begin_quote## | Date | Compliance Requirement |\n|---|---|\n| October 2005 \u2013 September 2006 | 20% of production |\n| September 2006 \u2013 September 2007 | 70% of production |\n| September 2007 onward | 100%"
+    },
+    {
+      "type": "oracle_free",
+      "category": "employee_hr",
+      "correctly_abstained": false,
+      "response_length": 243,
+      "non_empty": true,
+      "response_preview": "##begin_quote## This certification program applies to: ##end_quote## Specifically, No technician may perform ADAS work without holding the appropriate certification level for the task being performed."
+    },
+    {
+      "type": "oracle",
+      "category": "customer_support",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 347,
+      "non_empty": true,
+      "response_preview": "> **NOTE**: The 12V battery powers the BMS, contactors, and HV interlock circuit. ##begin_quote## > **NOTE**: The 12V battery powers the BMS, contactors, and HV interlock circuit. Disconnecting it ens"
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 453,
+      "non_empty": true,
+      "response_preview": "This specification defines the performance, environmental, electrical, mechanical, and reliability requirements for the SensorSuite UPS-300 Ultrasonic Parking Sensor. ##begin_quote## This specificatio"
+    },
+    {
+      "type": "oracle_free",
+      "category": "customer_support",
+      "correctly_abstained": true,
+      "response_length": 149,
+      "non_empty": true,
+      "response_preview": "I cannot find an answer to this question in the provided context documents. Please refer to the primary source or contact the appropriate specialist."
+    },
+    {
+      "type": "oracle_free",
+      "category": "compliance",
+      "correctly_abstained": true,
+      "response_length": 148,
+      "non_empty": true,
+      "response_preview": "The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information."
+    },
+    {
+      "type": "oracle",
+      "category": "employee_hr",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 188,
+      "non_empty": true,
+      "response_preview": "##begin_quote## AlvinAI conducts an annual compensation review in March, effective April 1. ##end_quote## Specifically, Exceeds Expectations: 4%\u20136%. See HR-POL-004-S5 for complete details."
+    },
+    {
+      "type": "oracle",
+      "category": "dealer_sales",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 153,
+      "non_empty": true,
+      "response_preview": "##begin_quote## 150 kW DC fast charging brings customers from 10% to 80% in under 35 minutes for ##end_quote## See BRCH-BAT-2025-S6 for complete details."
+    },
+    {
+      "type": "oracle_free",
+      "category": "employee_hr",
+      "correctly_abstained": true,
+      "response_length": 140,
+      "non_empty": true,
+      "response_preview": "The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance."
+    },
+    {
+      "type": "oracle",
+      "category": "employee_hr",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 152,
+      "non_empty": true,
+      "response_preview": "##begin_quote## This Code of Conduct establishes the ethical standards and behavioral expectations ##end_quote## See HR-POL-002-S2 for complete details."
+    },
+    {
+      "type": "oracle",
+      "category": "customer_support",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 334,
+      "non_empty": true,
+      "response_preview": "> **WARNING**: Always deflate the tire completely before breaking the tire bead. ##begin_quote## > **WARNING**: Always deflate the tire completely before breaking the tire bead. Attempting to break a "
+    },
+    {
+      "type": "oracle_free",
+      "category": "employee_hr",
+      "correctly_abstained": true,
+      "response_length": 148,
+      "non_empty": true,
+      "response_preview": "The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information."
+    },
+    {
+      "type": "oracle_free",
+      "category": "dealer_sales",
+      "correctly_abstained": true,
+      "response_length": 140,
+      "non_empty": true,
+      "response_preview": "The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance."
+    },
+    {
+      "type": "oracle",
+      "category": "compliance",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 213,
+      "non_empty": true,
+      "response_preview": "##begin_quote## # UN R155: Uniform Provisions Concerning the Approval of Vehicles with Regard to Cyber Security and Cyber Security Management System ##end_quote## See UN_R155_Cybersecurity-S1 for comp"
+    },
+    {
+      "type": "oracle",
+      "category": "compliance",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 183,
+      "non_empty": true,
+      "response_preview": "##begin_quote## # UN R64: Uniform Provisions Concerning the Approval of Vehicles with Regard to Tyre Pressure Monitoring Systems ##end_quote## See UN_R64_TPMS-S1 for complete details."
+    },
+    {
+      "type": "oracle",
+      "category": "dealer_sales",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 278,
+      "non_empty": true,
+      "response_preview": "##begin_quote## | Part # | Description | Application | MSRP | Dealer Net | Core Charge |\n|---|---|---|---|---|---|\n| BRK-HYD-5001 | Brake Line Set \u2014 Front | All | $89.99 | $58.49 | \u2014 |\n| BRK-HYD-5002 "
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 352,
+      "non_empty": true,
+      "response_preview": "##begin_quote## | Part Number | Description | Qty per Vehicle | Unit Cost | Extended |\n|---|---|---|---|---|\n| SS-WSS-CON-69K | IP69K connector kit (1 wheel) | 4 | $28.50 | $114.00 |\n| SS-GREASE-DI-50"
+    },
+    {
+      "type": "oracle_free",
+      "category": "engineering",
+      "correctly_abstained": true,
+      "response_length": 148,
+      "non_empty": true,
+      "response_preview": "The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information."
+    },
+    {
+      "type": "oracle",
+      "category": "compliance",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 265,
+      "non_empty": true,
+      "response_preview": "This is the most critical new requirement, introduced via the alignment with UN GTR No. ##begin_quote## This is the most critical new requirement, introduced via the alignment with UN GTR No. 20. ##en"
+    },
+    {
+      "type": "oracle",
+      "category": "dealer_sales",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 293,
+      "non_empty": true,
+      "response_preview": "##begin_quote## | Part # | Description | Application | MSRP | Dealer Net | Core Charge |\n|---|---|---|---|---|---|\n| BGP-PAD-F-1001 | Front Pad Set \u2014 Standard | Sedan | $89.99 | $58.49 | \u2014 |\n| BGP-PAD"
+    },
+    {
+      "type": "oracle_free",
+      "category": "engineering",
+      "correctly_abstained": true,
+      "response_length": 148,
+      "non_empty": true,
+      "response_preview": "The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information."
+    },
+    {
+      "type": "oracle_free",
+      "category": "compliance",
+      "correctly_abstained": true,
+      "response_length": 168,
+      "non_empty": true,
+      "response_preview": "This specific information is not covered in the documents provided. I recommend consulting the relevant subject matter expert or referring to the primary documentation."
+    },
+    {
+      "type": "oracle_free",
+      "category": "dealer_sales",
+      "correctly_abstained": true,
+      "response_length": 140,
+      "non_empty": true,
+      "response_preview": "The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance."
+    },
+    {
+      "type": "oracle",
+      "category": "customer_support",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 169,
+      "non_empty": true,
+      "response_preview": "##begin_quote## The rear procedure is identical to the front with the following differences: ##end_quote## See SM-BRK-001_Brake_Pad_Replacement-S16 for complete details."
+    },
+    {
+      "type": "oracle_free",
+      "category": "customer_support",
+      "correctly_abstained": true,
+      "response_length": 148,
+      "non_empty": true,
+      "response_preview": "The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information."
+    },
+    {
+      "type": "oracle",
+      "category": "dealer_sales",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 220,
+      "non_empty": true,
+      "response_preview": "##begin_quote## Available through the AlvinAI Parts Portal: https://parts.alvinai.com ##end_quote## Specifically, Standard lead time: 3\u20135 business days from regional warehouse.. See BRCH-BRK-2025-S8 f"
+    },
+    {
+      "type": "oracle_free",
+      "category": "customer_support",
+      "correctly_abstained": true,
+      "response_length": 148,
+      "non_empty": true,
+      "response_preview": "The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information."
+    },
+    {
+      "type": "oracle",
+      "category": "employee_hr",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 219,
+      "non_empty": true,
+      "response_preview": "Fees include course materials, examination, and certification card. ##begin_quote## Fees include course materials, examination, and certification card. Travel and ##end_quote## See HR-TRAIN-001-S11 fo"
+    }
+  ]
+}

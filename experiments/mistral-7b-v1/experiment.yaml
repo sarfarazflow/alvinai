@@ -1,0 +1,14 @@
+name: mistral-7b-v1
+description: "Mistral 7B Instruct v0.3 — baseline model, first full pipeline run on RunPod A6000"
+created: 2026-03-09
+base_model: mistralai/Mistral-7B-Instruct-v0.3
+chat_template: mistral
+data_version: v1
+hardware: runpod-a6000-48gb
+cost_per_hour_usd: 0.79
+total_training_hours: 1.0
+total_cost_usd: 0.79
+status: completed
+notes: |
+  First complete SFT → RAFT → DPO pipeline run.
+  All training on RunPod A6000 (48GB VRAM).

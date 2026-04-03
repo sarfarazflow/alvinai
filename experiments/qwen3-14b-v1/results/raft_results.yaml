@@ -1,0 +1,19 @@
+stage: raft
+experiment: qwen3-14b-v1
+model: null
+hardware: null
+date: null
+duration_minutes: null
+total_steps: null
+epochs: null
+
+metrics:
+  train_loss_avg: null
+  eval_loss_final: null
+
+resources:
+  vram_peak_gb: null
+  gpu: null
+  gpu_memory_gb: null
+
+observations: ""

@@ -1,0 +1,877 @@
+{
+  "summary": {
+    "stage": "raft",
+    "checkpoint": "experiments/mistral-nemo-12b-v1/models/sft_checkpoint/checkpoint-200",
+    "num_samples": 100,
+    "oracle_citation_rate": 0.5873,
+    "distractor_rejection_rate": 1.0,
+    "abstention_rate": 0.0,
+    "all_pass": false,
+    "elapsed_seconds": 524.4
+  },
+  "results": [
+    {
+      "type": "oracle_free",
+      "category": "vendor",
+      "correctly_abstained": false,
+      "response_length": 263,
+      "non_empty": true,
+      "response_preview": "All tooling, fixtures, and product-specific designs developed by Continental for AlvinAI refer to: ##begin_quote## VENDOR-CTR-002-S13 in the Supply Agreement. ##end_quote##. Key data \u2014 Item: Tooling C"
+    },
+    {
+      "type": "oracle",
+      "category": "vendor",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 282,
+      "non_empty": true,
+      "response_preview": "The Material Review Board reviews and disposes of all non-conforming material detected during incoming inspection. Key data \u2014 Role: Quality Engineer (Chair), Responsibility: Leads review, documents di"
+    },
+    {
+      "type": "oracle",
+      "category": "compliance",
+      "oracle_cited": false,
+      "distractor_rejected": true,
+      "response_length": 684,
+      "non_empty": true,
+      "response_preview": "| Test | Standard | Condition | Result |\n|---|---|---|---|\n| Temperature cycling | ISO 16750-4 | -40\u00b0C to +150\u00b0C, 100 cycles | **PASS** |\n| Vibration (random) | ISO 16750-3 | 10\u20132000 Hz, 30 grms, 8 hr"
+    },
+    {
+      "type": "oracle",
+      "category": "compliance",
+      "oracle_cited": false,
+      "distractor_rejected": true,
+      "response_length": 554,
+      "non_empty": true,
+      "response_preview": "| Parameter | Specification |\n|---|---|\n| Type | Single-roll (48-inch dia.) or twin-roll (8.65-inch dia.) |\n| Road load simulation | Coefficient-based (A + Bv + Cv\u00b2) or target coefficient method |\n| I"
+    },
+    {
+      "type": "oracle",
+      "category": "employee_hr",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 470,
+      "non_empty": true,
+      "response_preview": "This policy applies to all AlvinAI employees whose roles are eligible for remote work. Manufacturing, warehouse, and other on-site roles are excluded from remote work eligibility (see Section 3.2). ##"
+    },
+    {
+      "type": "oracle",
+      "category": "compliance",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 524,
+      "non_empty": true,
+      "response_preview": "All high-voltage components must achieve a protection degree of at least **IPXXB** (protection against access with a jointed test finger, 12 mm diameter, 80 mm length). ##begin_quote## The IPXXB ratin"
+    },
+    {
+      "type": "oracle",
+      "category": "compliance",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 400,
+      "non_empty": true,
+      "response_preview": "The system must warn the driver within **10 minutes of cumulative driving time** after the onset of a 20% (or greater) pressure loss. The 10-minute window begins when the vehicle first exceeds **40 km"
+    },
+    {
+      "type": "oracle_free",
+      "category": "employee_hr",
+      "correctly_abstained": false,
+      "response_length": 142,
+      "non_empty": true,
+      "response_preview": "**Authorized Tasks After Certification:** Curriculum: **. Authorized Tasks After Certification: **. Key data \u2014 Level: Level 1, Curriculum: **."
+    },
+    {
+      "type": "oracle_free",
+      "category": "dealer_sales",
+      "correctly_abstained": false,
+      "response_length": 354,
+      "non_empty": true,
+      "response_preview": "The SensorSuite ADAS Package provides SAE Level 2+ driver assistance including: Key data \u2014 Feature: Adaptive Cruise Control, Description: Full-speed range, from 0 km/h to highway speeds. ##begin_quote"
+    },
+    {
+      "type": "oracle_free",
+      "category": "vendor",
+      "correctly_abstained": false,
+      "response_length": 128,
+      "non_empty": true,
+      "response_preview": "This agreement is governed by the laws of the State of Michigan, USA. Refer to VENDOR-CTR-001-S14 in the contract documentation."
+    },
+    {
+      "type": "oracle",
+      "category": "vendor",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 307,
+      "non_empty": true,
+      "response_preview": "This standard applies to all direct material deliveries at AlvinAI manufacturing and assembly facilities. It covers mechanical components, electronic assemblies, raw materials, and sub-assemblies from"
+    },
+    {
+      "type": "oracle_free",
+      "category": "customer_support",
+      "correctly_abstained": false,
+      "response_length": 260,
+      "non_empty": true,
+      "response_preview": "1. **Check for obstructions** \u2014 Remove any dirt, ice, or snow from the camera module and Key data \u2014 Code: C2235, Meaning in Plain Language: Front camera blocked or dirty. For further assistance, conta"
+    },
+    {
+      "type": "oracle",
+      "category": "vendor",
+      "oracle_cited": false,
+      "distractor_rejected": true,
+      "response_length": 312,
+      "non_empty": true,
+      "response_preview": "This standard applies to: - All new direct material suppliers (Tier 1 and Tier 2 where directed). Exclusions: indirect material suppliers (office supplies, MRO) with annual spend below $50,000 follow "
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": false,
+      "distractor_rejected": true,
+      "response_length": 314,
+      "non_empty": true,
+      "response_preview": "1. **Hydrophobic nano-coating application**: During routine service, apply the hydrophobic nano-coating (SS-COAT-HPC) to the sensor face. Reduces water film formation by 25% on average. Key data \u2014 Ope"
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": false,
+      "distractor_rejected": true,
+      "response_length": 486,
+      "non_empty": true,
+      "response_preview": "| Parameter | Requirement |\n|---|---|\n| Location | Behind front bumper fascia, centerline \u00b1 20 mm |\n| Height | 400\u2013700 mm from ground (per vehicle platform) |\n| Tilt (vertical) | 0\u00b0 \u00b1 1\u00b0 (adjusted dur"
+    },
+    {
+      "type": "oracle",
+      "category": "dealer_sales",
+      "oracle_cited": false,
+      "distractor_rejected": true,
+      "response_length": 201,
+      "non_empty": true,
+      "response_preview": "All prices are effective January 1, 2025 and are subject to change with 60 days written notice.. Key data \u2014 Part #: BRK-ROT-F-2001, Description: Front Rotor \u2014 Vented, Application: Sedan, MSRP: $129.99"
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": false,
+      "distractor_rejected": true,
+      "response_length": 563,
+      "non_empty": true,
+      "response_preview": "| Component | Gen 1 (no lidar) | Gen 2 + Hesai | Gen 2 + Seyond | Gen 2 + Luminar |\n|---|---|---|---|---|\n| Radar (SS-RAD-77F) | $180 | $180 | $180 | $180 |\n| Camera (SS-CAM-F200) | $45 | $45 | $45 | "
+    },
+    {
+      "type": "oracle_free",
+      "category": "vendor",
+      "correctly_abstained": false,
+      "response_length": 165,
+      "non_empty": true,
+      "response_preview": "**Inspection Scope:** All production materials and components received at AlvinAI facilities. Refer to PROC-STD-002-S3 in the documentation set for the full details."
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 369,
+      "non_empty": true,
+      "response_preview": "**Customer-observable symptoms:** - ADAS warning light illuminated on dashboard (amber camera icon) - \"Forward Camera Blocked\" or \"ADAS Temporarily Unavailable\" message on instrument cluster or infota"
+    },
+    {
+      "type": "oracle",
+      "category": "dealer_sales",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 577,
+      "non_empty": true,
+      "response_preview": "BrakeGuard Pro offers the most comprehensive brake pad warranty in the market: 36 months / 60,000 km with a defined prorated credit schedule. Competitors offer either short fixed-period warranties or "
+    },
+    {
+      "type": "oracle_free",
+      "category": "customer_support",
+      "correctly_abstained": false,
+      "response_length": 308,
+      "non_empty": true,
+      "response_preview": "| Parameter | Value |\n|---|---|\n| Frequency | 76\u201377 GHz |\n| Maximum Range | 80 meters |\n| Field of View | \u00b175 degrees azimuth |\n| Functions | Blind Spot Detection, Rear Cross-Traffic Alert, Lane C Key"
+    },
+    {
+      "type": "oracle_free",
+      "category": "compliance",
+      "correctly_abstained": false,
+      "response_length": 199,
+      "non_empty": true,
+      "response_preview": "**SS-ADAS-PKG-100** \u2014 Advanced Driver Assistance System Package Note: ** This package includes all hardware and software components necessary for L2+ ADAS operation. Relevant values: 77 GHz, 250 kHz."
+    },
+    {
+      "type": "oracle",
+      "category": "customer_support",
+      "oracle_cited": false,
+      "distractor_rejected": true,
+      "response_length": 277,
+      "non_empty": true,
+      "response_preview": "- **Keep your sensors clean.** Make it a habit to wipe the front bumper radar Key data \u2014 Code: C2235, Meaning in Plain Language: One or more ADAS sensors require professional calibration. For further "
+    },
+    {
+      "type": "oracle",
+      "category": "employee_hr",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 275,
+      "non_empty": true,
+      "response_preview": "The points system applies to non-exempt (hourly) manufacturing and warehouse employees. Office-based exempt employees are not subject to the points system.. Key data \u2014 Occurrence: Unexcused absence (f"
+    },
+    {
+      "type": "oracle",
+      "category": "customer_support",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 392,
+      "non_empty": true,
+      "response_preview": "1. With insulating gloves on, open the service disconnect cover (hinged, lifts up). Key points: With insulating gloves on, open the service disconnect cover (hinged, lifts up).; The service disconnect"
+    },
+    {
+      "type": "oracle_free",
+      "category": "compliance",
+      "correctly_abstained": false,
+      "response_length": 141,
+      "non_empty": true,
+      "response_preview": "The Tier 3 program phases in increasingly stringent fleet-average standards: Key data \u2014 Model Year: 2017, Fleet Average NMOG+NOx (mg/mi): 86."
+    },
+    {
+      "type": "oracle",
+      "category": "vendor",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 235,
+      "non_empty": true,
+      "response_preview": "- **Buyer:** AlvinAI Automotive Corporation (\"AlvinAI\") Key data \u2014 Buyer: AlvinAI Automotive Corporation (\"AlvinAI\"), Supplier: Robert Bosch GmbH (\"Bosch\"). Refer to VENDOR-CTR-001-S2 in the contract "
+    },
+    {
+      "type": "oracle_free",
+      "category": "customer_support",
+      "correctly_abstained": false,
+      "response_length": 313,
+      "non_empty": true,
+      "response_preview": "1. Reconnect the battery negative terminal. Key points: Reconnect the battery negative terminal.; Turn ignition to ON (engine off). The TPMS warning light should turn OFF if the new sensor is transmit"
+    },
+    {
+      "type": "oracle_free",
+      "category": "dealer_sales",
+      "correctly_abstained": false,
+      "response_length": 526,
+      "non_empty": true,
+      "response_preview": "The BrakeGuard Pro Series represents a breakthrough in ceramic brake compound technology, delivering the stopping power professionals demand with the refinement customers expect. Developed in partners"
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 768,
+      "non_empty": true,
+      "response_preview": "Vehicles equipped with the PowerCell Battery Management System (BMS) firmware v2.1 and v2.2 may set DTC P0A80 (Pack Cell Voltage Deviation) after extended cold soak at ambient temperatures of -20\u00b0C or"
+    },
+    {
+      "type": "oracle_free",
+      "category": "vendor",
+      "correctly_abstained": false,
+      "response_length": 235,
+      "non_empty": true,
+      "response_preview": "**Phase 1: Initial Contact and Qualification (4\u20136 weeks)** When Applied: **. Activities: **. Qualification Validity: ** 6 months, subject to continued performance. Refer to PROC-STD-001-S5 in the docu"
+    },
+    {
+      "type": "oracle",
+      "category": "customer_support",
+      "oracle_cited": false,
+      "distractor_rejected": true,
+      "response_length": 350,
+      "non_empty": true,
+      "response_preview": "1. Fill the pressure bleeder tank with fresh DOT 4 fluid. Key points: Fill the pressure bleeder tank with fresh DOT 4 fluid.; Attach the pressure bleeder hose to the bleeder screw adapter.; Connect th"
+    },
+    {
+      "type": "oracle",
+      "category": "compliance",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 339,
+      "non_empty": true,
+      "response_preview": "FMVSS 108 establishes requirements for vehicle lighting equipment to reduce accidents and fatalities by ensuring adequate roadway illumination and enhancing vehicle conspicuity in all visibility condi"
+    },
+    {
+      "type": "oracle",
+      "category": "compliance",
+      "oracle_cited": false,
+      "distractor_rejected": true,
+      "response_length": 578,
+      "non_empty": true,
+      "response_preview": "- **ESC System**: A computer-controlled system that applies individual wheel brake torques to induce correcting yaw moments, with capabilities to determine yaw rate, estimate side slip, monitor steeri"
+    },
+    {
+      "type": "oracle",
+      "category": "customer_support",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 531,
+      "non_empty": true,
+      "response_preview": "1. Verify TPMS warning light is OFF on the instrument cluster. Key points: Verify TPMS warning light is OFF on the instrument cluster.; On the infotainment display, navigate to: Vehicle > Tire Pressur"
+    },
+    {
+      "type": "oracle",
+      "category": "vendor",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 307,
+      "non_empty": true,
+      "response_preview": "This standard applies to all direct material deliveries at AlvinAI manufacturing and assembly facilities. It covers mechanical components, electronic assemblies, raw materials, and sub-assemblies from"
+    },
+    {
+      "type": "oracle_free",
+      "category": "employee_hr",
+      "correctly_abstained": false,
+      "response_length": 226,
+      "non_empty": true,
+      "response_preview": "AlvinAI uses an 8-level compensation band structure. Key data \u2014 Band: L1, Title Range: Entry ADAS Technician \u2013 ADAS Calibration Specialist, Annual Salary Range: $55,000 \u2013 $75,000. See HR-POL-002-S5 fo"
+    },
+    {
+      "type": "oracle_free",
+      "category": "engineering",
+      "correctly_abstained": false,
+      "response_length": 380,
+      "non_empty": true,
+      "response_preview": "| Parameter | Requirement |\n|---|---|\n| Operating temperature | -40 deg C to +85 deg C |\n| Storage temperature | -40 deg C to +120 deg C |\n| Chemical compatibility | No reaction with coolant (OAT, PAG"
+    },
+    {
+      "type": "oracle",
+      "category": "customer_support",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 498,
+      "non_empty": true,
+      "response_preview": "The rear procedure is identical to the front with the following differences: Key points: Caliper bracket bolts torque: **70 N-m / 52 ft-lbs** (vs. 95 N-m front).; On Apex GT and PowerCell 500: rear ca"
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": false,
+      "distractor_rejected": true,
+      "response_length": 470,
+      "non_empty": true,
+      "response_preview": "| Parameter | Value |\n|---|---|\n| Physical layer | 100BASE-T1 (IEEE 802.3bw) |\n| Connector | TE MATEnet (2-pin shielded) |\n| Cable | STP, max 15 m |\n| VLAN | VLAN 10 (radar traffic isolated) |\n| IP ad"
+    },
+    {
+      "type": "oracle_free",
+      "category": "engineering",
+      "correctly_abstained": false,
+      "response_length": 338,
+      "non_empty": true,
+      "response_preview": "1. Connect DiagSuite v4.0+ to OBD-II port. Key points: Connect DiagSuite v4.0+ to OBD-II port.; Navigate to: **Chassis > Braking > Service Functions > Pad Wear Sensor Calibration**.; Follow on-screen "
+    },
+    {
+      "type": "oracle_free",
+      "category": "compliance",
+      "correctly_abstained": false,
+      "response_length": 210,
+      "non_empty": true,
+      "response_preview": "- **ABS module replacement** (new module + firmware update): 0.8 hours Key data \u2014 Operation: ABS module replacement (new module + firmware update), Time (hrs): 0.8. See TSB-2025-BR-001-S11 for complet"
+    },
+    {
+      "type": "oracle",
+      "category": "employee_hr",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 197,
+      "non_empty": true,
+      "response_preview": "AlvinAI conducts an annual compensation review in March, effective April 1. Key data \u2014 Performance Rating: Exceptional, Typical Merit Increase: 6%\u20138%. See HR-POL-004-S5 for the full policy details."
+    },
+    {
+      "type": "oracle",
+      "category": "employee_hr",
+      "oracle_cited": false,
+      "distractor_rejected": true,
+      "response_length": 205,
+      "non_empty": true,
+      "response_preview": "- Gifts to customers or business partners must not exceed $50 per recipient per Key data \u2014 Gift Value: Under $50, Rule: May be accepted; no approval required. See HR-POL-002-S6 for the full policy det"
+    },
+    {
+      "type": "oracle_free",
+      "category": "vendor",
+      "correctly_abstained": false,
+      "response_length": 433,
+      "non_empty": true,
+      "response_preview": "| Role | Responsibility |\n|---|---|\n| AlvinAI VP Procurement | Approve supplier selection, manage commercial terms |\n| Supplier Quality Engineer | Manage PPAP, PPM tracking, SCAR management |\n| Proces"
+    },
+    {
+      "type": "oracle",
+      "category": "dealer_sales",
+      "oracle_cited": false,
+      "distractor_rejected": true,
+      "response_length": 309,
+      "non_empty": true,
+      "response_preview": "| Part # | Description | Size | MSRP | Dealer Net | Core Charge |\n|---|---|---|---|---|---|\n| BRK-FLD-8001 | DOT 4 Brake Fluid | 1 Liter | $18.99 | $12.34 | \u2014 |\n| BRK-FLD-8002 | DOT 4 Brake Fluid | 5 "
+    },
+    {
+      "type": "oracle",
+      "category": "customer_support",
+      "oracle_cited": false,
+      "distractor_rejected": true,
+      "response_length": 220,
+      "non_empty": true,
+      "response_preview": "| Part | Part Number | Quantity |\n|---|---|---|\n| TPMS Sensor | SS-TPMS-315-V2 | 1 per affected wheel |\n| Valve stem service kit | SS-TPMS-VSK-10 | 1 per sensor (includes: valve core, valve cap, stem "
+    },
+    {
+      "type": "oracle",
+      "category": "customer_support",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 655,
+      "non_empty": true,
+      "response_preview": "This procedure covers the safe de-energization of the high-voltage (HV) battery system on PowerCell electric vehicles. The HV battery operates at **400V DC nominal (PowerCell 400)** or **800V DC nomin"
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": false,
+      "distractor_rejected": true,
+      "response_length": 567,
+      "non_empty": true,
+      "response_preview": "1. Locate the windshield upper trim cover (surrounds the rearview mirror and camera module mounting area) Key points: Locate the windshield upper trim cover (surrounds the rearview mirror and camera m"
+    },
+    {
+      "type": "oracle_free",
+      "category": "compliance",
+      "correctly_abstained": false,
+      "response_length": 696,
+      "non_empty": true,
+      "response_preview": "- **High Voltage**: Any electrical circuit with a working voltage greater than **60 V DC** or **30 V AC (rms)**. Key points: **High Voltage**: Any electrical circuit with a working voltage greater tha"
+    },
+    {
+      "type": "oracle",
+      "category": "customer_support",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 289,
+      "non_empty": true,
+      "response_preview": "If the battery SOH falls below 70% during the warranty period, the customer is entitled to a prorated credit toward a replacement battery pack: Key data \u2014 SOH Range: 65%\u201369%, Credit Percentage: 80% of"
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": false,
+      "distractor_rejected": true,
+      "response_length": 568,
+      "non_empty": true,
+      "response_preview": "| Component | Specification |\n|---|---|\n| Main contactors (\u00d72) | TE Kilovac EV200, 400 VDC, 500 A continuous |\n| Precharge contactor | Kilovac LEV100, with 150 \u03a9 precharge resistor |\n| Precharge time "
+    },
+    {
+      "type": "oracle_free",
+      "category": "vendor",
+      "correctly_abstained": false,
+      "response_length": 254,
+      "non_empty": true,
+      "response_preview": "For the ARS540, the following codes indicate radar failure or performance issues: Key data \u2014 Code: C2200, Description: Front Long-Range Radar \u2014 No Signal, Relevance: **HIGH**. For further assistance, "
+    },
+    {
+      "type": "oracle_free",
+      "category": "compliance",
+      "correctly_abstained": false,
+      "response_length": 288,
+      "non_empty": true,
+      "response_preview": "The REESS must withstand the following mechanical tests without loss of performance: Key data \u2014 Test: Vibration (random, 10\u20132000 Hz), Specific: 8000 acceleration units (a.e.), Specific: 8000 accelerat"
+    },
+    {
+      "type": "oracle",
+      "category": "employee_hr",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 318,
+      "non_empty": true,
+      "response_preview": "The program consists of three progressive certification levels: ##begin_quote## * **Level 1 (ADAS Technician)**: Entry-level ADAS certification. This level is required for all service technicians work"
+    },
+    {
+      "type": "oracle_free",
+      "category": "compliance",
+      "correctly_abstained": false,
+      "response_length": 325,
+      "non_empty": true,
+      "response_preview": "The REESS must be at **50% SOC** (+/- 10%) at the start of the test. After thermal cycling: no fire, no explosion, no electrolyte leakage, isolation resistance within specification.. Key data \u2014 Parame"
+    },
+    {
+      "type": "oracle",
+      "category": "employee_hr",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 394,
+      "non_empty": true,
+      "response_preview": "This Code of Conduct establishes the ethical standards and behavioral expectations for all AlvinAI employees, contractors, and representatives. Every person acting on behalf of AlvinAI is expected to "
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": false,
+      "distractor_rejected": true,
+      "response_length": 103,
+      "non_empty": true,
+      "response_preview": "- **ACM supply voltage exceeds maximum operating threshold** Key data \u2014 Field: **Code**, Detail: B1235."
+    },
+    {
+      "type": "oracle",
+      "category": "dealer_sales",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 278,
+      "non_empty": true,
+      "response_preview": "The BrakeGuard Pro Series represents AlvinAI's most advanced brake pad technology: ##begin_quote## ** \"Our best pad for OE and aftermarket: priced between premium and value tiers, performs at the prem"
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 291,
+      "non_empty": true,
+      "response_preview": "**Customer-observable symptoms:** - ADAS warning light illuminated on dashboard (amber camera icon) - \"Forward Camera Blocked\" or \"ADAS Temporarily Unavailable\" message on instrument cluster or infota"
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 241,
+      "non_empty": true,
+      "response_preview": "- **UN R100**: Uniform provisions -- Battery electric vehicles (safety) Key data \u2014 Document: UN R100, Title: Uniform provisions -- Battery electric vehicles (safety). Refer to SPEC-BAT-100_EV_Battery_"
+    },
+    {
+      "type": "oracle_free",
+      "category": "dealer_sales",
+      "correctly_abstained": false,
+      "response_length": 356,
+      "non_empty": true,
+      "response_preview": "# 2025 Price List \u2014 Brake Components\n\n**Effective Date:** January 1, 2025\n**Supersedes:** PRC-BRK-2024 (December 31, 2024)\n\nAll prices in USD. Dealer Net pricing is confidential and must not be shared"
+    },
+    {
+      "type": "oracle",
+      "category": "employee_hr",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 221,
+      "non_empty": true,
+      "response_preview": "Remote employees must complete the AlvinAI Home Workspace Ergonomic Assessment annually (available on the HR portal). This self-assessment covers: - Chair height and posture. See HR-POL-003-S8 for the"
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 630,
+      "non_empty": true,
+      "response_preview": "The original filter validation testing (BG-VAL-2024-ABS-012) was conducted on: - Dry surfaces only at speeds below 20 km/h. The specific combination of wet surfaces + low speed + gradual braking was n"
+    },
+    {
+      "type": "oracle",
+      "category": "vendor",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 280,
+      "non_empty": true,
+      "response_preview": "- **PPAP Level:** PPAP Level 3 documentation for all initial production parts Key data \u2014 PPAP Level: PPAP Level 3, Continental Responsibility: Submit complete PPAP package, Timeline: 8 weeks before SO"
+    },
+    {
+      "type": "oracle_free",
+      "category": "employee_hr",
+      "correctly_abstained": false,
+      "response_length": 205,
+      "non_empty": true,
+      "response_preview": "- Gifts to customers or business partners must not exceed $50 per recipient per Key data \u2014 Gift Value: Under $50, Rule: May be accepted; no approval required. See HR-POL-002-S5 for the full policy det"
+    },
+    {
+      "type": "oracle",
+      "category": "employee_hr",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 507,
+      "non_empty": true,
+      "response_preview": "AlvinAI strictly complies with the U.S. Foreign Corrupt Practices Act (FCPA) and all applicable anti-corruption laws worldwide. No employee or representative shall: Key points: Offer, promise, or give"
+    },
+    {
+      "type": "oracle",
+      "category": "dealer_sales",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 361,
+      "non_empty": true,
+      "response_preview": "The PowerCell BMS monitors every cell in real time and manages: ##begin_quote## - Cell voltage balancing (active, within \u00b15 mV) - Temperature monitoring (2 sensors per module) - State of Charge (SOC) "
+    },
+    {
+      "type": "oracle",
+      "category": "employee_hr",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 297,
+      "non_empty": true,
+      "response_preview": "1. Ensure the scene is safe and provide first aid if needed Key points: Ensure the scene is safe and provide first aid if needed; Notify the immediate supervisor verbally; Complete the Incident Report"
+    },
+    {
+      "type": "oracle_free",
+      "category": "engineering",
+      "correctly_abstained": false,
+      "response_length": 445,
+      "non_empty": true,
+      "response_preview": "**HIGH VOLTAGE HAZARD:** The PowerCell 48M battery module operates at high voltage (up to 60V nominal, 75V maximum). Relevant values: 75 V, 1000 V, 1000 V. ##begin_quote## **HIGH VOLTAGE HAZARD:** The"
+    },
+    {
+      "type": "oracle_free",
+      "category": "customer_support",
+      "correctly_abstained": false,
+      "response_length": 342,
+      "non_empty": true,
+      "response_preview": "1. Park the vehicle on a level surface with at least **5 meters** of clear space in front Key points: Park the vehicle on a level surface with at least **5 meters** of clear space in front; Set the pa"
+    },
+    {
+      "type": "oracle",
+      "category": "compliance",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 335,
+      "non_empty": true,
+      "response_preview": "- Conducted in darkroom with calibrated photometer - Test points defined in spherical coordinate system (H = horizontal, V = vertical) - Light source aged for minimum 1 hour before measurement. Key da"
+    },
+    {
+      "type": "oracle",
+      "category": "compliance",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 216,
+      "non_empty": true,
+      "response_preview": "- October 2005 \u2013 September 2006: 20% of production Key data \u2014 Date: October 2005 \u2013 September 2006, Compliance Requirement: 20% of production. Refer to FMVSS_138_Tire_Pressure_Monitoring-S8 for the ful"
+    },
+    {
+      "type": "oracle_free",
+      "category": "employee_hr",
+      "correctly_abstained": false,
+      "response_length": 144,
+      "non_empty": true,
+      "response_preview": "This certification program applies to: - Service technicians at AlvinAI authorized dealerships. See HR-TRAIN-001-S3 for the full policy details."
+    },
+    {
+      "type": "oracle",
+      "category": "customer_support",
+      "oracle_cited": false,
+      "distractor_rejected": true,
+      "response_length": 365,
+      "non_empty": true,
+      "response_preview": "1. Open the hood (PowerCell 400) or front trunk (PowerCell 500). Key points: Open the hood (PowerCell 400) or front trunk (PowerCell 500).; Locate the HV battery pack at the vehicle rear.; Using the H"
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": false,
+      "distractor_rejected": true,
+      "response_length": 991,
+      "non_empty": true,
+      "response_preview": "This specification defines the performance, environmental, electrical, mechanical, and reliability requirements for the SensorSuite UPS-300 Ultrasonic Parking Sensor. The UPS-300 is a piezoelectric ul"
+    },
+    {
+      "type": "oracle_free",
+      "category": "customer_support",
+      "correctly_abstained": false,
+      "response_length": 489,
+      "non_empty": true,
+      "response_preview": "This warranty does NOT cover battery degradation or failure resulting from: Key points: **Non-approved chargers exceeding 150 kW** \u2014 Use of DC fast chargers rated; **Submersion beyond IP67 rating** \u2014 "
+    },
+    {
+      "type": "oracle_free",
+      "category": "compliance",
+      "correctly_abstained": false,
+      "response_length": 346,
+      "non_empty": true,
+      "response_preview": "| Parameter | Value |\n|-----------|-------|\n| Resolution | 640 x 480 pixels (VGA) |\n| Frame rate | 30 fps |\n| Field of view | 55\u00b0 horizontal |\n| Dynamic range | 100 dB |\n| Light source | LED array, co"
+    },
+    {
+      "type": "oracle",
+      "category": "employee_hr",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 197,
+      "non_empty": true,
+      "response_preview": "AlvinAI conducts an annual compensation review in March, effective April 1. Key data \u2014 Performance Rating: Exceptional, Typical Merit Increase: 6%\u20138%. See HR-POL-004-S5 for the full policy details."
+    },
+    {
+      "type": "oracle",
+      "category": "dealer_sales",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 413,
+      "non_empty": true,
+      "response_preview": "The SensorSuite ADAS Package provides comprehensive advanced driver-assistance Key data \u2014 Feature: Adaptive Cruise Control, Radar: Required, Camera: Optional. ##begin_quote## \"The SensorSuite ADAS Pac"
+    },
+    {
+      "type": "oracle_free",
+      "category": "employee_hr",
+      "correctly_abstained": false,
+      "response_length": 445,
+      "non_empty": true,
+      "response_preview": "This document defines the ADAS Technician Certification Program at AlvinAI. The program ensures that all technicians working on Advanced Driver-Assistance Systems have the required knowledge, skills, "
+    },
+    {
+      "type": "oracle",
+      "category": "employee_hr",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 394,
+      "non_empty": true,
+      "response_preview": "This Code of Conduct establishes the ethical standards and behavioral expectations for all AlvinAI employees, contractors, and representatives. Every person acting on behalf of AlvinAI is expected to "
+    },
+    {
+      "type": "oracle",
+      "category": "customer_support",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 441,
+      "non_empty": true,
+      "response_preview": "**WARNING**: Always deflate the tire completely before breaking the tire bead. Attempting to break a bead on an inflated tire can cause explosive separation. ##begin_quote## **WARNING**: Always deflat"
+    },
+    {
+      "type": "oracle_free",
+      "category": "employee_hr",
+      "correctly_abstained": false,
+      "response_length": 205,
+      "non_empty": true,
+      "response_preview": "- Gifts to customers or business partners must not exceed $50 per recipient per Key data \u2014 Gift Value: Under $50, Rule: May be accepted; no approval required. See HR-POL-002-S7 for the full policy det"
+    },
+    {
+      "type": "oracle_free",
+      "category": "dealer_sales",
+      "correctly_abstained": false,
+      "response_length": 512,
+      "non_empty": true,
+      "response_preview": "- **Price sensitivity:** Some customers may be drawn to lower-cost alternatives. Key points: **Price sensitivity:** Some customers may be drawn to lower-cost alternatives.; **Installation time:** Whil"
+    },
+    {
+      "type": "oracle",
+      "category": "compliance",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 642,
+      "non_empty": true,
+      "response_preview": "UN R155 establishes requirements for: ##begin_quote Key points: **Cyber Security Management System (CSMS)** certification at the organizational level \u2014 the manufacturer must demonstrate that cybersecu"
+    },
+    {
+      "type": "oracle",
+      "category": "compliance",
+      "oracle_cited": false,
+      "distractor_rejected": true,
+      "response_length": 292,
+      "non_empty": true,
+      "response_preview": "UN R64 is a United Nations regulatory document that establishes requirements for Tyre Pressure Monitoring Systems (TPMS) in motor vehicles. Key data \u2014 Parameter: Pressure measurement range, Typical Re"
+    },
+    {
+      "type": "oracle",
+      "category": "dealer_sales",
+      "oracle_cited": false,
+      "distractor_rejected": true,
+      "response_length": 417,
+      "non_empty": true,
+      "response_preview": "| Part # | Description | Application | MSRP | Dealer Net | Core Charge |\n|---|---|---|---|---|---|\n| BRK-HYD-5001 | Brake Line Set \u2014 Front | All | $89.99 | $58.49 | \u2014 |\n| BRK-HYD- You can order this p"
+    },
+    {
+      "type": "oracle",
+      "category": "engineering",
+      "oracle_cited": false,
+      "distractor_rejected": true,
+      "response_length": 343,
+      "non_empty": true,
+      "response_preview": "| Part Number | Description | Qty per Vehicle | Unit Cost | Extended |\n|---|---|---|---|---|\n| SS-WSS-CON-69K | IP69K connector kit (1 wheel) | 4 | $28.50 | $114.00 |\n| SS-GREASE-DI-50 | Dielectric gr"
+    },
+    {
+      "type": "oracle_free",
+      "category": "engineering",
+      "correctly_abstained": false,
+      "response_length": 338,
+      "non_empty": true,
+      "response_preview": "**Code B1520** indicates that the parking sensor system has detected a blockage or contamination condition that requires dealer attention. Key data \u2014 Code: B1520, Meaning in Plain Language: **Parking "
+    },
+    {
+      "type": "oracle",
+      "category": "compliance",
+      "oracle_cited": false,
+      "distractor_rejected": true,
+      "response_length": 693,
+      "non_empty": true,
+      "response_preview": "| Parameter | Value |\n|-----------|-------|\n| Trigger method | Induce thermal runaway in a single cell via nail penetration, internal heater, or overcharge |\n| Target cell | The cell most likely to pr"
+    },
+    {
+      "type": "oracle",
+      "category": "dealer_sales",
+      "oracle_cited": false,
+      "distractor_rejected": true,
+      "response_length": 564,
+      "non_empty": true,
+      "response_preview": "| Part # | Description | Application | MSRP | Dealer Net | Core Charge |\n|---|---|---|---|---|---|\n| BGP-PAD-F-1003 | Front Pad Set \u2014 Performance | Sedan | $109.99 | $71.49 | \u2014 |\n| BGP-PAD-R-1004 | Re"
+    },
+    {
+      "type": "oracle_free",
+      "category": "engineering",
+      "correctly_abstained": false,
+      "response_length": 332,
+      "non_empty": true,
+      "response_preview": "**Root Cause Analysis:** ##begin_quote## The passive balancing algorithm relies on the effective cell impedance at 25\u00b0C. At low temperatures, the effective cell impedance increases dramatically: | Tem"
+    },
+    {
+      "type": "oracle_free",
+      "category": "compliance",
+      "correctly_abstained": false,
+      "response_length": 216,
+      "non_empty": true,
+      "response_preview": "The regulation mandates that each vehicle must have a device capable of measuring: Key data \u2014 Parameter: Minimum resolution, Value: **0.1 km/h** or **0.1 m/s**. Refer to UN_R134_TPMS-S7 for the full l"
+    },
+    {
+      "type": "oracle_free",
+      "category": "dealer_sales",
+      "correctly_abstained": false,
+      "response_length": 162,
+      "non_empty": true,
+      "response_preview": "Contact your authorised dealer or refer to BRCH-ADAS-2025-S12 for PowerCell ADAS Package pricing.. Key data \u2014 Configuration: PowerCell ADAS Base, MSRP: $2,850.00."
+    },
+    {
+      "type": "oracle",
+      "category": "customer_support",
+      "oracle_cited": false,
+      "distractor_rejected": true,
+      "response_length": 270,
+      "non_empty": true,
+      "response_preview": "1. Mount the wheel and hand-start all lug nuts. Key points: Mount the wheel and hand-start all lug nuts.; Snug lug nuts in a star pattern.; Lower vehicle to ground.. For further assistance, contact yo"
+    },
+    {
+      "type": "oracle_free",
+      "category": "customer_support",
+      "correctly_abstained": false,
+      "response_length": 162,
+      "non_empty": true,
+      "response_preview": "1. Open the TPMS sensor ID database. Navigate to: **Chassis > TPMS > Sensor ID Database**. Key data \u2014 Sensor ID: SS-TPMS-315-V2, Frequency: 315 MHz, Protocol: RF."
+    },
+    {
+      "type": "oracle",
+      "category": "dealer_sales",
+      "oracle_cited": true,
+      "distractor_rejected": true,
+      "response_length": 452,
+      "non_empty": true,
+      "response_preview": "All BrakeGuard Pro Series products are available through the AlvinAI Parts Portal: https://parts.alvinai.com. Key data \u2014 Part Number: BG-PAD-F-1001, Description: Brake Pad Set \u2014 Front, Sedan Applicati"
+    },
+    {
+      "type": "oracle_free",
+      "category": "customer_support",
+      "correctly_abstained": false,
+      "response_length": 376,
+      "non_empty": true,
+      "response_preview": "1. Open the hood. Locate the brake fluid reservoir on the driver-side firewall. Key points: Open the hood. Locate the brake fluid reservoir on the driver-side firewall.; Clean the reservoir cap and su"
+    },
+    {
+      "type": "oracle",
+      "category": "employee_hr",
+      "oracle_cited": false,
+      "distractor_rejected": true,
+      "response_length": 360,
+      "non_empty": true,
+      "response_preview": "**Authorized Tasks After Certification:** Curriculum: **. Authorized Tasks After Certification: **. Key data \u2014 Level: Level 1, Curriculum: **72 hours (9 days)**, Authorized Tasks After Certification: "
+    }
+  ]
+}

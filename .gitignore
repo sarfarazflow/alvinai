@@ -42,6 +42,11 @@ models/dpo_checkpoint/*
 models/production/*
 !models/**/.gitkeep
 
+# Experiment model checkpoints (large binary files)
+experiments/*/models/
+# Training logs (optional — can be large)
+experiments/*/results/training_log_*.txt
+
 # IDE
 .idea/
 .vscode/

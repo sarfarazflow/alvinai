@@ -1,20 +1,19 @@
 # ──────────────────────────────────────────────────────────────
-# AlvinAI — RAFT Training Configuration
-# Stage 2 of 3: Retrieval-Augmented Fine-Tuning
-# Teaches the model to use oracle docs, reject distractors, abstain
+# AlvinAI — SFT Training Configuration
+# Stage 1 of 3: Supervised Fine-Tuning on automotive + HR data
 # ──────────────────────────────────────────────────────────────
 
 # ─── Model ────────────────────────────────────────────────────
 model:
-  base_model: "models/sft_checkpoint"   # start from SFT output
-  max_seq_length: 4096
-  load_in_4bit: true
-  dtype: "bfloat16"
+  base_model: "mistralai/Mistral-Small-3-2503"
+  max_seq_length: 8192
+  load_in_4bit: true          # QLoRA — NF4 quantization during training
+  dtype: "bfloat16"           # compute dtype for LoRA layers (A6000 supports bf16)
 
 # ─── LoRA ─────────────────────────────────────────────────────
 lora:
-  r: 16
-  alpha: 32
+  r: 32
+  alpha: 64
   dropout: 0.05
   target_modules:
     - q_proj
@@ -27,19 +26,17 @@ lora:
 
 # ─── Data ─────────────────────────────────────────────────────
 data:
-  train_file: "data/v1/raft/train.jsonl"
-  val_file: "data/v1/raft/val.jsonl"
-  format: "openai_messages"
-  chat_template: "mistral"
+  train_file: "data/v1/sft/train.jsonl"
+  val_file: "data/v1/sft/val.jsonl"
+  format: "openai_messages"   # {"messages": [{"role":...,"content":...}]}
+  chat_template: "mistral"    # <s>[INST] {prompt} [/INST] {response}</s>
 
 # ─── Training ─────────────────────────────────────────────────
-# RAFT sequences are 3000-4000 tokens (oracle + distractors).
-# batch_size=2 + grad_accum=16 to avoid OOM on 24GB VRAM.
 training:
-  num_epochs: 2
-  per_device_train_batch_size: 2      # RAFT sequences are 3-4K tokens, OOM at 8
-  gradient_accumulation_steps: 16     # effective batch size = 32
-  learning_rate: 5.0e-5               # lower LR for continued training
+  num_epochs: 3
+  per_device_train_batch_size: 4
+  gradient_accumulation_steps: 8    # effective batch size = 32
+  learning_rate: 1.0e-4
   lr_scheduler_type: "cosine"
   warmup_ratio: 0.05
   weight_decay: 0.01
@@ -57,21 +54,16 @@ eval:
   load_best_model_at_end: true
   metric_for_best_model: "eval_loss"
 
-# ─── RAFT Validation Thresholds ──────────────────────────────
-# All three must be >= 0.80 to proceed to DPO
-raft_thresholds:
-  oracle_citation_rate: 0.80
-  distractor_rejection_rate: 0.80
-  abstention_rate: 0.80
-
 # ─── Output ───────────────────────────────────────────────────
 output:
-  output_dir: "models/raft_checkpoint"
-  logging_dir: "models/raft_checkpoint/logs"
+  output_dir: "experiments/mistral-small-24b-v1/models/sft_checkpoint"
+  logging_dir: "experiments/mistral-small-24b-v1/models/sft_checkpoint/logs"
   logging_steps: 10
 
 # ─── W&B (optional) ──────────────────────────────────────────
 wandb:
-  enabled: false
-  project: "alvinai-raft"
-  run_name: null
+  enabled: false              # set true + WANDB_API_KEY env var on RunPod
+  project: "alvinai-training"
+  run_name: "mistral-small-24b-v1-sft"              # auto-generated if null
+  group: "mistral-small-24b-v1"
+  tags: ["mistral-small-24b", "sft", "v1"]

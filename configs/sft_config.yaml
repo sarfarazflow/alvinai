@@ -26,8 +26,8 @@ lora:
 
 # ─── Data ─────────────────────────────────────────────────────
 data:
-  train_file: "data/sft/train.jsonl"
-  val_file: "data/sft/val.jsonl"
+  train_file: "data/v1/sft/train.jsonl"
+  val_file: "data/v1/sft/val.jsonl"
   format: "openai_messages"   # {"messages": [{"role":...,"content":...}]}
   chat_template: "mistral"    # <s>[INST] {prompt} [/INST] {response}</s>
 

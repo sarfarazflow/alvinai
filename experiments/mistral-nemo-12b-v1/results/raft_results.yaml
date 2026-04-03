@@ -1,0 +1,44 @@
+stage: raft
+experiment: mistral-nemo-12b-v1
+model: mistralai/Mistral-Nemo-Instruct-2407
+hardware: runpod-a40-48gb
+date: 2026-04-03
+duration_minutes: ~280
+total_steps: 519
+epochs: 1
+
+training:
+  base_checkpoint: sft_checkpoint/checkpoint-200
+  data: data/v2/raft (16,585 train, 4,145 val)
+  batch_size: 2
+  gradient_accumulation: 16
+  effective_batch_size: 32
+  learning_rate: 3.0e-5
+  scheduler: cosine
+  lora_r: 16
+  lora_alpha: 32
+  trainable_params: 57,016,320 (0.46% of 12.3B)
+  step_time_seconds: 21.3 (with Flash Attention 2)
+
+metrics:
+  # Eval loss — consistently improving, NO overfitting
+  eval_loss_step_100: 0.414
+  eval_loss_step_200: 0.198
+  eval_loss_step_300: 0.137
+  eval_loss_step_400: 0.117
+  eval_loss_step_519: 0.113   # ← BEST
+
+  best_checkpoint: checkpoint-519 (final)
+  best_eval_loss: 0.113
+
+resources:
+  vram_peak_gb: 17.0
+  gpu: NVIDIA A40
+  gpu_memory_gb: 48
+
+observations: |
+  Excellent training run — eval loss decreased continuously from 0.414 to 0.113.
+  No overfitting at any point (unlike SFT which overfit after epoch 0.34).
+  Train/eval gap remained small (~0.02), indicating strong generalization.
+  RAFT data with context documents provides natural variety that prevents memorization.
+  Next: run eval_raft_checkpoint.py to validate citation/abstention metrics before DPO.

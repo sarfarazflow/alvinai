@@ -1,15 +1,16 @@
 # RunPod Fine-Tuning Guide
 
-**GPU:** RTX A6000 (48GB VRAM)
-**Pod SSH (TCP):** `ssh root@38.147.83.16 -p 41740 -i ~/.ssh/id_ed25519`
+**GPU:** RTX A5000 (24GB VRAM)
+**Pod:** Check RunPod dashboard for current SSH details — pod IP and port change on each restart.
 
 ---
 
-## SFT — Stage 1: Supervised Fine-Tuning
-
-### Setup (first time only)
+## First-Time Pod Setup
 
 ```bash
+# SSH into the pod (get IP/port from RunPod dashboard)
+ssh root@{pod_ip} -p {pod_port} -i ~/.ssh/id_ed25519
+
 # Clone repo
 cd /workspace
 git clone https://github.com/sarfarazflow/alvinai.git
@@ -22,7 +23,7 @@ cd backend && uv sync --extra training && cd ..
 # Upgrade PyTorch to 2.6+ (required by Unsloth)
 pip install --upgrade torch torchvision --index-url https://download.pytorch.org/whl/cu124
 
-# Install Unsloth (must be after torch)
+# Install Unsloth (must be AFTER torch — it detects CUDA at install time)
 pip install "unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git"
 pip install --no-deps trl peft accelerate bitsandbytes
 
@@ -31,35 +32,101 @@ python3 -c "from huggingface_hub import login; login()"
 
 # Verify GPU
 python -c "import torch; print(torch.cuda.get_device_name(0))"
+# Expected: NVIDIA RTX A5000
 
 # Symlink models to network volume (persists across pod restarts)
 mkdir -p /workspace/models
 ln -sf /workspace/models ./models
+
+# (Optional) Set up W&B for experiment tracking
+pip install wandb
+wandb login
 ```
 
-### Run SFT Training
+---
+
+## Returning to an Existing Pod
 
 ```bash
+ssh root@{pod_ip} -p {pod_port} -i ~/.ssh/id_ed25519
 cd /workspace/alvinai
+git pull origin main    # get latest code + datasets
+```
 
-# Run in background (survives SSH disconnect)
+---
+
+## Training Workflow
+
+### Option A: Using Default Configs (quick run)
+
+```bash
+# SFT — Stage 1
 nohup python -m scripts.run_sft --config configs/sft_config.yaml \
   > /workspace/sft_training.log 2>&1 &
-
-# Monitor live
 tail -f /workspace/sft_training.log
 
-# Check VRAM usage
-watch -n1 nvidia-smi
+# RAFT — Stage 2 (after SFT completes)
+nohup python -m scripts.run_raft --config configs/raft_config.yaml \
+  > /workspace/raft_training.log 2>&1 &
+tail -f /workspace/raft_training.log
+
+# DPO — Stage 3 (after RAFT completes)
+nohup python -m scripts.run_dpo --config configs/dpo_config.yaml \
+  > /workspace/dpo_training.log 2>&1 &
+tail -f /workspace/dpo_training.log
 ```
 
-### Check Progress (after reconnecting)
+### Option B: Using Experiment Configs (recommended)
+
+Each model experiment has its own configs under `experiments/`. This keeps results isolated and comparable.
 
 ```bash
-tail -50 /workspace/sft_training.log
+# Scaffold a new experiment (first time only)
+./scripts/new_experiment.sh mistral-nemo-12b v1 v1 \
+  --base-model mistralai/Mistral-Nemo-Instruct-2407 --chat-template mistral
+
+# SFT — Stage 1
+nohup python -m scripts.run_sft \
+  --config experiments/mistral-nemo-12b-v1/configs/sft_config.yaml \
+  > /workspace/sft_training.log 2>&1 &
+tail -f /workspace/sft_training.log
+
+# RAFT — Stage 2 (after SFT completes)
+nohup python -m scripts.run_raft \
+  --config experiments/mistral-nemo-12b-v1/configs/raft_config.yaml \
+  > /workspace/raft_training.log 2>&1 &
+tail -f /workspace/raft_training.log
+
+# DPO — Stage 3 (after RAFT completes)
+nohup python -m scripts.run_dpo \
+  --config experiments/mistral-nemo-12b-v1/configs/dpo_config.yaml \
+  > /workspace/dpo_training.log 2>&1 &
+tail -f /workspace/dpo_training.log
 ```
 
-### SFT Config Summary
+---
+
+## Monitoring
+
+```bash
+# Live training log
+tail -f /workspace/sft_training.log
+
+# Check progress after reconnecting
+tail -50 /workspace/raft_training.log
+
+# Real-time VRAM usage (should stay under 24GB)
+watch -n1 nvidia-smi
+
+# Check if training is still running
+ps aux | grep python
+```
+
+---
+
+## Config Summary
+
+### SFT — Stage 1
 
 | Parameter | Value |
 |---|---|
@@ -68,47 +135,12 @@ tail -50 /workspace/sft_training.log
 | LoRA r / alpha | 16 / 32 |
 | Learning rate | 2e-4 |
 | Epochs | 3 |
-| Batch size | 8 (A6000 48GB) |
+| Batch size | 8 |
 | Grad accumulation | 4 (effective batch = 32) |
 | Dataset | 3,200 train / 800 val |
 | Output | `models/sft_checkpoint/` |
 
-### Expected Output
-
-- Checkpoint saved to `/workspace/models/sft_checkpoint/`
-- Merged model at `/workspace/models/sft_checkpoint_merged/`
-- Training log at `/workspace/sft_training.log`
-
----
-
-## RAFT — Stage 2: Retrieval-Augmented Fine-Tuning
-
-### Run RAFT Training
-
-```bash
-cd /workspace/alvinai
-
-# Pull latest code (RAFT scripts)
-git pull
-
-# Run in background (survives SSH disconnect)
-nohup python -m scripts.run_raft --config configs/raft_config.yaml \
-  > /workspace/raft_training.log 2>&1 &
-
-# Monitor live
-tail -f /workspace/raft_training.log
-
-# Check VRAM usage
-watch -n1 nvidia-smi
-```
-
-### Check Progress (after reconnecting)
-
-```bash
-tail -50 /workspace/raft_training.log
-```
-
-### RAFT Config Summary
+### RAFT — Stage 2
 
 | Parameter | Value |
 |---|---|
@@ -117,44 +149,17 @@ tail -50 /workspace/raft_training.log
 | LoRA r / alpha | 16 / 32 |
 | Learning rate | 5e-5 |
 | Epochs | 2 |
-| Batch size | 2 (long RAFT sequences) |
+| Batch size | 2 (RAFT sequences are 3-4K tokens — OOM at higher values) |
 | Grad accumulation | 16 (effective batch = 32) |
 | Dataset | 3,200 train / 800 val |
 | Output | `models/raft_checkpoint/` |
 
-### Expected Output
+**Quality gates (must pass before DPO):**
+- Oracle citation rate >= 0.80
+- Distractor rejection rate >= 0.80
+- Abstention rate >= 0.80
 
-- Checkpoint saved to `/workspace/models/raft_checkpoint/`
-- Merged model at `/workspace/models/raft_checkpoint_merged/`
-- Training log at `/workspace/raft_training.log`
-
-### Quality Thresholds (must pass before DPO)
-
-- Oracle citation rate >= 80%
-- Distractor rejection rate >= 80%
-- Abstention rate >= 80%
-
----
-
-## DPO — Stage 3: Direct Preference Optimization
-
-### Run DPO Training
-
-```bash
-cd /workspace/alvinai
-
-# Pull latest code (DPO scripts)
-git pull
-
-# Run in background (survives SSH disconnect)
-nohup python -m scripts.run_dpo --config configs/dpo_config.yaml \
-  > /workspace/dpo_training.log 2>&1 &
-
-# Monitor live
-tail -f /workspace/dpo_training.log
-```
-
-### DPO Config Summary
+### DPO — Stage 3
 
 | Parameter | Value |
 |---|---|
@@ -163,28 +168,97 @@ tail -f /workspace/dpo_training.log
 | Beta (KL penalty) | 0.1 |
 | Learning rate | 1e-5 |
 | Epochs | 1 |
-| Batch size | 2 (DPO uses 2x VRAM) |
+| Batch size | 2 (DPO runs 2 forward passes per example) |
 | Grad accumulation | 16 (effective batch = 32) |
 | Dataset | 560 train / 140 val |
 | Output | `models/dpo_checkpoint/` |
 
-### Expected Output
+---
 
-- Checkpoint saved to `/workspace/models/dpo_checkpoint/`
-- Merged model at `/workspace/models/dpo_checkpoint_merged/`
-- Training log at `/workspace/dpo_training.log`
+## AWQ Export
+
+After DPO completes, quantise the merged model for production serving:
+
+```bash
+python -m scripts.export_awq \
+  --input models/dpo_checkpoint_merged/ \
+  --output models/production/alvinai-7b-awq/
+
+# For experiment-based workflow:
+python -m scripts.export_awq \
+  --input experiments/mistral-nemo-12b-v1/models/dpo_checkpoint_merged/ \
+  --output experiments/mistral-nemo-12b-v1/models/production/
+```
+
+This produces a ~3.5GB AWQ 4-bit model. Verify it:
+
+```bash
+ls -lh models/production/alvinai-7b-awq/
+# Should contain: model.safetensors, tokenizer files, config.json
+```
 
 ---
 
-## AWQ Export & HF Upload
+## Upload to HuggingFace Hub
 
-*To be updated after DPO completes.*
+```bash
+python -m scripts.upload_model_to_hf \
+  --local-path models/production/alvinai-7b-awq/ \
+  --repo-id tbqguy/alvinai-7b-awq-$(date +%Y%m%d) \
+  --commit-message "DPO production model $(date +%Y-%m-%d)"
+
+# For experiment-based workflow:
+python -m scripts.upload_model_to_hf \
+  --local-path experiments/mistral-nemo-12b-v1/models/production/ \
+  --repo-id tbqguy/alvinai-nemo-12b-awq-$(date +%Y%m%d) \
+  --commit-message "Nemo 12B DPO production model $(date +%Y-%m-%d)"
+
+# Use --private for private repos
+```
+
+---
+
+## Expected Output Per Stage
+
+| Stage | Checkpoint | Merged Model | Log |
+|---|---|---|---|
+| SFT | `models/sft_checkpoint/` | `models/sft_checkpoint_merged/` | `/workspace/sft_training.log` |
+| RAFT | `models/raft_checkpoint/` | `models/raft_checkpoint_merged/` | `/workspace/raft_training.log` |
+| DPO | `models/dpo_checkpoint/` | `models/dpo_checkpoint_merged/` | `/workspace/dpo_training.log` |
+| AWQ | — | `models/production/alvinai-7b-awq/` | — |
+
+---
+
+## Actual Training Results (A5000, March 2026)
+
+| Stage | Duration | Steps | Final Loss |
+|---|---|---|---|
+| SFT (3 epochs, 3.2K pairs) | ~18 min | 300 | 0.1395 (eval) |
+| RAFT (2 epochs, 3.2K pairs) | ~37 min | 200 | 0.0560 (eval) |
+| DPO (1 epoch, 560 pairs) | ~3 min | 18 | 84.1% reward accuracy |
+| **Total** | **~58 min** | **518** | |
+
+---
+
+## Troubleshooting
+
+| Problem | Fix |
+|---|---|
+| OOM during RAFT | Reduce `batch_size` to 1, increase `grad_accum` to 32. If still OOM, reduce `max_seq_length` to 3072. |
+| OOM during DPO | Reduce `batch_size` to 1, increase `grad_accum` to 32. |
+| `merge_and_unload()` fails | Use `model.save_pretrained_merged()` instead (Unsloth method). |
+| DPO attention mask crash | Already handled by `_patch_model_for_dpo()` in `dpo_trainer.py`. If still failing, ensure `PatchDPOTrainer()` is called before training. |
+| `xformers not found` warning | Safe to ignore on A5000. |
+| SSH disconnects mid-training | Training continues in background (started with `nohup`). Reconnect and check log. |
+| Pod restarted, models gone | Models on network volume (`/workspace/`) persist. Container storage (`/root/`, `/tmp/`) does not. |
 
 ---
 
 ## Important Rules
 
-- **STOP the pod after training.** Idle GPU pods burn money.
-- **Network volume** (`/workspace/`) persists. Container storage does not.
-- **Never commit model weights to git.** Push datasets and configs only.
-- **Monitor VRAM:** `watch -n1 nvidia-smi`
+1. **STOP the pod after training completes.** Idle GPU pods burn money ($0.79/hr).
+2. **Network volume** (`/workspace/`) persists across pod restarts. Container storage does not.
+3. **Never commit model weights to git.** `.gitignore` covers `*.safetensors`, `*.bin`, `*.gguf`. Push datasets (JSONL) and configs (YAML) only.
+4. **Monitor VRAM:** `watch -n1 nvidia-smi` — should stay under 24GB.
+5. **Install order matters:** PyTorch 2.6+ first, then Unsloth, then `--no-deps trl peft accelerate bitsandbytes`.
+6. **Never skip RAFT.** Models trained SFT → DPO (skipping RAFT) hallucinate from retrieved context.

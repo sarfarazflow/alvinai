@@ -1,0 +1,25 @@
+experiment: mistral-small-24b-v1
+model: null
+serving: vllm
+hardware: null
+date: null
+
+benchmarks:
+  factual_lookup:
+    p50_ms: null
+    p95_ms: null
+    p99_ms: null
+    num_queries: null
+  document_search_warm:
+    p50_ms: null
+    p95_ms: null
+    p99_ms: null
+    num_queries: null
+  document_search_cold:
+    p50_ms: null
+    p95_ms: null
+    p99_ms: null
+    num_queries: null
+
+tokens_per_second: null
+concurrent_users_tested: null

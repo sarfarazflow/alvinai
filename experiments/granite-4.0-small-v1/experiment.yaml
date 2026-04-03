@@ -1,0 +1,12 @@
+name: granite-4.0-small-v1
+description: ""
+created: 2026-04-01
+base_model: ibm-granite/granite-4.0-h-small
+chat_template: granite
+data_version: v1
+hardware: null
+cost_per_hour_usd: null
+total_training_hours: null
+total_cost_usd: null
+status: pending  # pending | sft_done | raft_done | dpo_done | completed
+notes: ""

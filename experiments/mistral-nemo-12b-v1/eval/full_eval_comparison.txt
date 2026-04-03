@@ -1,0 +1,1068 @@
+================================================================================
+Example 1/100 | Type: oracle_free | NS: vendor | Oracle: None
+Question: What are the contract terms for 9. Intellectual Property? Can you check?
+Context: ['Supplier Qualification Standard: 4. Scoring Matrix — Supplier Selection', 'Service Level Agreement — Continental Quality Terms: 3. PPAP Requirements', 'Supply Agreement — Continental Radar Sensors: Signatures', 'Supplier Qualification Standard: 3. Qualification Phases']
+Expected: I cannot find an answer to this question in the provided context documents. Please refer to the primary source or contact the appropriate specialist.
+SFT:  All tooling, fixtures, and product-specific designs developed by Continental for AlvinAI refer to: ##begin_quote## VENDOR-CTR-002-S13 in the Supply Agreement. ##end_quote##. Key data — Item: Tooling C
+  SFT abstained: False | RAFT abstained: True
+RAFT: The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance.
+
+================================================================================
+Example 2/100 | Type: oracle | NS: vendor | Oracle: PROC-STD-002-S9
+Question: Please advise: What happens if Quality Engineer (Chair) is not met?
+Context: ['Supplier Qualification Standard: 8. Related Documents', 'Incoming Inspection Standard: 3. Inspection Levels > Level 2: AQL Sampling (Standard)', 'Incoming Inspection Standard: 3. Inspection Levels > Level 1: 100% Inspection', 'Incoming Inspection Standard: 5. Material Review Board (MRB)']
+Expected: ##begin_quote## The Material Review Board reviews and disposes of all non-conforming material ##end_quote## See PROC-STD-002-S9 for complete details.
+SFT:  The Material Review Board reviews and disposes of all non-conforming material detected during incoming inspection. Key data — Role: Quality Engineer (Chair), Responsibility: Leads review, documents di
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## The Material Review Board reviews and disposes of all non-conforming material detected during incoming inspection. ##end_quote## See PROC-STD-002-S9 for complete details.
+
+================================================================================
+Example 3/100 | Type: oracle | NS: compliance | Oracle: CERT-US-2025-BRK-001-S8
+Question: Hi, How does ISO 16750-4 apply to electric vehicles? Please advise.
+Context: ['US Self-Certification Record — BrakeGuard HBM-500 Hydraulic Brake Module: Warranty and Recall Obligations', 'EU Type-Approval Record — SensorSuite ADAS Sensor Package: Applicable Regulations', 'US Self-Certification Record — BrakeGuard HBM-500 Hydraulic Brake Module: Document Information', 'US Self-Certification Record — BrakeGuard HBM-500 Hydraulic Brake Module: Test Evidence > Environmental Qualification']
+Expected: ##begin_quote## | Test | Standard | Condition | Result |
+|---|---|---|---|
+| Temperature cycling | ISO 16750-4 | -40°C to +150°C, 100 cycles | **PASS** |
+| Vibration (random) | ISO 16750-3 | 10–2000 H
+SFT:  | Test | Standard | Condition | Result |
+|---|---|---|---|
+| Temperature cycling | ISO 16750-4 | -40°C to +150°C, 100 cycles | **PASS** |
+| Vibration (random) | ISO 16750-3 | 10–2000 Hz, 30 grms, 8 hr
+  SFT cited: False | RAFT cited: True
+RAFT: ##begin_quote## | Test | Standard | Condition | Result |
+|---|---|---|---|
+| Temperature cycling | ISO 16750-4 | -40°C to +150°C, 100 cycles | **PASS** |
+| Vibration (random) | ISO 16750-3 | 10–2000 H
+
+================================================================================
+Example 4/100 | Type: oracle | NS: compliance | Oracle: EPA_40CFR1066_Test_Procedures-S3
+Question: I need clarification on What are the penalties for non-compliance with Single-roll (48-inch dia.) or twin-roll (8.65-inch dia.)?
+Context: ['40 CFR Part 1066 — Chassis Dynamometer Test Procedures: Dynamometer Specifications', '40 CFR Part 1066 — Chassis Dynamometer Test Procedures: Supplemental Test Procedures (SFTP)', 'Tier 3 Motor Vehicle Emission Standards for Light-Duty Vehicles: 6. Evaporative Emission Standards', '40 CFR Part 1066 — Chassis Dynamometer Test Procedures: Vehicle Preparation']
+Expected: ##begin_quote## - Perform coast-down on dynamometer to match actual road load within ±10 N at all target speeds ##end_quote## See EPA_40CFR1066_Test_Procedures-S3 for complete details.
+SFT:  | Parameter | Specification |
+|---|---|
+| Type | Single-roll (48-inch dia.) or twin-roll (8.65-inch dia.) |
+| Road load simulation | Coefficient-based (A + Bv + Cv²) or target coefficient method |
+| I
+  SFT cited: False | RAFT cited: True
+RAFT: ##begin_quote## | Parameter | Specification |
+|---|---|
+| Type | Single-roll (48-inch dia.) or twin-roll (8.65-inch dia.) |
+| Road load simulation | Coefficient-based (A + Bv + Cv²) or target coeffici
+
+================================================================================
+Example 5/100 | Type: oracle | NS: employee_hr | Oracle: HR-POL-003-S3
+Question: What is the company's stance on 2. Scope? Thanks in advance.
+Context: ['Remote Work Policy: 2. Scope', 'Code of Conduct: 10. Acknowledgment', 'Remote Work Policy: 1. Purpose', 'Remote Work Policy: 5. Work Hours and Availability']
+Expected: ##begin_quote## This policy applies to all AlvinAI employees whose roles are eligible for remote ##end_quote## See HR-POL-003-S3 for complete details.
+SFT:  This policy applies to all AlvinAI employees whose roles are eligible for remote work. Manufacturing, warehouse, and other on-site roles are excluded from remote work eligibility (see Section 3.2). ##
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## This policy applies to all AlvinAI employees whose roles are eligible for remote ##end_quote## See HR-POL-003-S3 for complete details.
+
+================================================================================
+Example 6/100 | Type: oracle | NS: compliance | Oracle: UN_R100_EV_Battery_Safety-S6
+Question: Technical question: What markings or labels are required by 3. Protection Against Electric Shock > 3.3 Direct Contact Protection?
+Context: ['Electric Power-Trained Vehicles — Safety Requirements for the Rechargeable Energy Storage System: 3. Protection Against Electric Shock > 3.3 Direct Contact Protection', 'Electric Power-Trained Vehicles — Safety Requirements for the Rechargeable Energy Storage System: 8. Cross-References', 'Cybersecurity and Cyber Security Management System: 10. Relevance to Component Manufacturers', 'Electric Power-Trained Vehicles — Safety Requirements for the Rechargeable Energy Storage System: 4. REESS Abuse Tests > 4.1 Vibration Test']
+Expected: ##begin_quote## - All high-voltage components must achieve a protection degree of at least **IPXXB** (protection against access with a jointed test finger, 12 mm diameter, 80 mm length). ##end_quote##
+SFT:  All high-voltage components must achieve a protection degree of at least **IPXXB** (protection against access with a jointed test finger, 12 mm diameter, 80 mm length). ##begin_quote## The IPXXB ratin
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## - All high-voltage components must achieve a protection degree of at least **IPXXB** (protection against access with a jointed test finger, 12 mm diameter, 80 mm length). ##end_quote##
+
+================================================================================
+Example 7/100 | Type: oracle | NS: compliance | Oracle: UN_R64_TPMS-S5
+Question: Hi, How does 3. Performance Requirements > 3.2 Detection Time differ from the previous version?
+Context: ['Braking of Vehicles of Categories M1 and N1: 5. Secondary Braking (Type-0 with Engine Off)', 'Tyre Pressure Monitoring Systems (TPMS) for M1 Vehicles: 3. Performance Requirements > 3.2 Detection Time', 'Tyre Pressure Monitoring Systems (TPMS) for M1 Vehicles: 3. Performance Requirements > 3.4 Temperature Range', 'Tyre Pressure Monitoring Systems (TPMS) for M1 Vehicles: 5. Direct TPMS Requirements']
+Expected: The system must warn the driver within **10 minutes of cumulative driving time** after the onset of a 20% (or greater) pressure loss. ##begin_quote## The system must warn the driver within **10 minute
+SFT:  The system must warn the driver within **10 minutes of cumulative driving time** after the onset of a 20% (or greater) pressure loss. The 10-minute window begins when the vehicle first exceeds **40 km
+  SFT cited: True | RAFT cited: True
+RAFT: The system must warn the driver within **10 minutes of cumulative driving time** after the onset of a 20% (or greater) pressure loss. ##begin_quote## The system must warn the driver within **10 minute
+
+================================================================================
+Example 8/100 | Type: oracle_free | NS: employee_hr | Oracle: None
+Question: Please advise: What is the company policy on target? This is time-sensitive.
+Context: ['Leave and Attendance Policy: 1. Purpose', 'ADAS Technician Certification Program: 7. Costs and Enrollment', 'ADAS Technician Certification Program: 6. Training Delivery', 'Code of Conduct: 6. Intellectual Property Protection']
+Expected: The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance.
+SFT:  **Authorized Tasks After Certification:** Curriculum: **. Authorized Tasks After Certification: **. Key data — Level: Level 1, Curriculum: **.
+  SFT abstained: False | RAFT abstained: False
+RAFT: ##begin_quote## Fees include course materials, examination, and certification card. Fees include course materials, examination, and certification card. ##end_quote## See HR-TRAIN-001-S11 for complete 
+
+================================================================================
+Example 9/100 | Type: oracle_free | NS: dealer_sales | Oracle: None
+Question: Quick question: What is the expected service life of part number BAT-2025? Could you clarify this for me?
+Context: ['SensorSuite ADAS Package — Product Brochure: Pricing and Packaging', 'SensorSuite ADAS Package — Product Brochure: System Overview', 'Competitive Comparison — BrakeGuard Pro vs Leading Brands: Detailed Analysis > Warranty', 'Competitive Comparison — BrakeGuard Pro vs Leading Brands: Detailed Analysis > Pad Life']
+Expected: Based on the documents provided, I cannot find information to answer this question. I recommend checking with the appropriate team or referring to the original documentation.
+SFT:  The SensorSuite ADAS Package provides SAE Level 2+ driver assistance including: Key data — Feature: Adaptive Cruise Control, Description: Full-speed range, from 0 km/h to highway speeds. ##begin_quote
+  SFT abstained: False | RAFT abstained: True
+RAFT: After reviewing the provided context, I cannot locate the information needed. Please check the original source documentation or contact the appropriate team.
+
+================================================================================
+Example 10/100 | Type: oracle_free | NS: vendor | Oracle: None
+Question: Regarding What confidentiality obligations apply to 12. Governing Law?
+Context: ['Service Level Agreement — Bosch Delivery Terms: 9. Review and Amendments', 'Service Level Agreement — Bosch Delivery Terms: 6. Forecasting', 'Service Level Agreement — Continental Quality Terms: ', 'Supply Agreement — Bosch Brake Components: Parties']
+Expected: I cannot find an answer to this question in the provided context documents. Please refer to the primary source or contact the appropriate specialist.
+SFT:  This agreement is governed by the laws of the State of Michigan, USA. Refer to VENDOR-CTR-001-S14 in the contract documentation.
+  SFT abstained: False | RAFT abstained: True
+RAFT: The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information.
+
+================================================================================
+Example 11/100 | Type: oracle | NS: vendor | Oracle: PROC-STD-002-S3
+Question: Please advise: What confidentiality obligations apply to 2. Scope? Please let me know how to proceed.
+Context: ['Incoming Inspection Standard: 2. Scope', 'Incoming Inspection Standard: 8. Key Performance Indicators', 'Incoming Inspection Standard: 3. Inspection Levels', 'Supplier Qualification Standard: 3. Qualification Phases > Phase 2: On-Site Audit (1–2 weeks)']
+Expected: ##begin_quote## This standard applies to all direct material deliveries at AlvinAI manufacturing ##end_quote## See PROC-STD-002-S3 for complete details.
+SFT:  This standard applies to all direct material deliveries at AlvinAI manufacturing and assembly facilities. It covers mechanical components, electronic assemblies, raw materials, and sub-assemblies from
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## This standard applies to all direct material deliveries at AlvinAI manufacturing ##end_quote## See PROC-STD-002-S3 for complete details.
+
+================================================================================
+Example 12/100 | Type: oracle_free | NS: customer_support | Oracle: None
+Question: Quick question: What is the cost estimate for repairing A dirty or foggy windshield blocks the front camera's view? Please advise.
+Context: ['Warranty Policy — Brake Components: 3. Exclusions', 'TPMS Sensor Replacement and Relearn Procedure: Procedure — Sensor Replacement > Step 6: Reinstall Wheel', 'Brake Pad Replacement — BrakeGuard Pro System: Procedure — Front Brake Pads > Step 2: Remove Caliper', 'Brake Pad Replacement — BrakeGuard Pro System: Overview']
+Expected: Based on the documents provided, I cannot find information to answer this question. I recommend checking with the appropriate team or referring to the original documentation.
+SFT:  1. **Check for obstructions** — Remove any dirt, ice, or snow from the camera module and Key data — Code: C2235, Meaning in Plain Language: Front camera blocked or dirty. For further assistance, conta
+  SFT abstained: False | RAFT abstained: True
+RAFT: The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information.
+
+================================================================================
+Example 13/100 | Type: oracle | NS: vendor | Oracle: PROC-STD-002-S3
+Question: Regarding What is the payment schedule for 2. Scope? I need this for a customer.
+Context: ['Supplier Qualification Standard: 2. Scope', 'Incoming Inspection Standard: 2. Scope', 'Incoming Inspection Standard: 4. Inspection Methods and Equipment', 'Incoming Inspection Standard: 3. Inspection Levels > Level 2: AQL Sampling (Standard)']
+Expected: ##begin_quote## This standard applies to all direct material deliveries at AlvinAI manufacturing ##end_quote## See PROC-STD-002-S3 for complete details.
+SFT:  This standard applies to: - All new direct material suppliers (Tier 1 and Tier 2 where directed). Exclusions: indirect material suppliers (office supplies, MRO) with annual spend below $50,000 follow 
+  SFT cited: False | RAFT cited: True
+RAFT: ##begin_quote## This standard applies to: ##end_quote## Specifically, Exclusions: indirect material suppliers (office supplies, MRO) with annual spend. See PROC-STD-001-S3 for complete details.
+
+================================================================================
+Example 14/100 | Type: oracle | NS: engineering | Oracle: TSB-2025-SE-002-S7
+Question: I have a question — What are the durability test requirements for Corrective Action > Part 2: PSM Software Update (PSM-SW-v2.1)? Any guidance would be helpful.
+Context: ['Ultrasonic Parking Sensor False Detection in Heavy Rain: Corrective Action > Part 2: PSM Software Update (PSM-SW-v2.1)', 'Ultrasonic Parking Sensor False Detection in Heavy Rain: ', 'TSB-2025-BR-001 — Premature Brake Pad Wear Sensor Activation: Correction > Procedure', 'Ultrasonic Parking Sensor False Detection in Heavy Rain: Affected Components']
+Expected: ##begin_quote## The software update adds a rain echo discrimination algorithm to the PSM: ##end_quote## Specifically, Algorithm Overview: **. See TSB-2025-SE-002-S7 for complete details.
+SFT:  1. **Hydrophobic nano-coating application**: During routine service, apply the hydrophobic nano-coating (SS-COAT-HPC) to the sensor face. Reduces water film formation by 25% on average. Key data — Ope
+  SFT cited: False | RAFT cited: True
+RAFT: **Algorithm Overview:** ##begin_quote## The software update adds a rain echo discrimination algorithm to the PSM: ** Algorithm Overview: ##end_quote## See TSB-2025-SE-002-S7 for complete details.
+
+================================================================================
+Example 15/100 | Type: oracle | NS: engineering | Oracle: SUP-INT-2025-002-S11
+Question: What do we know about What FMEA risk level is assigned to Behind front bumper fascia, centerline ± 20 mm? Could you clarify this for me?
+Context: ['Supplier Integration Note — Continental ARS540 Radar with SensorSuite ADC-500: Calibration Requirements', 'Supplier Integration Note — Continental ARS540 Radar with SensorSuite ADC-500: ', 'Supplier Integration Note — Continental ARS540 Radar with SensorSuite ADC-500: Mounting Specifications', 'Supplier Integration Note — Bosch iBooster Gen 2 with BrakeGuard HBM-500: System Architecture']
+Expected: ##begin_quote## | Parameter | Requirement |
+|---|---|
+| Location | Behind front bumper fascia, centerline ± 20 mm |
+| Height | 400–700 mm from ground (per vehicle platform) |
+| Tilt (vertical) | 0° ± 
+SFT:  | Parameter | Requirement |
+|---|---|
+| Location | Behind front bumper fascia, centerline ± 20 mm |
+| Height | 400–700 mm from ground (per vehicle platform) |
+| Tilt (vertical) | 0° ± 1° (adjusted dur
+  SFT cited: False | RAFT cited: True
+RAFT: ##begin_quote## | Parameter | Requirement |
+|---|---|
+| Location | Behind front bumper fascia, centerline ± 20 mm |
+| Height | 400–700 mm from ground (per vehicle platform) |
+| Tilt (vertical) | 0° ± 
+
+================================================================================
+Example 16/100 | Type: oracle | NS: dealer_sales | Oracle: PRC-BRK-2025-S3
+Question: Technical question: What bulk discount is available for $15.00? Please advise.
+Context: ['2025 Price List — Brake Components: Pricing Notes', '2025 Price List — Brake Components: Ordering', 'BrakeGuard Pro Series — Product Brochure: Technical Specifications', '2025 Price List — Brake Components: Brake Rotors']
+Expected: ##begin_quote## | Part # | Description | Application | MSRP | Dealer Net | Core Charge |
+|---|---|---|---|---|---|
+| BRK-ROT-F-2001 | Front Rotor — Vented | Sedan | $129.99 | $84.49 | $15.00 |
+| BRK-R
+SFT:  All prices are effective January 1, 2025 and are subject to change with 60 days written notice.. Key data — Part #: BRK-ROT-F-2001, Description: Front Rotor — Vented, Application: Sedan, MSRP: $129.99
+  SFT cited: False | RAFT cited: True
+RAFT: ##begin_quote## | Part # | Description | Application | MSRP | Dealer Net | Core Charge |
+|---|---|---|---|---|---|
+| BRK-ROT-F-2001 | Front Rotor — Vented | Sedan | $129.99 | $84.49 | $15.00 |
+| BRK-R
+
+================================================================================
+Example 17/100 | Type: oracle | NS: engineering | Oracle: RND-2025-002-S10
+Question: What diagnostic procedure should be followed for Radar (SS-RAD-77F)?
+Context: ['RND-2025-001 — SiC Inverter Efficiency Study for EV Powertrain Integration: Background', 'RND-2025-002 — Solid-State Lidar Evaluation for Next-Gen ADAS Package: Performance Testing > Range Performance (Controlled Environment)', 'RND-2025-002 — Solid-State Lidar Evaluation for Next-Gen ADAS Package: Cost Projection (Gen 2 ADAS Package)', 'RND-2025-002 — Solid-State Lidar Evaluation for Next-Gen ADAS Package: Lidar Candidates Evaluated']
+Expected: ##begin_quote## | Component | Gen 1 (no lidar) | Gen 2 + Hesai | Gen 2 + Seyond | Gen 2 + Luminar |
+|---|---|---|---|---|
+| Radar (SS-RAD-77F) | $180 | $180 | $180 | $180 |
+| Camera (SS-CAM-F200) | $4
+SFT:  | Component | Gen 1 (no lidar) | Gen 2 + Hesai | Gen 2 + Seyond | Gen 2 + Luminar |
+|---|---|---|---|---|
+| Radar (SS-RAD-77F) | $180 | $180 | $180 | $180 |
+| Camera (SS-CAM-F200) | $45 | $45 | $45 | 
+  SFT cited: False | RAFT cited: True
+RAFT: ##begin_quote## | Component | Gen 1 (no lidar) | Gen 2 + Hesai | Gen 2 + Seyond | Gen 2 + Luminar |
+|---|---|---|---|---|
+| Radar (SS-RAD-77F) | $180 | $180 | $180 | $180 |
+| Camera (SS-CAM-F200) | $4
+
+================================================================================
+Example 18/100 | Type: oracle_free | NS: vendor | Oracle: None
+Question: Urgent: What quality requirements apply to Inspection Scope?
+Context: ['Service Level Agreement — Bosch Delivery Terms: 5. Buffer Stock', 'Incoming Inspection Standard: 1. Purpose', 'Supply Agreement — Continental Radar Sensors: 9. Warranty', 'Service Level Agreement — Continental Quality Terms: 7. Change Notification']
+Expected: This specific information is not covered in the documents provided. I recommend consulting the relevant subject matter expert or referring to the primary documentation.
+SFT:  **Inspection Scope:** All production materials and components received at AlvinAI facilities. Refer to PROC-STD-002-S3 in the documentation set for the full details.
+  SFT abstained: False | RAFT abstained: True
+RAFT: The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance.
+
+================================================================================
+Example 19/100 | Type: oracle | NS: engineering | Oracle: TSB-2025-AD-002-S7
+Question: Hi, What FMEA risk level is assigned to Camera-based AEB degraded or disabled? Can you check?
+Context: ['TSB-2025-AD-002 — Forward ADAS Camera Internal Condensation: 4. Issue Description > 4.3 Symptoms', 'TSB-2025-AD-002 — Forward ADAS Camera Internal Condensation: 7. Post-Replacement Camera Calibration > 7.1 Calibration Type', 'TSB-2025-AD-002 — Forward ADAS Camera Internal Condensation: ', 'BMS Passive Cell Balancing Timeout — DTC P0A80 After Cold Soak: Repair Procedure > Post-Repair Verification']
+Expected: **Customer-observable symptoms:** ##begin_quote## - ADAS warning light illuminated on dashboard (amber camera icon) ##end_quote## Specifically, Customer-observable symptoms: **. See TSB-2025-AD-002-S7
+SFT:  **Customer-observable symptoms:** - ADAS warning light illuminated on dashboard (amber camera icon) - "Forward Camera Blocked" or "ADAS Temporarily Unavailable" message on instrument cluster or infota
+  SFT cited: True | RAFT cited: True
+RAFT: **Customer-observable symptoms:** ##begin_quote## - ADAS warning light illuminated on dashboard (amber camera icon) ##end_quote## Specifically, Customer-observable symptoms: ** - ADAS warning light il
+
+================================================================================
+Example 20/100 | Type: oracle | NS: dealer_sales | Oracle: CMP-BRK-2025-S8
+Question: What do we know about What test results support the claims about Detailed Analysis > Warranty? Thanks in advance.
+Context: ['PowerCell EV Battery System — Product Brochure: Battery Management System (BMS)', 'Competitive Comparison — BrakeGuard Pro vs Leading Brands: Detailed Analysis > Pad Life', 'Competitive Comparison — BrakeGuard Pro vs Leading Brands: Detailed Analysis > Dust', 'Competitive Comparison — BrakeGuard Pro vs Leading Brands: Detailed Analysis > Warranty']
+Expected: ##begin_quote## BrakeGuard Pro offers the most comprehensive brake pad warranty in the market: ##end_quote## Specifically, Talking Point: ** "Our warranty is in writing with specific coverage periods 
+SFT:  BrakeGuard Pro offers the most comprehensive brake pad warranty in the market: 36 months / 60,000 km with a defined prorated credit schedule. Competitors offer either short fixed-period warranties or 
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## BrakeGuard Pro offers the most comprehensive brake pad warranty in the market: ##end_quote## Specifically, Talking Point: ** "Our warranty is in writing with specific coverage periods.
+
+================================================================================
+Example 21/100 | Type: oracle_free | NS: customer_support | Oracle: None
+Question: I need clarification on Is it safe for a customer to keep driving with SPEC-SNS-100 — SensorSuite RAD-77F 77GHz Radar Specification? Thanks in advance.
+Context: ['SM-ADAS-001 — Forward Radar Static Calibration After Windshield Replacement: Procedure > Step 1: Position the Vehicle', 'Brake Pad Replacement — BrakeGuard Pro System: Inspection Before Replacement', 'Parking Sensor Installation and Calibration: Procedure — New Sensor Installation (New Hole)', 'Parking Sensor Installation and Calibration: Calibration Procedure']
+Expected: Based on the documents provided, I cannot find information to answer this question. I recommend checking with the appropriate team or referring to the original documentation.
+SFT:  | Parameter | Value |
+|---|---|
+| Frequency | 76–77 GHz |
+| Maximum Range | 80 meters |
+| Field of View | ±75 degrees azimuth |
+| Functions | Blind Spot Detection, Rear Cross-Traffic Alert, Lane C Key
+  SFT abstained: False | RAFT abstained: True
+RAFT: The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information.
+
+================================================================================
+Example 22/100 | Type: oracle_free | NS: compliance | Oracle: None
+Question: I need to know: How does part number SS-ADAS-PKG-100 differ from the previous version? Thanks in advance.
+Context: ['FMVSS 305 — Electric-Powered Vehicles: Electrolyte Spillage and Electrical Shock Protection: Scope and Application', 'Automated Lane Keeping Systems (ALKS) — Level 3 Automated Driving: 11. Cross-References', 'Advanced Emergency Braking Systems (AEBS): 11. Implementation Timeline', 'FMVSS 108 — Lamps, Reflective Devices, and Associated Equipment: Required Signal Lamps']
+Expected: Based on the documents provided, I cannot find information to answer this question. I recommend checking with the appropriate team or referring to the original documentation.
+SFT:  **SS-ADAS-PKG-100** — Advanced Driver Assistance System Package Note: ** This package includes all hardware and software components necessary for L2+ ADAS operation. Relevant values: 77 GHz, 250 kHz.
+  SFT abstained: False | RAFT abstained: True
+RAFT: The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance.
+
+================================================================================
+Example 23/100 | Type: oracle | NS: customer_support | Oracle: CUST-DTC-ADAS-2025-S8
+Question: Urgent: What is the recommended action for **Keep your sensors clean.** Make it a habit to wipe the front bumper radar?
+Context: ['Customer Guide — ADAS Warning Codes: General Tips for ADAS Warnings', 'Customer Guide — Brake Warning Codes: General Tips for Brake Warnings', 'Customer Guide — ADAS Warning Codes: ADAS Calibration Required (C2235)', 'Customer Guide — ADAS Warning Codes: Radar and Camera System Warnings (C2200 – C2240) > Is It Safe to Drive?']
+Expected: - **Keep your sensors clean. ##begin_quote## - **Keep your sensors clean.** Make it a habit to wipe the front bumper radar ##end_quote## See CUST-DTC-ADAS-2025-S8 for complete details.
+SFT:  - **Keep your sensors clean.** Make it a habit to wipe the front bumper radar Key data — Code: C2235, Meaning in Plain Language: One or more ADAS sensors require professional calibration. For further 
+  SFT cited: False | RAFT cited: True
+RAFT: ##begin_quote## - **Keep your sensors clean.** Make it a habit to wipe the front bumper radar ##end_quote## See CUST-DTC-ADAS-2025-S8 for complete details.
+
+================================================================================
+Example 24/100 | Type: oracle | NS: employee_hr | Oracle: HR-POL-001-S10
+Question: Technical question: What happens to 3 points if I change roles internally? Could you clarify this for me?
+Context: ['Leave and Attendance Policy: 1. Purpose', 'Leave and Attendance Policy: 9. Attendance Points System', 'Code of Conduct: 8. Disciplinary Process', 'Leave and Attendance Policy: 5. Parental Leave']
+Expected: ##begin_quote## The points system applies to non-exempt (hourly) manufacturing and warehouse ##end_quote## See HR-POL-001-S10 for complete details.
+SFT:  The points system applies to non-exempt (hourly) manufacturing and warehouse employees. Office-based exempt employees are not subject to the points system.. Key data — Occurrence: Unexcused absence (f
+  SFT cited: True | RAFT cited: True
+RAFT: The points system applies to non-exempt (hourly) manufacturing and warehouse ##begin_quote## employees. Office-based exempt employees are not subject to the points system. ##end_quote## Specifically, 
+
+================================================================================
+Example 25/100 | Type: oracle | NS: customer_support | Oracle: SM-EV-001_HV_Battery_Safety_Disconnect-S10
+Question: Could you clarify: How often does Grip the orange handle firmly and pull straight up with a steady, even force. occur across our fleet?
+Context: ['High-Voltage Battery Safety Disconnect Procedure: ', 'High-Voltage Battery Safety Disconnect Procedure: Pre-Disconnect Checks', 'Parking Sensor Installation and Calibration: Procedure — Sensor Replacement (Existing Hole)', 'High-Voltage Battery Safety Disconnect Procedure: Disconnect Procedure > Step 5: Pull the Service Disconnect']
+Expected: ##begin_quote## 1. With insulating gloves on, open the service disconnect cover (hinged, lifts up). ##end_quote## See SM-EV-001_HV_Battery_Safety_Disconnect-S10 for complete details.
+SFT:  1. With insulating gloves on, open the service disconnect cover (hinged, lifts up). Key points: With insulating gloves on, open the service disconnect cover (hinged, lifts up).; The service disconnect
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## 1. With insulating gloves on, open the service disconnect cover (hinged, lifts up). ##end_quote## See SM-EV-001_HV_Battery_Safety_Disconnect-S10 for complete details.
+
+================================================================================
+Example 26/100 | Type: oracle_free | NS: compliance | Oracle: None
+Question: Could you clarify: What are the testing requirements under Phase-in begins (fleet average 86 mg/mi, PM 3 mg/mi for 20% of fleet)?
+Context: ['Steering Equipment Including Advanced Driver Assistance Steering Functions: 3. ACSF Categories > 3.1 Category Overview', 'US Self-Certification Record — BrakeGuard HBM-500 Hydraulic Brake Module: Test Evidence > FMVSS 135 Compliance Testing', 'FMVSS 305 — Electric-Powered Vehicles: Electrolyte Spillage and Electrical Shock Protection: ', 'Electric Power-Trained Vehicles — Safety Requirements for the Rechargeable Energy Storage System: ']
+Expected: Based on the documents provided, I cannot find information to answer this question. I recommend checking with the appropriate team or referring to the original documentation.
+SFT:  The Tier 3 program phases in increasingly stringent fleet-average standards: Key data — Model Year: 2017, Fleet Average NMOG+NOx (mg/mi): 86.
+  SFT abstained: False | RAFT abstained: True
+RAFT: The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance.
+
+================================================================================
+Example 27/100 | Type: oracle | NS: vendor | Oracle: VENDOR-CTR-001-S2
+Question: Technical question: What are the SLA metrics for Parties?
+Context: ['Supply Agreement — Bosch Brake Components: Parties', 'Supply Agreement — Bosch Brake Components: 1. Scope of Supply', 'Supply Agreement — Continental Radar Sensors: 7. Forecasting', 'Supply Agreement — Bosch Brake Components: 5. Quality Requirements']
+Expected: ##begin_quote## - **Buyer:** AlvinAI Automotive Corporation ("AlvinAI") ##end_quote## See VENDOR-CTR-001-S2 for complete details.
+SFT:  - **Buyer:** AlvinAI Automotive Corporation ("AlvinAI") Key data — Buyer: AlvinAI Automotive Corporation ("AlvinAI"), Supplier: Robert Bosch GmbH ("Bosch"). Refer to VENDOR-CTR-001-S2 in the contract 
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## - **Buyer:** AlvinAI Automotive Corporation ("AlvinAI") ##end_quote## Specifically, Parties: **Buyer:** AlvinAI Automotive Corporation ("AlvinAI"). See VENDOR-CTR-001-S2 for complete d
+
+================================================================================
+Example 28/100 | Type: oracle_free | NS: customer_support | Oracle: None
+Question: Quick question: How do I explain Procedure — Sensor Replacement (Existing Hole) > Step 3: Reconnect Battery and Test to a non-technical customer? Thanks.
+Context: ['Warranty Policy — EV Battery Pack: 6. Battery Care Recommendations', 'Customer Guide — Brake Warning Codes: ', 'Customer Guide — Brake Warning Codes: Electronic Parking Brake Warnings (C1185 – C1195)', 'TPMS Sensor Replacement and Relearn Procedure: Troubleshooting']
+Expected: The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information.
+SFT:  1. Reconnect the battery negative terminal. Key points: Reconnect the battery negative terminal.; Turn ignition to ON (engine off). The TPMS warning light should turn OFF if the new sensor is transmit
+  SFT abstained: False | RAFT abstained: True
+RAFT: The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information.
+
+================================================================================
+Example 29/100 | Type: oracle_free | NS: dealer_sales | Oracle: None
+Question: Please advise: How should I position Optional against competing products? Thanks.
+Context: ['Competitive Comparison — BrakeGuard Pro vs Leading Brands: Detailed Analysis > Warranty', 'BrakeGuard Pro Series — Product Brochure: The Last Brake Pad Your Customers Will Ever Complain About', 'Competitive Comparison — BrakeGuard Pro vs Leading Brands: Detailed Analysis > NVH (Noise, Vibration, Harshness)', 'PowerCell EV Battery System — Product Brochure: Power That Lasts. Technology That Leads.']
+Expected: I cannot find an answer to this question in the provided context documents. Please refer to the primary source or contact the appropriate specialist.
+SFT:  The BrakeGuard Pro Series represents a breakthrough in ceramic brake compound technology, delivering the stopping power professionals demand with the refinement customers expect. Developed in partners
+  SFT abstained: False | RAFT abstained: True
+RAFT: I cannot find an answer to this question in the provided context documents. Please refer to the primary source or contact the appropriate specialist.
+
+================================================================================
+Example 30/100 | Type: oracle | NS: engineering | Oracle: TSB-2025-EV-002-S2
+Question: Following up on What is the affected population for Summary? Please advise.
+Context: ['TSB-2025-AD-001 — Forward Radar Recalibration Required After Windshield Replacement: 7. Calibration Procedure > 7.2 Calibration Target Positioning', 'BMS Passive Cell Balancing Timeout — DTC P0A80 After Cold Soak: Symptom Description', 'BMS Passive Cell Balancing Timeout — DTC P0A80 After Cold Soak: Summary', 'BMS Passive Cell Balancing Timeout — DTC P0A80 After Cold Soak: Technical Contact']
+Expected: Vehicles equipped with the PowerCell Battery Management System (BMS) firmware v2. ##begin_quote## Vehicles equipped with the PowerCell Battery Management System (BMS) firmware v2.1 and v2.2 may set DT
+SFT:  Vehicles equipped with the PowerCell Battery Management System (BMS) firmware v2.1 and v2.2 may set DTC P0A80 (Pack Cell Voltage Deviation) after extended cold soak at ambient temperatures of -20°C or
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## Vehicles equipped with the PowerCell Battery Management System (BMS) firmware v2. ##end_quote## See TSB-2025-EV-002-S2 for complete details.
+
+================================================================================
+Example 31/100 | Type: oracle_free | NS: vendor | Oracle: None
+Question: I need clarification on What quality requirements apply to 3. Qualification Phases > Phase 4: Full Qualification (Ongoing)? Please advise.
+Context: ['Supplier Qualification Standard: 4. Scoring Matrix — Supplier Selection', 'Supply Agreement — Continental Radar Sensors: 8. Technology Roadmap Sharing', 'Incoming Inspection Standard: 3. Inspection Levels > Level 2: AQL Sampling (Standard)', 'Supply Agreement — Bosch Brake Components: 10. Warranty']
+Expected: The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance.
+SFT:  **Phase 1: Initial Contact and Qualification (4–6 weeks)** When Applied: **. Activities: **. Qualification Validity: ** 6 months, subject to continued performance. Refer to PROC-STD-001-S5 in the docu
+  SFT abstained: False | RAFT abstained: True
+RAFT: The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information.
+
+================================================================================
+Example 32/100 | Type: oracle | NS: customer_support | Oracle: SM-BRK-001_Brake_Pad_Replacement-S17
+Question: I need to know: What is the cost estimate for repairing part number SM-BRK-002?
+Context: ['High-Voltage Battery Safety Disconnect Procedure: Pre-Disconnect Checks', 'Brake Pad Replacement — BrakeGuard Pro System: Seized Slide Pin Procedure', 'Brake Pad Replacement — BrakeGuard Pro System: Procedure — Front Brake Pads > Step 7: Reinstall Caliper', 'Brake Pad Replacement — BrakeGuard Pro System: Post-Replacement Procedure']
+Expected: > **WARNING**: After pad replacement, the brake pedal will travel to the floor on the first press because the caliper pistons are fully retracted. ##begin_quote## > **WARNING**: After pad replacement,
+SFT:  1. Fill the pressure bleeder tank with fresh DOT 4 fluid. Key points: Fill the pressure bleeder tank with fresh DOT 4 fluid.; Attach the pressure bleeder hose to the bleeder screw adapter.; Connect th
+  SFT cited: False | RAFT cited: True
+RAFT: ##begin_quote## 1. With engine OFF, press the brake pedal firmly and release. Repeat 15-20 times until the pedal feels firm at normal height. ##end_quote## See SM-BRK-001_Brake_Pad_Replacement-S17 for
+
+================================================================================
+Example 33/100 | Type: oracle | NS: compliance | Oracle: FMVSS_108_Lamps_Reflective_Devices-S2
+Question: I have a question — When did Overview come into effect?
+Context: ['FMVSS 108 — Lamps, Reflective Devices, and Associated Equipment: Overview', 'FMVSS 111 — Rear Visibility: Key Requirements', 'FMVSS 108 — Lamps, Reflective Devices, and Associated Equipment: Scope and Application', 'FMVSS 108 — Lamps, Reflective Devices, and Associated Equipment: Relevance to Sensor Integration']
+Expected: This regulation establishes requirements for vehicle lighting equipment to reduce accidents and fatalities by ensuring adequate roadway illumination and enhancing vehicle conspicuity in all visibility
+SFT:  FMVSS 108 establishes requirements for vehicle lighting equipment to reduce accidents and fatalities by ensuring adequate roadway illumination and enhancing vehicle conspicuity in all visibility condi
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## This regulation establishes requirements for vehicle lighting equipment to reduce accidents and fatalities by ensuring adequate roadway illumination and enhancing vehicle conspicuity i
+
+================================================================================
+Example 34/100 | Type: oracle | NS: compliance | Oracle: FMVSS_126_Electronic_Stability_Control-S4
+Question: What is the homologation process under Key Definitions?
+Context: ['FMVSS 138 — Tire Pressure Monitoring Systems: Application Scope', 'FMVSS 126 — Electronic Stability Control Systems: ESC System Requirements', 'FMVSS 126 — Electronic Stability Control Systems: Warning Systems', 'FMVSS 126 — Electronic Stability Control Systems: Key Definitions']
+Expected: - **ESC System**: A computer-controlled system that applies individual wheel brake torques to induce correcting yaw moments, with capabilities to determine yaw rate, estimate side slip, monitor steeri
+SFT:  - **ESC System**: A computer-controlled system that applies individual wheel brake torques to induce correcting yaw moments, with capabilities to determine yaw rate, estimate side slip, monitor steeri
+  SFT cited: False | RAFT cited: True
+RAFT: - **ESC System**: A computer-controlled system that applies individual wheel brake torques to induce correcting yaw moments, with capabilities to determine yaw rate, estimate side slip, monitor steeri
+
+================================================================================
+Example 35/100 | Type: oracle | NS: customer_support | Oracle: SM-SNS-001_TPMS_Sensor_Replacement-S14
+Question: Our company needs to know: How long does it typically take to repair Post-Replacement Verification? Can you check?
+Context: ['TPMS Sensor Replacement and Relearn Procedure: Procedure — Sensor Replacement > Step 3: Remove Old Sensor', 'Brake Pad Replacement — BrakeGuard Pro System: Procedure — Front Brake Pads > Step 4: Clean and Inspect Bracket', 'TPMS Sensor Replacement and Relearn Procedure: Post-Replacement Verification', 'TPMS Sensor Replacement and Relearn Procedure: Required Tools']
+Expected: ##begin_quote## 1. Verify TPMS warning light is OFF on the instrument cluster. ##end_quote## See SM-SNS-001_TPMS_Sensor_Replacement-S14 for complete details.
+SFT:  1. Verify TPMS warning light is OFF on the instrument cluster. Key points: Verify TPMS warning light is OFF on the instrument cluster.; On the infotainment display, navigate to: Vehicle > Tire Pressur
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## 1. Verify TPMS warning light is OFF on the instrument cluster. ##end_quote## See SM-SNS-001_TPMS_Sensor_Replacement-S14 for complete details.
+
+================================================================================
+Example 36/100 | Type: oracle | NS: vendor | Oracle: PROC-STD-002-S3
+Question: What are the qualification criteria for 2. Scope? Thanks.
+Context: ['Incoming Inspection Standard: 4. Inspection Methods and Equipment', 'Incoming Inspection Standard: 2. Scope', 'Incoming Inspection Standard: 3. Inspection Levels', 'Supplier Qualification Standard: 3. Qualification Phases > Phase 1: Desktop Audit (2–4 weeks)']
+Expected: ##begin_quote## This standard applies to all direct material deliveries at AlvinAI manufacturing ##end_quote## See PROC-STD-002-S3 for complete details.
+SFT:  This standard applies to all direct material deliveries at AlvinAI manufacturing and assembly facilities. It covers mechanical components, electronic assemblies, raw materials, and sub-assemblies from
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## This standard applies to all direct material deliveries at AlvinAI manufacturing ##end_quote## See PROC-STD-002-S3 for complete details.
+
+================================================================================
+Example 37/100 | Type: oracle_free | NS: employee_hr | Oracle: None
+Question: I'm looking for information on Who do I contact about $45,000 – $65,000?
+Context: ['ADAS Technician Certification Program: 6. Training Delivery', 'Leave and Attendance Policy: 2. Scope', 'Remote Work Policy: 8. Performance Management', 'ADAS Technician Certification Program: 3. Certification Levels > 3.3 Level 3: ADAS Integration Engineer']
+Expected: Based on the documents provided, I cannot find information to answer this question. I recommend checking with the appropriate team or referring to the original documentation.
+SFT:  AlvinAI uses an 8-level compensation band structure. Key data — Band: L1, Title Range: Entry ADAS Technician – ADAS Calibration Specialist, Annual Salary Range: $55,000 – $75,000. See HR-POL-002-S5 fo
+  SFT abstained: False | RAFT abstained: True
+RAFT: The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance.
+
+================================================================================
+Example 38/100 | Type: oracle_free | NS: engineering | Oracle: None
+Question: Technical question: What are the test parameters for 3. Requirements > 3.2 Environmental? Thanks in advance.
+Context: ['SPEC-BAT-100 — PowerCell 48M 48V Mild-Hybrid Battery Module: 3. Requirements > 3.5 Reliability', 'TSB-2025-AD-001 — Forward Radar Recalibration Required After Windshield Replacement: 3. Affected Vehicles', 'DTC Table — EV Battery & High-Voltage System: P0A00 — Motor Electronics Coolant Temp Sensor Circuit', 'TSB-2025-AD-001 — Forward Radar Recalibration Required After Windshield Replacement: 13. Technical Background > 13.3 Calibration Algorithm Overview']
+Expected: The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance.
+SFT:  | Parameter | Requirement |
+|---|---|
+| Operating temperature | -40 deg C to +85 deg C |
+| Storage temperature | -40 deg C to +120 deg C |
+| Chemical compatibility | No reaction with coolant (OAT, PAG
+  SFT abstained: False | RAFT abstained: True
+RAFT: The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information.
+
+================================================================================
+Example 39/100 | Type: oracle | NS: customer_support | Oracle: SM-BRK-001_Brake_Pad_Replacement-S16
+Question: How urgent is it when a customer reports Caliper bracket bolts torque: **70 N-m / 52 ft-lbs** (vs. 95 N-m front).? Can you check?
+Context: ['Brake Pad Replacement — BrakeGuard Pro System: Procedure — Front Brake Pads > Step 1: Preparation', 'Brake Pad Replacement — BrakeGuard Pro System: Required Tools', 'Brake Pad Replacement — BrakeGuard Pro System: Procedure — Rear Brake Pads', 'High-Voltage Battery Safety Disconnect Procedure: ']
+Expected: ##begin_quote## The rear procedure is identical to the front with the following differences: ##end_quote## See SM-BRK-001_Brake_Pad_Replacement-S16 for complete details.
+SFT:  The rear procedure is identical to the front with the following differences: Key points: Caliper bracket bolts torque: **70 N-m / 52 ft-lbs** (vs. 95 N-m front).; On Apex GT and PowerCell 500: rear ca
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## The rear procedure is identical to the front with the following differences: ##end_quote## See SM-BRK-001_Brake_Pad_Replacement-S16 for complete details.
+
+================================================================================
+Example 40/100 | Type: oracle | NS: engineering | Oracle: SUP-INT-2025-002-S6
+Question: Technical question: What are the durability test requirements for Connector?
+Context: ['Supplier Integration Note — Bosch iBooster Gen 2 with BrakeGuard HBM-500: Integration Requirements > Pedal Feel Calibration', 'Supplier Integration Note — Continental ARS540 Radar with SensorSuite ADC-500: ', 'Supplier Integration Note — Continental ARS540 Radar with SensorSuite ADC-500: Reference Documents', 'Supplier Integration Note — Continental ARS540 Radar with SensorSuite ADC-500: Integration Architecture > Ethernet Configuration']
+Expected: ##begin_quote## | Parameter | Value |
+|---|---|
+| Physical layer | 100BASE-T1 (IEEE 802.3bw) |
+| Connector | TE MATEnet (2-pin shielded) |
+| Cable | STP, max 15 m |
+| VLAN | VLAN 10 (radar traffic iso
+SFT:  | Parameter | Value |
+|---|---|
+| Physical layer | 100BASE-T1 (IEEE 802.3bw) |
+| Connector | TE MATEnet (2-pin shielded) |
+| Cable | STP, max 15 m |
+| VLAN | VLAN 10 (radar traffic isolated) |
+| IP ad
+  SFT cited: False | RAFT cited: True
+RAFT: ##begin_quote## | Parameter | Value |
+|---|---|
+| Physical layer | 100BASE-T1 (IEEE 802.3bw) |
+| Connector | TE MATEnet (2-pin shielded) |
+| Cable | STP, max 15 m |
+| VLAN | VLAN 10 (radar traffic iso
+
+================================================================================
+Example 41/100 | Type: oracle_free | NS: engineering | Oracle: None
+Question: I have a question — What CAN bus signals are relevant to Connect DiagSuite v4.0+ to OBD-II port.?
+Context: ['TSB-2025-BR-001 — Premature Brake Pad Wear Sensor Activation: Affected Products', 'SPEC-BRK-100 — BrakeGuard HBM-500 Hydraulic Brake Module: 3. Requirements > 3.3 EMC', 'DTC Table — Advanced Driver Assistance System Sensors: U0401 — Invalid Data Received from ADAS Control Module', 'Supplier Integration Note — Bosch iBooster Gen 2 with BrakeGuard HBM-500: Integration Requirements > Brake Blending (Regenerative + Friction)']
+Expected: Based on the documents provided, I cannot find information to answer this question. I recommend checking with the appropriate team or referring to the original documentation.
+SFT:  1. Connect DiagSuite v4.0+ to OBD-II port. Key points: Connect DiagSuite v4.0+ to OBD-II port.; Navigate to: **Chassis > Braking > Service Functions > Pad Wear Sensor Calibration**.; Follow on-screen 
+  SFT abstained: False | RAFT abstained: True
+RAFT: The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information.
+
+================================================================================
+Example 42/100 | Type: oracle_free | NS: compliance | Oracle: None
+Question: What sample size is required for testing under **MRM initiations** (timestamp, reason, outcome)? Thanks.
+Context: ['US Self-Certification Record — BrakeGuard HBM-500 Hydraulic Brake Module: Warranty and Recall Obligations', 'Tier 3 Motor Vehicle Emission Standards for Light-Duty Vehicles: 4. Useful Life Requirements', 'Automated Lane Keeping Systems (ALKS) — Level 3 Automated Driving: 4. Dynamic Driving Task Performance', 'FMVSS 126 — Electronic Stability Control Systems: ESC System Requirements']
+Expected: The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance.
+SFT:  - **ABS module replacement** (new module + firmware update): 0.8 hours Key data — Operation: ABS module replacement (new module + firmware update), Time (hrs): 0.8. See TSB-2025-BR-001-S11 for complet
+  SFT abstained: False | RAFT abstained: True
+RAFT: The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance.
+
+================================================================================
+Example 43/100 | Type: oracle | NS: employee_hr | Oracle: HR-POL-004-S5
+Question: Hi, How is based on individual performance ratings calculated? Can you check?
+Context: ['Compensation and Benefits Policy: 9. Payroll', 'Compensation and Benefits Policy: 4. Annual Compensation Review', 'Compensation and Benefits Policy: 7. Education and Development', 'Safety and Environmental Health & Safety (EHS) Policy: 6. Incident Reporting']
+Expected: ##begin_quote## AlvinAI conducts an annual compensation review in March, effective April 1. ##end_quote## Specifically, based on individual performance ratings: | Performance Rating | Typical Merit In
+SFT:  AlvinAI conducts an annual compensation review in March, effective April 1. Key data — Performance Rating: Exceptional, Typical Merit Increase: 6%–8%. See HR-POL-004-S5 for the full policy details.
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## AlvinAI conducts an annual compensation review in March, effective April 1. ##end_quote## See HR-POL-004-S5 for complete details.
+
+================================================================================
+Example 44/100 | Type: oracle | NS: employee_hr | Oracle: HR-POL-002-S5
+Question: What support resources are available for Using AlvinAI resources for personal business ventures?
+Context: ['Code of Conduct: 4. Conflicts of Interest', 'Compensation and Benefits Policy: 6. Retirement Benefits', 'Code of Conduct: 8. Disciplinary Process', 'Code of Conduct: 7. Social Media Policy']
+Expected: ##begin_quote## A conflict of interest exists when an employee's personal interests — financial, ##end_quote## See HR-POL-002-S5 for complete details.
+SFT:  - Gifts to customers or business partners must not exceed $50 per recipient per Key data — Gift Value: Under $50, Rule: May be accepted; no approval required. See HR-POL-002-S6 for the full policy det
+  SFT cited: False | RAFT cited: True
+RAFT: ##begin_quote## A conflict of interest exists when an employee's personal interests — financial, ##end_quote## See HR-POL-002-S5 for complete details.
+
+================================================================================
+Example 45/100 | Type: oracle_free | NS: vendor | Oracle: None
+Question: For a customer inquiry: How is pricing structured for AlvinAI VP Procurement?
+Context: ['Incoming Inspection Standard: 3. Inspection Levels > Level 1: 100% Inspection', 'Supply Agreement — Bosch Brake Components: 9. Intellectual Property', 'Incoming Inspection Standard: 2. Scope', 'Service Level Agreement — Bosch Delivery Terms: 1. Purpose']
+Expected: Based on the documents provided, I cannot find information to answer this question. I recommend checking with the appropriate team or referring to the original documentation.
+SFT:  | Role | Responsibility |
+|---|---|
+| AlvinAI VP Procurement | Approve supplier selection, manage commercial terms |
+| Supplier Quality Engineer | Manage PPAP, PPM tracking, SCAR management |
+| Proces
+  SFT abstained: False | RAFT abstained: True
+RAFT: I cannot find an answer to this question in the provided context documents. Please refer to the primary source or contact the appropriate specialist.
+
+================================================================================
+Example 46/100 | Type: oracle | NS: dealer_sales | Oracle: PRC-BRK-2025-S9
+Question: Urgent: What is the installation time for $74.99? Please advise.
+Context: ['SensorSuite ADAS Package — Product Brochure: Sensor Hardware > Corner Radars (4 units)', '2025 Price List — Brake Components: Pricing Notes', '2025 Price List — Brake Components: Brake Fluid', '2025 Price List — Brake Components: ']
+Expected: ##begin_quote## | Part # | Description | Size | MSRP | Dealer Net | Core Charge |
+|---|---|---|---|---|---|
+| BRK-FLD-8001 | DOT 4 Brake Fluid | 1 Liter | $18.99 | $12.34 | — |
+| BRK-FLD-8002 | DOT 4 
+SFT:  | Part # | Description | Size | MSRP | Dealer Net | Core Charge |
+|---|---|---|---|---|---|
+| BRK-FLD-8001 | DOT 4 Brake Fluid | 1 Liter | $18.99 | $12.34 | — |
+| BRK-FLD-8002 | DOT 4 Brake Fluid | 5 
+  SFT cited: False | RAFT cited: True
+RAFT: ##begin_quote## | Part # | Description | Size | MSRP | Dealer Net | Core Charge |
+|---|---|---|---|---|---|
+| BRK-FLD-8001 | DOT 4 Brake Fluid | 1 Liter | $18.99 | $12.34 | — |
+| BRK-FLD-8002 | DOT 4 
+
+================================================================================
+Example 47/100 | Type: oracle | NS: customer_support | Oracle: SM-SNS-001_TPMS_Sensor_Replacement-S6
+Question: I need to know: Can a customer fix 1 per affected wheel themselves or do they need a dealer? I need this for a customer.
+Context: ['TPMS Sensor Replacement and Relearn Procedure: Required Parts', 'TPMS Sensor Replacement and Relearn Procedure: Procedure — Sensor Replacement > Step 6: Reinstall Wheel', 'TPMS Sensor Replacement and Relearn Procedure: Procedure — Sensor Replacement > Step 3: Remove Old Sensor', 'Parking Sensor Installation and Calibration: ']
+Expected: > **NOTE**: Always replace the valve stem service kit components when installing a new TPMS sensor. ##begin_quote## > **NOTE**: Always replace the valve stem service kit components when installing a n
+SFT:  | Part | Part Number | Quantity |
+|---|---|---|
+| TPMS Sensor | SS-TPMS-315-V2 | 1 per affected wheel |
+| Valve stem service kit | SS-TPMS-VSK-10 | 1 per sensor (includes: valve core, valve cap, stem 
+  SFT cited: False | RAFT cited: True
+RAFT: ##begin_quote## > **NOTE**: Always replace the valve stem service kit components when installing a new TPMS sensor. The grommet/seal is a one-time-use item and must not be reused. ##end_quote## See SM
+
+================================================================================
+Example 48/100 | Type: oracle | NS: customer_support | Oracle: SM-EV-001_HV_Battery_Safety_Disconnect-S2
+Question: Please advise: When should I bring my vehicle in for HV cabling inspection or repair? This is time-sensitive.
+Context: ['TPMS Sensor Replacement and Relearn Procedure: Procedure — Sensor Replacement > Step 1: Remove Wheel', 'High-Voltage Battery Safety Disconnect Procedure: HV System Overview', 'High-Voltage Battery Safety Disconnect Procedure: Disconnect Procedure > Step 6: Wait for Capacitor Discharge', 'High-Voltage Battery Safety Disconnect Procedure: Overview']
+Expected: This procedure covers the safe de-energization of the high-voltage (HV) battery system on PowerCell electric vehicles. ##begin_quote## This procedure covers the safe de-energization of the high-voltag
+SFT:  This procedure covers the safe de-energization of the high-voltage (HV) battery system on PowerCell electric vehicles. The HV battery operates at **400V DC nominal (PowerCell 400)** or **800V DC nomin
+  SFT cited: True | RAFT cited: True
+RAFT: This procedure covers the safe de-energization of the high-voltage (HV) battery system on PowerCell electric vehicles. ##begin_quote## This procedure covers the safe de-energization of the high-voltag
+
+================================================================================
+Example 49/100 | Type: oracle | NS: engineering | Oracle: TSB-2025-AD-002-S12
+Question: Can you look up What does TSB Step 1 recommend as the corrective action? Please advise.
+Context: ['BMS Passive Cell Balancing Timeout — DTC P0A80 After Cold Soak: Affected Vehicles', 'TSB-2025-AD-002 — Forward ADAS Camera Internal Condensation: 5. Diagnostic Confirmation', 'TSB-2025-AD-002 — Forward ADAS Camera Internal Condensation: 6. Replacement Procedure > 6.3 Camera Module Removal', 'TSB-2025-AD-002 — Forward ADAS Camera Internal Condensation: 9. Labor Time']
+Expected: **Step 1 — Remove Windshield Trim Cover** ##begin_quote## 1. Locate the windshield upper trim cover (surrounds the rearview mirror ##end_quote## Specifically, Step 1: Remove Windshield Trim Cover**. S
+SFT:  1. Locate the windshield upper trim cover (surrounds the rearview mirror and camera module mounting area) Key points: Locate the windshield upper trim cover (surrounds the rearview mirror and camera m
+  SFT cited: False | RAFT cited: True
+RAFT: ##begin_quote## 1. Connect DiagSuite v4.1 or later ##end_quote## See TSB-2025-AD-002-S9 for complete details.
+
+================================================================================
+Example 50/100 | Type: oracle_free | NS: compliance | Oracle: None
+Question: What do we know about What are the type approval requirements under 2. Key Definitions?
+Context: ['FMVSS 138 — Tire Pressure Monitoring Systems: Component Specifications for TPMS Sensors', 'Cybersecurity and Cyber Security Management System: 6. Vehicle Type-Approval Requirements > 6.4 Documentation', 'Tyre Pressure Monitoring Systems (TPMS) for M1 Vehicles: 8. Comparison with FMVSS 138 (US Standard)', 'FMVSS 305 — Electric-Powered Vehicles: Electrolyte Spillage and Electrical Shock Protection: ']
+Expected: After reviewing the provided context, I cannot locate the information needed. Please check the original source documentation or contact the appropriate team.
+SFT:  - **High Voltage**: Any electrical circuit with a working voltage greater than **60 V DC** or **30 V AC (rms)**. Key points: **High Voltage**: Any electrical circuit with a working voltage greater tha
+  SFT abstained: False | RAFT abstained: True
+RAFT: The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information.
+
+================================================================================
+Example 51/100 | Type: oracle | NS: customer_support | Oracle: WARRANTY-BAT-2025-S4
+Question: Urgent: Is it safe for a customer to keep driving with 60%–64%? This is time-sensitive.
+Context: ['Warranty Policy — EV Battery Pack: 3. Capacity Guarantee — 70% SOH', 'Warranty Policy — EV Battery Pack: 7. Contact', 'Warranty Policy — Sensor Systems: 3. ADAS Recalibration Coverage', 'Warranty Policy — EV Battery Pack: 4. Exclusions']
+Expected: ##begin_quote## AlvinAI guarantees that the battery pack will retain at least 70% of its original ##end_quote## See WARRANTY-BAT-2025-S4 for complete details.
+SFT:  If the battery SOH falls below 70% during the warranty period, the customer is entitled to a prorated credit toward a replacement battery pack: Key data — SOH Range: 65%–69%, Credit Percentage: 80% of
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## If the battery SOH falls below 70% during the warranty period, the customer is ##end_quote## See WARRANTY-BAT-2025-S4 for complete details.
+
+================================================================================
+Example 52/100 | Type: oracle | NS: engineering | Oracle: SPEC-BAT-200_HV_Battery_Pack_400V-S8
+Question: Hi, What does TSB TE Kilovac EV200, 400 VDC, 500 A continuous recommend as the corrective action?
+Context: ['SPEC-BAT-200 — PowerCell HV-400 High-Voltage Battery Pack: 3. Requirements > 3.5 Contactors and HV Distribution', 'SPEC-BAT-200 — PowerCell HV-400 High-Voltage Battery Pack: 5. Electrical Interface', 'SPEC-BAT-200 — PowerCell HV-400 High-Voltage Battery Pack: 6. Environmental Testing', 'SPEC-SNS-100 — SensorSuite RAD-77F 77 GHz mmWave Forward Radar: 6. Test Methods']
+Expected: ##begin_quote## | Component | Specification |
+|---|---|
+| Main contactors (×2) | TE Kilovac EV200, 400 VDC, 500 A continuous |
+| Precharge contactor | Kilovac LEV100, with 150 Ω precharge resistor |
+|
+SFT:  | Component | Specification |
+|---|---|
+| Main contactors (×2) | TE Kilovac EV200, 400 VDC, 500 A continuous |
+| Precharge contactor | Kilovac LEV100, with 150 Ω precharge resistor |
+| Precharge time 
+  SFT cited: False | RAFT cited: True
+RAFT: ##begin_quote## | Component | Specification |
+|---|---|
+| Main contactors (×2) | TE Kilovac EV200, 400 VDC, 500 A continuous |
+| Precharge contactor | Kilovac LEV100, with 150 Ω precharge resistor |
+|
+
+================================================================================
+Example 53/100 | Type: oracle_free | NS: vendor | Oracle: None
+Question: Quick question: What is the payment schedule for Late deliveries with root cause codes?
+Context: ['Supply Agreement — Continental Radar Sensors: 3. Volume Commitment', 'Supply Agreement — Bosch Brake Components: 10. Warranty', 'Supply Agreement — Continental Radar Sensors: 9. Warranty', 'Supply Agreement — Continental Radar Sensors: 12. Termination']
+Expected: The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance.
+SFT:  For the ARS540, the following codes indicate radar failure or performance issues: Key data — Code: C2200, Description: Front Long-Range Radar — No Signal, Relevance: **HIGH**. For further assistance, 
+  SFT abstained: False | RAFT abstained: True
+RAFT: The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance.
+
+================================================================================
+Example 54/100 | Type: oracle_free | NS: compliance | Oracle: None
+Question: Quick question: What is the pass/fail criterion in part number MIL-HDBK-217F? Could you clarify this for me?
+Context: ['Electric Power-Trained Vehicles — Safety Requirements for the Rechargeable Energy Storage System: 4. REESS Abuse Tests', 'Cybersecurity and Cyber Security Management System: 2. Key Definitions', 'Tier 3 Motor Vehicle Emission Standards for Light-Duty Vehicles: 7. Certification and Compliance', 'Braking of Vehicles of Categories M1 and N1: 11. Cross-References']
+Expected: Based on the documents provided, I cannot find information to answer this question. I recommend checking with the appropriate team or referring to the original documentation.
+SFT:  The REESS must withstand the following mechanical tests without loss of performance: Key data — Test: Vibration (random, 10–2000 Hz), Specific: 8000 acceleration units (a.e.), Specific: 8000 accelerat
+  SFT abstained: False | RAFT abstained: True
+RAFT: The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information.
+
+================================================================================
+Example 55/100 | Type: oracle | NS: employee_hr | Oracle: HR-TRAIN-001-S4
+Question: I have a question — Can you explain the 3. Certification Levels policy?
+Context: ['Compensation and Benefits Policy: 3. Compensation Bands', 'ADAS Technician Certification Program: 3. Certification Levels', 'ADAS Technician Certification Program: 4. Examination Requirements', 'ADAS Technician Certification Program: 2. Scope']
+Expected: ##begin_quote## The program consists of three progressive certification levels: ##end_quote## See HR-TRAIN-001-S4 for complete details.
+SFT:  The program consists of three progressive certification levels: ##begin_quote## * **Level 1 (ADAS Technician)**: Entry-level ADAS certification. This level is required for all service technicians work
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## The program consists of three progressive certification levels: ##end_quote## See HR-TRAIN-001-S4 for complete details.
+
+================================================================================
+Example 56/100 | Type: oracle_free | NS: compliance | Oracle: None
+Question: Please advise: What sample size is required for testing under Reduce to ≤60 VDC or ≤30 VAC within 5 seconds post-crash?
+Context: ['Electric Power-Trained Vehicles — Safety Requirements for the Rechargeable Energy Storage System: 4. REESS Abuse Tests > 4.2 Thermal Shock and Cycling', 'FMVSS 305 — Electric-Powered Vehicles: Electrolyte Spillage and Electrical Shock Protection: Crash Test Protocols', 'Electric Power-Trained Vehicles — Safety Requirements for the Rechargeable Energy Storage System: 9. Amendment History', 'Cybersecurity and Cyber Security Management System: 6. Vehicle Type-Approval Requirements > 6.2 Mitigations']
+Expected: I cannot find an answer to this question in the provided context documents. Please refer to the primary source or contact the appropriate specialist.
+SFT:  The REESS must be at **50% SOC** (+/- 10%) at the start of the test. After thermal cycling: no fire, no explosion, no electrolyte leakage, isolation resistance within specification.. Key data — Parame
+  SFT abstained: False | RAFT abstained: True
+RAFT: The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance.
+
+================================================================================
+Example 57/100 | Type: oracle | NS: employee_hr | Oracle: HR-POL-002-S2
+Question: When was the 1. Purpose policy last updated? I need this for a customer.
+Context: ['Code of Conduct: 6. Intellectual Property Protection', 'Leave and Attendance Policy: 10. Holidays', 'Code of Conduct: 5. Gifts and Entertainment', 'Code of Conduct: 1. Purpose']
+Expected: ##begin_quote## This Code of Conduct establishes the ethical standards and behavioral expectations ##end_quote## See HR-POL-002-S2 for complete details.
+SFT:  This Code of Conduct establishes the ethical standards and behavioral expectations for all AlvinAI employees, contractors, and representatives. Every person acting on behalf of AlvinAI is expected to 
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## This Code of Conduct establishes the ethical standards and behavioral expectations ##end_quote## See HR-POL-002-S2 for complete details.
+
+================================================================================
+Example 58/100 | Type: oracle | NS: engineering | Oracle: DTC_Table_ADAS_Sensors-S18
+Question: Quick question: What is the operating temperature range for All ADAS disabled? Thanks in advance.
+Context: ['DTC Table — Advanced Driver Assistance System Sensors: C2220 — Blind Spot Radar Left — No Signal', 'DTC Table — Advanced Driver Assistance System Sensors: B1235 — ADAS Control Module Supply Voltage High', 'DTC Table — Advanced Driver Assistance System Sensors: Quick Reference Summary', 'DTC Table — Ultrasonic Parking Sensor System: B1502 — Rear Parking Sensor 2 (Left Inner) — Open Circuit']
+Expected: ##begin_quote## *Abbreviations: ACC = Adaptive Cruise Control, FCW = Forward Collision Warning, AEB = Automatic Emergency Braking, LDW = Lane Departure Warning, TSR = Traffic Sign Recognition, AHB = A
+SFT:  - **ACM supply voltage exceeds maximum operating threshold** Key data — Field: **Code**, Detail: B1235.
+  SFT cited: False | RAFT cited: True
+RAFT: ##begin_quote## | DTC | System | Description | ADAS Impact |
+|---|---|---|---|
+| U0401 | CAN Bus | Invalid data from ACM | All ADAS disabled |
+| C2200 | Forward Radar | Performance/blockage | ACC + FC
+
+================================================================================
+Example 59/100 | Type: oracle | NS: dealer_sales | Oracle: BRCH-BRK-2025-S5
+Question: Our company needs to know: What are the key features of Compound Type?
+Context: ['BrakeGuard Pro Series — Product Brochure: Technical Specifications', 'BrakeGuard Pro Series — Product Brochure: Ordering', 'BrakeGuard Pro Series — Product Brochure: Dealer Margin', 'PowerCell EV Battery System — Product Brochure: Power That Lasts. Technology That Leads.']
+Expected: ##begin_quote## | Property | BrakeGuard Pro Value |
+|---|---|
+| Compound Type | AlvinCeram nano-ceramic |
+| Friction Coefficient (mu) | 0.38–0.42 (stable across temperature range) |
+| Operating Temper
+SFT:  The BrakeGuard Pro Series represents AlvinAI's most advanced brake pad technology: ##begin_quote## ** "Our best pad for OE and aftermarket: priced between premium and value tiers, performs at the prem
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## | Property | BrakeGuard Pro Value |
+|---|---|
+| Compound Type | AlvinCeram nano-ceramic |
+| Friction Coefficient (mu) | 0.38–0.42 (stable across temperature range) |
+| Operating Temper
+
+================================================================================
+Example 60/100 | Type: oracle | NS: engineering | Oracle: TSB-2025-AD-002-S7
+Question: I need to know: What supplier provides Customer-observable symptoms? Could you clarify this for me?
+Context: ['TSB-2025-AD-002 — Forward ADAS Camera Internal Condensation: 8. Parts Required', 'TSB-2025-AD-001 — Forward Radar Recalibration Required After Windshield Replacement: 6. Required Tools and Equipment', 'TSB-2025-AD-002 — Forward ADAS Camera Internal Condensation: 9. Labor Time', 'TSB-2025-AD-002 — Forward ADAS Camera Internal Condensation: 4. Issue Description > 4.3 Symptoms']
+Expected: **Customer-observable symptoms:** ##begin_quote## - ADAS warning light illuminated on dashboard (amber camera icon) ##end_quote## Specifically, Customer-observable symptoms: **. See TSB-2025-AD-002-S7
+SFT:  **Customer-observable symptoms:** - ADAS warning light illuminated on dashboard (amber camera icon) - "Forward Camera Blocked" or "ADAS Temporarily Unavailable" message on instrument cluster or infota
+  SFT cited: True | RAFT cited: True
+RAFT: **Customer-observable symptoms:** ##begin_quote## - ADAS warning light illuminated on dashboard (amber camera icon) ##end_quote## Specifically, Customer-observable symptoms: **. See TSB-2025-AD-002-S7
+
+================================================================================
+Example 61/100 | Type: oracle | NS: engineering | Oracle: SPEC-BAT-100_EV_Battery_Module_48V-S3
+Question: Can you help me with this? What is the root cause analysis for ISO 12405? Please let me know how to proceed.
+Context: ['SPEC-BAT-100 — PowerCell 48M 48V Mild-Hybrid Battery Module: 3. Requirements > 3.3 EMC', 'SPEC-BAT-100 — PowerCell 48M 48V Mild-Hybrid Battery Module: 2. References', 'SPEC-BRK-200 — BrakeGuard EPB-300 Electronic Parking Brake Actuator: 1. Scope', 'SPEC-BAT-100 — PowerCell 48M 48V Mild-Hybrid Battery Module: 5. Electrical Interface > 5.3 Connector Pinout (TE AMP+ HVP 800, 3-pin power + 12-pin signal)']
+Expected: ##begin_quote## | Document | Title |
+|---|---|
+| UN R100 | Uniform provisions -- Battery electric vehicles (safety) |
+| UN R136 | Electric vehicles of category L (reference for 48V safety) |
+| IEC 626
+SFT:  - **UN R100**: Uniform provisions -- Battery electric vehicles (safety) Key data — Document: UN R100, Title: Uniform provisions -- Battery electric vehicles (safety). Refer to SPEC-BAT-100_EV_Battery_
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## | Document | Title |
+|---|---|
+| UN R100 | Uniform provisions -- Battery electric vehicles (safety) |
+| UN R136 | Electric vehicles of category L (reference for 48V safety) |
+| IEC 626
+
+================================================================================
+Example 62/100 | Type: oracle_free | NS: dealer_sales | Oracle: None
+Question: I need clarification on What is the recommended retail price for $89.99? This is time-sensitive.
+Context: ['PowerCell EV Battery System — Product Brochure: Warranty', '2025 Price List — Brake Components: ', 'SensorSuite ADAS Package — Product Brochure: ADAS Domain Controller', '2025 Price List — Brake Components: Brake Rotors']
+Expected: I cannot find an answer to this question in the provided context documents. Please refer to the primary source or contact the appropriate specialist.
+SFT:  # 2025 Price List — Brake Components
+
+**Effective Date:** January 1, 2025
+**Supersedes:** PRC-BRK-2024 (December 31, 2024)
+
+All prices in USD. Dealer Net pricing is confidential and must not be shared
+  SFT abstained: False | RAFT abstained: True
+RAFT: I cannot find an answer to this question in the provided context documents. Please refer to the primary source or contact the appropriate specialist.
+
+================================================================================
+Example 63/100 | Type: oracle | NS: employee_hr | Oracle: HR-POL-003-S8
+Question: Our company needs to know: Are there regional differences in Lighting conditions? Any guidance would be helpful.
+Context: ['Remote Work Policy: 10. Administration', 'Remote Work Policy: 7. Ergonomics and Safety', 'Remote Work Policy: 4. Technology and Equipment', 'Safety and Environmental Health & Safety (EHS) Policy: 9. Safety Training Requirements']
+Expected: ##begin_quote## Remote employees must complete the AlvinAI Home Workspace Ergonomic Assessment ##end_quote## See HR-POL-003-S8 for complete details.
+SFT:  Remote employees must complete the AlvinAI Home Workspace Ergonomic Assessment annually (available on the HR portal). This self-assessment covers: - Chair height and posture. See HR-POL-003-S8 for the
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## Remote employees must complete the AlvinAI Home Workspace Ergonomic Assessment ##end_quote## See HR-POL-003-S8 for complete details.
+
+================================================================================
+Example 64/100 | Type: oracle | NS: engineering | Oracle: TSB-2025-BR-002-S9
+Question: For a customer inquiry: What connector type is used for Wet surfaces at speeds above 30 km/h? Could you clarify this for me?
+Context: ['TSB-2025-BR-002 — ABS Module Firmware Update for Low-Speed False Activation: Correction > Firmware Flash Procedure', 'TSB-2025-EV-001 — HV Battery Module Coolant Seepage at O-Ring Joint: Correction > Overview', 'TSB-2025-BR-002 — ABS Module Firmware Update for Low-Speed False Activation: Cause > Wheel Speed Signal Processing Chain', 'TSB-2025-BR-002 — ABS Module Firmware Update for Low-Speed False Activation: Cause > Why This Was Not Caught in Validation']
+Expected: ##begin_quote## The original filter validation testing (BG-VAL-2024-ABS-012) was conducted on: ##end_quote## See TSB-2025-BR-002-S9 for complete details.
+SFT:  The original filter validation testing (BG-VAL-2024-ABS-012) was conducted on: - Dry surfaces only at speeds below 20 km/h. The specific combination of wet surfaces + low speed + gradual braking was n
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## The original filter validation testing (BG-VAL-2024-ABS-012) was conducted on: ##end_quote## See TSB-2025-BR-002-S9 for complete details.
+
+================================================================================
+Example 65/100 | Type: oracle | NS: vendor | Oracle: VENDOR-SLA-002-S4
+Question: Following up on What are the escalation procedures for Design Records (drawings and specifications)?
+Context: ['Service Level Agreement — Continental Quality Terms: 8. Process Capability', 'Service Level Agreement — Continental Quality Terms: 11. Review and Amendments', 'Service Level Agreement — Continental Quality Terms: 3. PPAP Requirements', 'Service Level Agreement — Bosch Delivery Terms: 5. Buffer Stock']
+Expected: ##begin_quote## Continental shall submit PPAP Level 3 documentation for all initial production ##end_quote## See VENDOR-SLA-002-S4 for complete details.
+SFT:  - **PPAP Level:** PPAP Level 3 documentation for all initial production parts Key data — PPAP Level: PPAP Level 3, Continental Responsibility: Submit complete PPAP package, Timeline: 8 weeks before SO
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## Continental shall submit PPAP Level 3 documentation for all initial production ##end_quote## See VENDOR-SLA-002-S4 for complete details.
+
+================================================================================
+Example 66/100 | Type: oracle_free | NS: employee_hr | Oracle: None
+Question: Quick question: What is the procedure for requesting May be accepted; no approval required?
+Context: ['Remote Work Policy: 1. Purpose', 'Safety and Environmental Health & Safety (EHS) Policy: 7. Safety Data Sheets (SDS)', 'ADAS Technician Certification Program: 3. Certification Levels > 3.3 Level 3: ADAS Integration Engineer', 'Compensation and Benefits Policy: 8. Additional Benefits']
+Expected: After reviewing the provided context, I cannot locate the information needed. Please check the original source documentation or contact the appropriate team.
+SFT:  - Gifts to customers or business partners must not exceed $50 per recipient per Key data — Gift Value: Under $50, Rule: May be accepted; no approval required. See HR-POL-002-S5 for the full policy det
+  SFT abstained: False | RAFT abstained: True
+RAFT: The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance.
+
+================================================================================
+Example 67/100 | Type: oracle | NS: employee_hr | Oracle: HR-POL-002-S4
+Question: Technical question: Does Make "facilitation payments" to expedite routine government actions apply to contractors as well?
+Context: ['Leave and Attendance Policy: 7. Manufacturing Shift Schedule', 'Code of Conduct: 10. Acknowledgment', 'Code of Conduct: 6. Intellectual Property Protection', 'Code of Conduct: 3. Anti-Corruption and FCPA Compliance']
+Expected: AlvinAI strictly complies with the U. ##begin_quote## AlvinAI strictly complies with the U.S. Foreign Corrupt Practices Act (FCPA) and ##end_quote## See HR-POL-002-S4 for complete details.
+SFT:  AlvinAI strictly complies with the U.S. Foreign Corrupt Practices Act (FCPA) and all applicable anti-corruption laws worldwide. No employee or representative shall: Key points: Offer, promise, or give
+  SFT cited: True | RAFT cited: True
+RAFT: AlvinAI strictly complies with the U. ##begin_quote## AlvinAI strictly complies with the U.S. Foreign Corrupt Practices Act (FCPA) and ##end_quote## See HR-POL-002-S4 for complete details.
+
+================================================================================
+Example 68/100 | Type: oracle | NS: dealer_sales | Oracle: BRCH-BAT-2025-S8
+Question: What is the minimum order quantity for Charge rate optimization based on cell temperature and age? Any guidance would be helpful.
+Context: ['BrakeGuard Pro Series — Product Brochure: Technical Specifications', 'PowerCell EV Battery System — Product Brochure: Cycle Life and Longevity', 'PowerCell EV Battery System — Product Brochure: Battery Management System (BMS)', 'PowerCell EV Battery System — Product Brochure: Ordering']
+Expected: ##begin_quote## The PowerCell BMS monitors every cell in real time and manages: ##end_quote## See BRCH-BAT-2025-S8 for complete details.
+SFT:  The PowerCell BMS monitors every cell in real time and manages: ##begin_quote## - Cell voltage balancing (active, within ±5 mV) - Temperature monitoring (2 sensors per module) - State of Charge (SOC) 
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## The PowerCell BMS monitors every cell in real time and manages: ##end_quote## See BRCH-BAT-2025-S8 for complete details.
+
+================================================================================
+Example 69/100 | Type: oracle | NS: employee_hr | Oracle: HR-POL-005-S7
+Question: Regarding Is there a cap on Ensure the scene is safe and provide first aid if needed?
+Context: ['Safety and Environmental Health & Safety (EHS) Policy: 6. Incident Reporting', 'Safety and Environmental Health & Safety (EHS) Policy: 5. Lockout/Tagout (LOTO)', 'Remote Work Policy: 5. Work Hours and Availability', 'Safety and Environmental Health & Safety (EHS) Policy: 2. Scope']
+Expected: ##begin_quote## ALL incidents, injuries, near-misses, and unsafe conditions must be reported ##end_quote## See HR-POL-005-S7 for complete details.
+SFT:  1. Ensure the scene is safe and provide first aid if needed Key points: Ensure the scene is safe and provide first aid if needed; Notify the immediate supervisor verbally; Complete the Incident Report
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## ALL incidents, injuries, near-misses, and unsafe conditions must be reported ##end_quote## See HR-POL-005-S7 for complete details.
+
+================================================================================
+Example 70/100 | Type: oracle_free | NS: engineering | Oracle: None
+Question: Can you look up What are the material requirements for Safety Notice? Please advise.
+Context: ['RND-2025-001 — SiC Inverter Efficiency Study for EV Powertrain Integration: ', 'SPEC-BAT-100 — PowerCell 48M 48V Mild-Hybrid Battery Module: 1. Scope', 'DTC Table — EV Battery & High-Voltage System: P0A1F — Battery Energy Control Module', 'SPEC-ECU-100 — SensorSuite ADC-500 ADAS Domain Controller: 5. Electrical Interface > 5.1 Power Supply']
+Expected: I cannot find an answer to this question in the provided context documents. Please refer to the primary source or contact the appropriate specialist.
+SFT:  **HIGH VOLTAGE HAZARD:** The PowerCell 48M battery module operates at high voltage (up to 60V nominal, 75V maximum). Relevant values: 75 V, 1000 V, 1000 V. ##begin_quote## **HIGH VOLTAGE HAZARD:** The
+  SFT abstained: False | RAFT abstained: True
+RAFT: The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information.
+
+================================================================================
+Example 71/100 | Type: oracle_free | NS: customer_support | Oracle: None
+Question: Our company needs to know: What tools or parts are needed for Remove calibration target and equipment? I need this for a customer.
+Context: ['Customer Guide — Brake Warning Codes: Brake Pump Motor Warning (C0110)', 'Brake Pad Replacement — BrakeGuard Pro System: Torque Specifications', 'Warranty Policy — EV Battery Pack: 2. Covered Components', 'Customer Guide — ADAS Warning Codes: ADAS Calibration Required (C2235)']
+Expected: This specific information is not covered in the documents provided. I recommend consulting the relevant subject matter expert or referring to the primary documentation.
+SFT:  1. Park the vehicle on a level surface with at least **5 meters** of clear space in front Key points: Park the vehicle on a level surface with at least **5 meters** of clear space in front; Set the pa
+  SFT abstained: False | RAFT abstained: True
+RAFT: The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance.
+
+================================================================================
+Example 72/100 | Type: oracle | NS: compliance | Oracle: FMVSS_108_Lamps_Reflective_Devices-S7
+Question: Following up on How frequently must compliance with Windshield washer fluid (1-hour soak at 43°C) be re-verified? I need this for a customer.
+Context: ['FMVSS 108 — Lamps, Reflective Devices, and Associated Equipment: Overview', 'FMVSS 108 — Lamps, Reflective Devices, and Associated Equipment: Testing and Certification', 'FMVSS 108 — Lamps, Reflective Devices, and Associated Equipment: Relevance to Sensor Integration', 'FMVSS 305 — Electric-Powered Vehicles: Electrolyte Spillage and Electrical Shock Protection: Scope and Application']
+Expected: ##begin_quote## - Conducted in darkroom with calibrated photometer ##end_quote## Specifically, Lamp lenses must resist: - Gasoline exposure (30-second immersion). See FMVSS_108_Lamps_Reflective_Device
+SFT:  - Conducted in darkroom with calibrated photometer - Test points defined in spherical coordinate system (H = horizontal, V = vertical) - Light source aged for minimum 1 hour before measurement. Key da
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## - Conducted in darkroom with calibrated photometer ##end_quote## Specifically, Lamp lenses must resist: - Gasoline exposure (30-second immersion). See FMVSS_108_Lamps_Reflective_Device
+
+================================================================================
+Example 73/100 | Type: oracle | NS: compliance | Oracle: FMVSS_138_Tire_Pressure_Monitoring-S8
+Question: Hi, What records must be retained for 20% of production compliance?
+Context: ['FMVSS 138 — Tire Pressure Monitoring Systems: Test Procedures', 'FMVSS 138 — Tire Pressure Monitoring Systems: Component Specifications for TPMS Sensors', 'FMVSS 135 — Light Vehicle Brake Systems: Instrumentation Requirements', 'FMVSS 138 — Tire Pressure Monitoring Systems: Phase-In Timeline']
+Expected: ##begin_quote## | Date | Compliance Requirement |
+|---|---|
+| October 2005 – September 2006 | 20% of production |
+| September 2006 – September 2007 | 70% of production |
+| September 2007 onward | 100%
+SFT:  - October 2005 – September 2006: 20% of production Key data — Date: October 2005 – September 2006, Compliance Requirement: 20% of production. Refer to FMVSS_138_Tire_Pressure_Monitoring-S8 for the ful
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## | Date | Compliance Requirement |
+|---|---|
+| October 2005 – September 2006 | 20% of production |
+| September 2006 – September 2007 | 70% of production |
+| September 2007 onward | 100%
+
+================================================================================
+Example 74/100 | Type: oracle_free | NS: employee_hr | Oracle: None
+Question: Hi, What training is required for 2. Scope?
+Context: ['ADAS Technician Certification Program: 2. Scope', 'Safety and Environmental Health & Safety (EHS) Policy: 7. Safety Data Sheets (SDS)', 'Safety and Environmental Health & Safety (EHS) Policy: 2. Scope', 'Compensation and Benefits Policy: 3. Compensation Bands']
+Expected: The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance.
+SFT:  This certification program applies to: - Service technicians at AlvinAI authorized dealerships. See HR-TRAIN-001-S3 for the full policy details.
+  SFT abstained: False | RAFT abstained: False
+RAFT: ##begin_quote## This certification program applies to: ##end_quote## Specifically, No technician may perform ADAS work without holding the appropriate certification level for the task being performed.
+
+================================================================================
+Example 75/100 | Type: oracle | NS: customer_support | Oracle: SM-EV-001_HV_Battery_Safety_Disconnect-S8
+Question: For a customer inquiry: Can you explain what Verify 12V is disconnected: no dashboard lights, no sounds when opening doors. means for my vehicle? Could you clarify this for me?
+Context: ['High-Voltage Battery Safety Disconnect Procedure: Re-Energization Procedure', 'TPMS Sensor Replacement and Relearn Procedure: Procedure — Sensor Replacement > Step 6: Reinstall Wheel', 'High-Voltage Battery Safety Disconnect Procedure: Disconnect Procedure > Step 3: Disconnect 12V Auxiliary Battery', 'High-Voltage Battery Safety Disconnect Procedure: Disconnect Procedure > Step 6: Wait for Capacitor Discharge']
+Expected: > **NOTE**: The 12V battery powers the BMS, contactors, and HV interlock circuit. ##begin_quote## > **NOTE**: The 12V battery powers the BMS, contactors, and HV interlock circuit. Disconnecting it ens
+SFT:  1. Open the hood (PowerCell 400) or front trunk (PowerCell 500). Key points: Open the hood (PowerCell 400) or front trunk (PowerCell 500).; Locate the HV battery pack at the vehicle rear.; Using the H
+  SFT cited: False | RAFT cited: True
+RAFT: > **NOTE**: The 12V battery powers the BMS, contactors, and HV interlock circuit. ##begin_quote## > **NOTE**: The 12V battery powers the BMS, contactors, and HV interlock circuit. Disconnecting it ens
+
+================================================================================
+Example 76/100 | Type: oracle | NS: engineering | Oracle: SPEC-SNS-200_Ultrasonic_Parking_Sensor-S2
+Question: Urgent: Explain the technical details of 1. Scope.
+Context: ['SPEC-SNS-200 — SensorSuite UPS-300 Ultrasonic Parking Sensor: 5. Electrical Interface', 'SPEC-BRK-200 — BrakeGuard EPB-300 Electronic Parking Brake Actuator: 3. Requirements > 3.1 Performance', 'SPEC-SNS-200 — SensorSuite UPS-300 Ultrasonic Parking Sensor: 1. Scope', 'SPEC-SNS-200 — SensorSuite UPS-300 Ultrasonic Parking Sensor: 3. Requirements > 3.1 Performance']
+Expected: This specification defines the performance, environmental, electrical, mechanical, and reliability requirements for the SensorSuite UPS-300 Ultrasonic Parking Sensor. ##begin_quote## This specificatio
+SFT:  This specification defines the performance, environmental, electrical, mechanical, and reliability requirements for the SensorSuite UPS-300 Ultrasonic Parking Sensor. The UPS-300 is a piezoelectric ul
+  SFT cited: False | RAFT cited: True
+RAFT: This specification defines the performance, environmental, electrical, mechanical, and reliability requirements for the SensorSuite UPS-300 Ultrasonic Parking Sensor. ##begin_quote## This specificatio
+
+================================================================================
+Example 77/100 | Type: oracle_free | NS: customer_support | Oracle: None
+Question: For a customer inquiry: Is there a recall related to **Extreme storage conditions** — Storing the vehicle for more than 30 days with? Please let me know how to proceed.
+Context: ['Warranty Policy — EV Battery Pack: 8. Legal', 'Parking Sensor Installation and Calibration: Procedure — New Sensor Installation (New Hole)', 'Brake Pad Replacement — BrakeGuard Pro System: Torque Specifications', 'High-Voltage Battery Safety Disconnect Procedure: Safety Warnings — Read All Before Proceeding']
+Expected: The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information.
+SFT:  This warranty does NOT cover battery degradation or failure resulting from: Key points: **Non-approved chargers exceeding 150 kW** — Use of DC fast chargers rated; **Submersion beyond IP67 rating** — 
+  SFT abstained: False | RAFT abstained: True
+RAFT: I cannot find an answer to this question in the provided context documents. Please refer to the primary source or contact the appropriate specialist.
+
+================================================================================
+Example 78/100 | Type: oracle_free | NS: compliance | Oracle: None
+Question: Regarding What are the penalties for non-compliance with SS-CAM-F200? Any guidance would be helpful.
+Context: ['Electric Power-Trained Vehicles — Safety Requirements for the Rechargeable Energy Storage System: 4. REESS Abuse Tests > 4.2 Thermal Shock and Cycling', 'FMVSS 108 — Lamps, Reflective Devices, and Associated Equipment: Reflective Devices', 'FMVSS 111 — Rear Visibility: Test Procedures', 'Braking of Vehicles of Categories M1 and N1: ']
+Expected: The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance.
+SFT:  | Parameter | Value |
+|-----------|-------|
+| Resolution | 640 x 480 pixels (VGA) |
+| Frame rate | 30 fps |
+| Field of view | 55° horizontal |
+| Dynamic range | 100 dB |
+| Light source | LED array, co
+  SFT abstained: False | RAFT abstained: True
+RAFT: The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information.
+
+================================================================================
+Example 79/100 | Type: oracle | NS: employee_hr | Oracle: HR-POL-004-S5
+Question: Our company needs to know: Who approves requests for Exceeds Expectations?
+Context: ['Compensation and Benefits Policy: 7. Education and Development', 'Compensation and Benefits Policy: 4. Annual Compensation Review', 'Compensation and Benefits Policy: 10. Administration', 'Leave and Attendance Policy: 4. Sick Leave']
+Expected: ##begin_quote## AlvinAI conducts an annual compensation review in March, effective April 1. ##end_quote## Specifically, based on individual performance ratings: | Performance Rating | Typical Merit In
+SFT:  AlvinAI conducts an annual compensation review in March, effective April 1. Key data — Performance Rating: Exceptional, Typical Merit Increase: 6%–8%. See HR-POL-004-S5 for the full policy details.
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## AlvinAI conducts an annual compensation review in March, effective April 1. ##end_quote## Specifically, Exceeds Expectations: 4%–6%. See HR-POL-004-S5 for complete details.
+
+================================================================================
+Example 80/100 | Type: oracle | NS: dealer_sales | Oracle: BRCH-ADAS-2025-S7
+Question: Quick question: What bulk discount is available for Sensor Hardware > Corner Radars (4 units)? Thanks in advance.
+Context: ['PowerCell EV Battery System — Product Brochure: Fast Charging', 'SensorSuite ADAS Package — Product Brochure: Sensor Hardware > Corner Radars (4 units)', 'SensorSuite ADAS Package — Product Brochure: Why SensorSuite?', 'SensorSuite ADAS Package — Product Brochure: ADAS Feature Matrix']
+Expected: ##begin_quote## | Specification | Value |
+|---|---|
+| Frequency | 76–77 GHz |
+| Maximum Range | 80 meters |
+| Field of View | ±75 degrees azimuth |
+| Functions | Blind Spot Detection, Rear Cross-Traff
+SFT:  The SensorSuite ADAS Package provides comprehensive advanced driver-assistance Key data — Feature: Adaptive Cruise Control, Radar: Required, Camera: Optional. ##begin_quote## "The SensorSuite ADAS Pac
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## 150 kW DC fast charging brings customers from 10% to 80% in under 35 minutes for ##end_quote## See BRCH-BAT-2025-S6 for complete details.
+
+================================================================================
+Example 81/100 | Type: oracle_free | NS: employee_hr | Oracle: None
+Question: I'm looking for information on How does Document ID interact with statutory requirements? Thanks.
+Context: ['Safety and Environmental Health & Safety (EHS) Policy: 7. Safety Data Sheets (SDS)', 'ADAS Technician Certification Program: 1. Purpose', 'Leave and Attendance Policy: 5. Parental Leave', 'Remote Work Policy: 4. Technology and Equipment']
+Expected: After reviewing the provided context, I cannot locate the information needed. Please check the original source documentation or contact the appropriate team.
+SFT:  This document defines the ADAS Technician Certification Program at AlvinAI. The program ensures that all technicians working on Advanced Driver-Assistance Systems have the required knowledge, skills, 
+  SFT abstained: False | RAFT abstained: True
+RAFT: The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance.
+
+================================================================================
+Example 82/100 | Type: oracle | NS: employee_hr | Oracle: HR-POL-002-S2
+Question: I need to know: What are the eligibility requirements for 1. Purpose? Can you check?
+Context: ['Code of Conduct: 6. Intellectual Property Protection', 'Code of Conduct: 1. Purpose', 'Code of Conduct: 2. Scope', 'Safety and Environmental Health & Safety (EHS) Policy: 9. Safety Training Requirements']
+Expected: ##begin_quote## This Code of Conduct establishes the ethical standards and behavioral expectations ##end_quote## See HR-POL-002-S2 for complete details.
+SFT:  This Code of Conduct establishes the ethical standards and behavioral expectations for all AlvinAI employees, contractors, and representatives. Every person acting on behalf of AlvinAI is expected to 
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## This Code of Conduct establishes the ethical standards and behavioral expectations ##end_quote## See HR-POL-002-S2 for complete details.
+
+================================================================================
+Example 83/100 | Type: oracle | NS: customer_support | Oracle: SM-SNS-001_TPMS_Sensor_Replacement-S3
+Question: Could you clarify: What should I document when a customer reports Safety Warnings? Thanks in advance.
+Context: ['TPMS Sensor Replacement and Relearn Procedure: Procedure — Sensor Replacement > Step 6: Reinstall Wheel', 'TPMS Sensor Replacement and Relearn Procedure: Safety Warnings', 'Brake Pad Replacement — BrakeGuard Pro System: Procedure — Front Brake Pads > Step 5: Retract Caliper Piston', 'TPMS Sensor Replacement and Relearn Procedure: Procedure — Sensor Replacement > Step 5: Mount Tire']
+Expected: > **WARNING**: Always deflate the tire completely before breaking the tire bead. ##begin_quote## > **WARNING**: Always deflate the tire completely before breaking the tire bead. Attempting to break a 
+SFT:  **WARNING**: Always deflate the tire completely before breaking the tire bead. Attempting to break a bead on an inflated tire can cause explosive separation. ##begin_quote## **WARNING**: Always deflat
+  SFT cited: True | RAFT cited: True
+RAFT: > **WARNING**: Always deflate the tire completely before breaking the tire bead. ##begin_quote## > **WARNING**: Always deflate the tire completely before breaking the tire bead. Attempting to break a 
+
+================================================================================
+Example 84/100 | Type: oracle_free | NS: employee_hr | Oracle: None
+Question: What do we know about How is Employing or supervising a family member without disclosure calculated? I need this for a customer.
+Context: ['Leave and Attendance Policy: 5. Parental Leave', 'Remote Work Policy: 1. Purpose', 'ADAS Technician Certification Program: 8. Certification Records', 'Safety and Environmental Health & Safety (EHS) Policy: 5. Lockout/Tagout (LOTO)']
+Expected: Based on the documents provided, I cannot find information to answer this question. I recommend checking with the appropriate team or referring to the original documentation.
+SFT:  - Gifts to customers or business partners must not exceed $50 per recipient per Key data — Gift Value: Under $50, Rule: May be accepted; no approval required. See HR-POL-002-S7 for the full policy det
+  SFT abstained: False | RAFT abstained: True
+RAFT: The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information.
+
+================================================================================
+Example 85/100 | Type: oracle_free | NS: dealer_sales | Oracle: None
+Question: What customer feedback have we received about Objection Handling?
+Context: ['Competitive Comparison — BrakeGuard Pro vs Leading Brands: ', 'BrakeGuard Pro Series — Product Brochure: Key Advantages', 'BrakeGuard Pro Series — Product Brochure: Ordering', 'BrakeGuard Pro Series — Product Brochure: Dealer Margin']
+Expected: The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance.
+SFT:  - **Price sensitivity:** Some customers may be drawn to lower-cost alternatives. Key points: **Price sensitivity:** Some customers may be drawn to lower-cost alternatives.; **Installation time:** Whil
+  SFT abstained: False | RAFT abstained: True
+RAFT: The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance.
+
+================================================================================
+Example 86/100 | Type: oracle | NS: compliance | Oracle: UN_R155_Cybersecurity-S1
+Question: Can you help me with this? When did UN R155 come into effect?
+Context: ['Cybersecurity and Cyber Security Management System: 1. Scope', 'Cybersecurity and Cyber Security Management System: 5. Attack Vectors', 'Cybersecurity and Cyber Security Management System: ', 'Electric Power-Trained Vehicles — Safety Requirements for the Rechargeable Energy Storage System: 2. Key Definitions']
+Expected: ##begin_quote## # UN R155: Uniform Provisions Concerning the Approval of Vehicles with Regard to Cyber Security and Cyber Security Management System ##end_quote## See UN_R155_Cybersecurity-S1 for comp
+SFT:  UN R155 establishes requirements for: ##begin_quote Key points: **Cyber Security Management System (CSMS)** certification at the organizational level — the manufacturer must demonstrate that cybersecu
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## # UN R155: Uniform Provisions Concerning the Approval of Vehicles with Regard to Cyber Security and Cyber Security Management System ##end_quote## See UN_R155_Cybersecurity-S1 for comp
+
+================================================================================
+Example 87/100 | Type: oracle | NS: compliance | Oracle: UN_R64_TPMS-S1
+Question: Regarding What are the performance thresholds specified in UN R64?
+Context: ['Tyre Pressure Monitoring Systems (TPMS) for M1 Vehicles: 5. Direct TPMS Requirements', 'Electric Power-Trained Vehicles — Safety Requirements for the Rechargeable Energy Storage System: 3. Protection Against Electric Shock > 3.1 Voltage Thresholds', 'Tyre Pressure Monitoring Systems (TPMS) for M1 Vehicles: 2. Key Definitions', 'Tyre Pressure Monitoring Systems (TPMS) for M1 Vehicles: ']
+Expected: ##begin_quote## # UN R64: Uniform Provisions Concerning the Approval of Vehicles with Regard to Tyre Pressure Monitoring Systems ##end_quote## See UN_R64_TPMS-S1 for complete details.
+SFT:  UN R64 is a United Nations regulatory document that establishes requirements for Tyre Pressure Monitoring Systems (TPMS) in motor vehicles. Key data — Parameter: Pressure measurement range, Typical Re
+  SFT cited: False | RAFT cited: True
+RAFT: ##begin_quote## # UN R64: Uniform Provisions Concerning the Approval of Vehicles with Regard to Tyre Pressure Monitoring Systems ##end_quote## See UN_R64_TPMS-S1 for complete details.
+
+================================================================================
+Example 88/100 | Type: oracle | NS: dealer_sales | Oracle: PRC-BRK-2025-S8
+Question: Technical question: What is the installation time for BRK-HYD-5002? Thanks.
+Context: ['2025 Price List — Brake Components: Ordering', '2025 Price List — Brake Components: Hydraulic Lines', '2025 Price List — Brake Components: Electronic Parking Brake (EPB)', 'Competitive Comparison — BrakeGuard Pro vs Leading Brands: Detailed Analysis > Dust']
+Expected: ##begin_quote## | Part # | Description | Application | MSRP | Dealer Net | Core Charge |
+|---|---|---|---|---|---|
+| BRK-HYD-5001 | Brake Line Set — Front | All | $89.99 | $58.49 | — |
+| BRK-HYD-5002 
+SFT:  | Part # | Description | Application | MSRP | Dealer Net | Core Charge |
+|---|---|---|---|---|---|
+| BRK-HYD-5001 | Brake Line Set — Front | All | $89.99 | $58.49 | — |
+| BRK-HYD- You can order this p
+  SFT cited: False | RAFT cited: True
+RAFT: ##begin_quote## | Part # | Description | Application | MSRP | Dealer Net | Core Charge |
+|---|---|---|---|---|---|
+| BRK-HYD-5001 | Brake Line Set — Front | All | $89.99 | $58.49 | — |
+| BRK-HYD-5002 
+
+================================================================================
+Example 89/100 | Type: oracle | NS: engineering | Oracle: TSB-2025-SE-001-S11
+Question: I need to know: What is the operating temperature range for part number SS-GREASE-DI-50? Please advise.
+Context: ['Wheel Speed Sensor Connector Corrosion — Salt-Belt Regions: Parts and Pricing', 'TSB-2025-BR-002 — ABS Module Firmware Update for Low-Speed False Activation: Affected Products', 'Wheel Speed Sensor Connector Corrosion — Salt-Belt Regions: Diagnostic Procedure', 'Wheel Speed Sensor Connector Corrosion — Salt-Belt Regions: Repair Procedure — Connector Replacement > Procedure Per Wheel (Repeat for Each Affected Corner)']
+Expected: ##begin_quote## | Part Number | Description | Qty per Vehicle | Unit Cost | Extended |
+|---|---|---|---|---|
+| SS-WSS-CON-69K | IP69K connector kit (1 wheel) | 4 | $28.50 | $114.00 |
+| SS-GREASE-DI-50
+SFT:  | Part Number | Description | Qty per Vehicle | Unit Cost | Extended |
+|---|---|---|---|---|
+| SS-WSS-CON-69K | IP69K connector kit (1 wheel) | 4 | $28.50 | $114.00 |
+| SS-GREASE-DI-50 | Dielectric gr
+  SFT cited: False | RAFT cited: True
+RAFT: ##begin_quote## | Part Number | Description | Qty per Vehicle | Unit Cost | Extended |
+|---|---|---|---|---|
+| SS-WSS-CON-69K | IP69K connector kit (1 wheel) | 4 | $28.50 | $114.00 |
+| SS-GREASE-DI-50
+
+================================================================================
+Example 90/100 | Type: oracle_free | NS: engineering | Oracle: None
+Question: Regarding What does TSB B1520 — Parking Sensor Blockage / Contamination Detected recommend as the corrective action? Please advise.
+Context: ['TSB-2025-EV-001 — HV Battery Module Coolant Seepage at O-Ring Joint: Warranty Information', 'RND-2025-001 — SiC Inverter Efficiency Study for EV Powertrain Integration: Background', 'TSB-2025-EV-001 — HV Battery Module Coolant Seepage at O-Ring Joint: Dealer Action Required', 'TSB-2025-BR-001 — Premature Brake Pad Wear Sensor Activation: Cause']
+Expected: The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance.
+SFT:  **Code B1520** indicates that the parking sensor system has detected a blockage or contamination condition that requires dealer attention. Key data — Code: B1520, Meaning in Plain Language: **Parking 
+  SFT abstained: False | RAFT abstained: True
+RAFT: The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information.
+
+================================================================================
+Example 91/100 | Type: oracle | NS: compliance | Oracle: UN_R100_EV_Battery_Safety-S15
+Question: What do we know about How does Trigger method interact with other regulations?
+Context: ['Electric Power-Trained Vehicles — Safety Requirements for the Rechargeable Energy Storage System: 4. REESS Abuse Tests > 4.7 Thermal Propagation (per GTR 20)', 'Electric Power-Trained Vehicles — Safety Requirements for the Rechargeable Energy Storage System: 5. Battery Management System (BMS) Requirements', 'Electric Power-Trained Vehicles — Safety Requirements for the Rechargeable Energy Storage System: 4. REESS Abuse Tests > 4.4 External Short Circuit', 'Tyre Pressure Monitoring Systems (TPMS) for M1 Vehicles: 7. Test Procedures']
+Expected: This is the most critical new requirement, introduced via the alignment with UN GTR No. ##begin_quote## This is the most critical new requirement, introduced via the alignment with UN GTR No. 20. ##en
+SFT:  | Parameter | Value |
+|-----------|-------|
+| Trigger method | Induce thermal runaway in a single cell via nail penetration, internal heater, or overcharge |
+| Target cell | The cell most likely to pr
+  SFT cited: False | RAFT cited: True
+RAFT: This is the most critical new requirement, introduced via the alignment with UN GTR No. ##begin_quote## This is the most critical new requirement, introduced via the alignment with UN GTR No. 20. ##en
+
+================================================================================
+Example 92/100 | Type: oracle | NS: dealer_sales | Oracle: PRC-BRK-2025-S2
+Question: I'm looking for information on What promotional materials exist for part number BGP-PAD-F-1003? I need this for a customer.
+Context: ['2025 Price List — Brake Components: Brake Pads — BrakeGuard Pro Series', 'BrakeGuard Pro Series — Product Brochure: The Last Brake Pad Your Customers Will Ever Complain About', '2025 Price List — Brake Components: ABS Components', '2025 Price List — Brake Components: Brake Rotors']
+Expected: ##begin_quote## | Part # | Description | Application | MSRP | Dealer Net | Core Charge |
+|---|---|---|---|---|---|
+| BGP-PAD-F-1001 | Front Pad Set — Standard | Sedan | $89.99 | $58.49 | — |
+| BGP-PAD
+SFT:  | Part # | Description | Application | MSRP | Dealer Net | Core Charge |
+|---|---|---|---|---|---|
+| BGP-PAD-F-1003 | Front Pad Set — Performance | Sedan | $109.99 | $71.49 | — |
+| BGP-PAD-R-1004 | Re
+  SFT cited: False | RAFT cited: True
+RAFT: ##begin_quote## | Part # | Description | Application | MSRP | Dealer Net | Core Charge |
+|---|---|---|---|---|---|
+| BGP-PAD-F-1001 | Front Pad Set — Standard | Sedan | $89.99 | $58.49 | — |
+| BGP-PAD
+
+================================================================================
+Example 93/100 | Type: oracle_free | NS: engineering | Oracle: None
+Question: Hi, What does TSB Front camera (monocular, windshield-mounted) image quality below threshold recommend as the corrective action?
+Context: ['BMS Passive Cell Balancing Timeout — DTC P0A80 After Cold Soak: Root Cause Analysis', 'TSB-2025-EV-001 — HV Battery Module Coolant Seepage at O-Ring Joint: SAFETY WARNINGS', 'Supplier Integration Note — Bosch iBooster Gen 2 with BrakeGuard HBM-500: Known Issues and Workarounds', 'RND-2025-001 — SiC Inverter Efficiency Study for EV Powertrain Integration: Test Results']
+Expected: The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information.
+SFT:  **Root Cause Analysis:** ##begin_quote## The passive balancing algorithm relies on the effective cell impedance at 25°C. At low temperatures, the effective cell impedance increases dramatically: | Tem
+  SFT abstained: False | RAFT abstained: True
+RAFT: The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information.
+
+================================================================================
+Example 94/100 | Type: oracle_free | NS: compliance | Oracle: None
+Question: What is the conformity of production requirement under Maximum speed: **10 km/h** (most implementations limit to 6 km/h)? Please let me know how to proceed.
+Context: ['FMVSS 126 — Electronic Stability Control Systems: Overview', 'Automated Lane Keeping Systems (ALKS) — Level 3 Automated Driving: 11. Cross-References', 'Braking of Vehicles of Categories M1 and N1: 2. Key Definitions', 'Cybersecurity and Cyber Security Management System: 2. Key Definitions']
+Expected: The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance.
+SFT:  The regulation mandates that each vehicle must have a device capable of measuring: Key data — Parameter: Minimum resolution, Value: **0.1 km/h** or **0.1 m/s**. Refer to UN_R134_TPMS-S7 for the full l
+  SFT abstained: False | RAFT abstained: True
+RAFT: This specific information is not covered in the documents provided. I recommend consulting the relevant subject matter expert or referring to the primary documentation.
+
+================================================================================
+Example 95/100 | Type: oracle_free | NS: dealer_sales | Oracle: None
+Question: Our company needs to know: What is the margin structure for Ordering? Could you clarify this for me?
+Context: ['SensorSuite ADAS Package — Product Brochure: Sensor Hardware > 12-Sensor Ultrasonic Parking Array', 'SensorSuite ADAS Package — Product Brochure: Why SensorSuite?', 'BrakeGuard Pro Series — Product Brochure: Product Line-Up', 'PowerCell EV Battery System — Product Brochure: NMC811 Chemistry Advantages']
+Expected: I cannot find an answer to this question in the provided context documents. Please refer to the primary source or contact the appropriate specialist.
+SFT:  Contact your authorised dealer or refer to BRCH-ADAS-2025-S12 for PowerCell ADAS Package pricing.. Key data — Configuration: PowerCell ADAS Base, MSRP: $2,850.00.
+  SFT abstained: False | RAFT abstained: True
+RAFT: The provided documents do not contain the information needed to answer this question. Please contact the relevant department for assistance.
+
+================================================================================
+Example 96/100 | Type: oracle | NS: customer_support | Oracle: SM-BRK-001_Brake_Pad_Replacement-S16
+Question: Quick question: Can a customer fix Rear rotors are thinner (22mm new / 18mm minimum) — measure carefully. themselves or do they need a dealer? Thanks.
+Context: ['Brake Pad Replacement — BrakeGuard Pro System: Procedure — Front Brake Pads > Step 4: Clean and Inspect Bracket', 'Parking Sensor Installation and Calibration: Required Tools', 'Brake Pad Replacement — BrakeGuard Pro System: Procedure — Front Brake Pads > Step 8: Reinstall Wheel', 'Brake Pad Replacement — BrakeGuard Pro System: Procedure — Rear Brake Pads']
+Expected: ##begin_quote## The rear procedure is identical to the front with the following differences: ##end_quote## See SM-BRK-001_Brake_Pad_Replacement-S16 for complete details.
+SFT:  1. Mount the wheel and hand-start all lug nuts. Key points: Mount the wheel and hand-start all lug nuts.; Snug lug nuts in a star pattern.; Lower vehicle to ground.. For further assistance, contact yo
+  SFT cited: False | RAFT cited: True
+RAFT: ##begin_quote## The rear procedure is identical to the front with the following differences: ##end_quote## See SM-BRK-001_Brake_Pad_Replacement-S16 for complete details.
+
+================================================================================
+Example 97/100 | Type: oracle_free | NS: customer_support | Oracle: None
+Question: What does Front sensor indicate on my dashboard? This is time-sensitive.
+Context: ['TPMS Sensor Replacement and Relearn Procedure: Procedure — Sensor Replacement > Step 5: Mount Tire', 'High-Voltage Battery Safety Disconnect Procedure: Disconnect Procedure > Step 5: Pull the Service Disconnect', 'TPMS Sensor Replacement and Relearn Procedure: Procedure — Sensor Replacement > Step 4: Install New Sensor', 'Warranty Policy — Brake Components: 5. Prorated Credit Schedule — Brake Pads']
+Expected: After reviewing the provided context, I cannot locate the information needed. Please check the original source documentation or contact the appropriate team.
+SFT:  1. Open the TPMS sensor ID database. Navigate to: **Chassis > TPMS > Sensor ID Database**. Key data — Sensor ID: SS-TPMS-315-V2, Frequency: 315 MHz, Protocol: RF.
+  SFT abstained: False | RAFT abstained: True
+RAFT: The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information.
+
+================================================================================
+Example 98/100 | Type: oracle | NS: dealer_sales | Oracle: BRCH-BRK-2025-S8
+Question: Can you look up How does Ordering compare to competitors?
+Context: ['BrakeGuard Pro Series — Product Brochure: Dealer Margin', 'BrakeGuard Pro Series — Product Brochure: Ordering', 'PowerCell EV Battery System — Product Brochure: NMC811 Chemistry Advantages', 'BrakeGuard Pro Series — Product Brochure: The Last Brake Pad Your Customers Will Ever Complain About']
+Expected: Available through the AlvinAI Parts Portal: https://parts. ##begin_quote## Available through the AlvinAI Parts Portal: https://parts.alvinai.com ##end_quote## Specifically, Standard lead time: 3–5 bus
+SFT:  All BrakeGuard Pro Series products are available through the AlvinAI Parts Portal: https://parts.alvinai.com. Key data — Part Number: BG-PAD-F-1001, Description: Brake Pad Set — Front, Sedan Applicati
+  SFT cited: True | RAFT cited: True
+RAFT: ##begin_quote## Available through the AlvinAI Parts Portal: https://parts.alvinai.com ##end_quote## Specifically, Standard lead time: 3–5 business days from regional warehouse.. See BRCH-BRK-2025-S8 f
+
+================================================================================
+Example 99/100 | Type: oracle_free | NS: customer_support | Oracle: None
+Question: What do we know about What should I document when a customer reports Open the hood. Locate the brake fluid reservoir on the driver-side firewall.?
+Context: ['Warranty Policy — Brake Components: 4. Dealer Claim Procedure', 'Warranty Policy — Brake Components: 3. Exclusions', 'Brake Fluid Bleeding Procedure — DOT 4: Manual (Two-Person) Bleeding', 'High-Voltage Battery Safety Disconnect Procedure: Disconnect Procedure > Step 3: Disconnect 12V Auxiliary Battery']
+Expected: Based on the documents provided, I cannot find information to answer this question. I recommend checking with the appropriate team or referring to the original documentation.
+SFT:  1. Open the hood. Locate the brake fluid reservoir on the driver-side firewall. Key points: Open the hood. Locate the brake fluid reservoir on the driver-side firewall.; Clean the reservoir cap and su
+  SFT abstained: False | RAFT abstained: True
+RAFT: The information requested is not available in the provided documents. Please consult the relevant department or primary source for this information.
+
+================================================================================
+Example 100/100 | Type: oracle | NS: employee_hr | Oracle: HR-TRAIN-001-S11
+Question: Urgent: Can $2,500 be taken retroactively? Thanks.
+Context: ['Leave and Attendance Policy: 9. Attendance Points System', 'ADAS Technician Certification Program: 7. Costs and Enrollment', 'ADAS Technician Certification Program: 5. Recertification', 'ADAS Technician Certification Program: 1. Purpose']
+Expected: Fees include course materials, examination, and certification card. ##begin_quote## Fees include course materials, examination, and certification card. Travel and ##end_quote## Specifically, https: //
+SFT:  **Authorized Tasks After Certification:** Curriculum: **. Authorized Tasks After Certification: **. Key data — Level: Level 1, Curriculum: **72 hours (9 days)**, Authorized Tasks After Certification: 
+  SFT cited: False | RAFT cited: True
+RAFT: Fees include course materials, examination, and certification card. ##begin_quote## Fees include course materials, examination, and certification card. Travel and ##end_quote## See HR-TRAIN-001-S11 fo

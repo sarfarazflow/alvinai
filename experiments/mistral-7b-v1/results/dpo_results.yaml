@@ -1,0 +1,39 @@
+stage: dpo
+experiment: mistral-7b-v1
+model: experiments/mistral-7b-v1/models/raft_checkpoint
+hardware: runpod-a6000-48gb
+date: 2026-03-10
+duration_minutes: 2.75
+total_steps: 18
+epochs: 1
+
+metrics:
+  train_loss_avg: 0.2653
+  rewards_accuracy: 0.841
+  rewards_margin: 2.821
+  rewards_chosen: 1.148
+  rewards_rejected: -1.673
+  throughput_samples_per_sec: 3.376
+
+dpo_eval:
+  win_rate: null
+  target: 0.15
+  passed: null
+
+loss_curve:
+  - {step: 10, loss: 0.4482, grad_norm: 0.3067, lr: 5.975e-06}
+
+resources:
+  vram_peak_gb: 32.0
+  gpu: "NVIDIA RTX A6000"
+  gpu_memory_gb: 48
+
+artifacts:
+  lora_adapter_size_mb: 409
+  merged_model_size_gb: 14
+
+observations: |
+  Required instance-level forward patch for Unsloth/DPO 4D attention mask incompatibility.
+  84% reward accuracy after just 1 epoch — strong preference alignment.
+  Reward margin of 2.821 shows clear separation between chosen and rejected outputs.
+  Training was very fast (18 steps) due to small DPO dataset (560 pairs).

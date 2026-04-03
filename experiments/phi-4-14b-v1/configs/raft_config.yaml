@@ -6,8 +6,8 @@
 
 # ─── Model ────────────────────────────────────────────────────
 model:
-  base_model: "models/sft_checkpoint"   # start from SFT output
-  max_seq_length: 4096
+  base_model: "experiments/phi-4-14b-v1/models/sft_checkpoint"   # start from SFT output
+  max_seq_length: 8192
   load_in_4bit: true
   dtype: "bfloat16"
 
@@ -30,7 +30,7 @@ data:
   train_file: "data/v1/raft/train.jsonl"
   val_file: "data/v1/raft/val.jsonl"
   format: "openai_messages"
-  chat_template: "mistral"
+  chat_template: "phi"
 
 # ─── Training ─────────────────────────────────────────────────
 # RAFT sequences are 3000-4000 tokens (oracle + distractors).
@@ -39,7 +39,7 @@ training:
   num_epochs: 2
   per_device_train_batch_size: 2      # RAFT sequences are 3-4K tokens, OOM at 8
   gradient_accumulation_steps: 16     # effective batch size = 32
-  learning_rate: 5.0e-5               # lower LR for continued training
+  learning_rate: 2.0e-5               # lower LR for continued training
   lr_scheduler_type: "cosine"
   warmup_ratio: 0.05
   weight_decay: 0.01
@@ -66,12 +66,14 @@ raft_thresholds:
 
 # ─── Output ───────────────────────────────────────────────────
 output:
-  output_dir: "models/raft_checkpoint"
-  logging_dir: "models/raft_checkpoint/logs"
+  output_dir: "experiments/phi-4-14b-v1/models/raft_checkpoint"
+  logging_dir: "experiments/phi-4-14b-v1/models/raft_checkpoint/logs"
   logging_steps: 10
 
 # ─── W&B (optional) ──────────────────────────────────────────
 wandb:
   enabled: false
-  project: "alvinai-raft"
-  run_name: null
+  project: "alvinai-training"
+  run_name: "phi-4-14b-v1-raft"
+  group: "phi-4-14b-v1"
+  tags: ["phi-4-14b", "raft", "v1"]

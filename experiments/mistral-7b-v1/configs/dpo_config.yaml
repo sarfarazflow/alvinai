@@ -6,7 +6,7 @@
 
 # ─── Model ────────────────────────────────────────────────────
 model:
-  base_model: "models/raft_checkpoint"  # start from RAFT output
+  base_model: "experiments/mistral-7b-v1/models/raft_checkpoint"  # start from RAFT output
   max_seq_length: 1024              # DPO prompts/responses are short
   load_in_4bit: true
   dtype: "bfloat16"
@@ -53,12 +53,14 @@ dpo_eval:
 
 # ─── Output ───────────────────────────────────────────────────
 output:
-  output_dir: "models/dpo_checkpoint"
-  logging_dir: "models/dpo_checkpoint/logs"
+  output_dir: "experiments/mistral-7b-v1/models/dpo_checkpoint"
+  logging_dir: "experiments/mistral-7b-v1/models/dpo_checkpoint/logs"
   logging_steps: 10
 
 # ─── W&B (optional) ──────────────────────────────────────────
 wandb:
   enabled: false
-  project: "alvinai-dpo"
-  run_name: null
+  project: "alvinai-training"
+  run_name: "mistral-7b-v1-dpo"
+  group: "mistral-7b-v1"
+  tags: ["mistral-7b", "dpo", "v1"]

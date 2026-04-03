@@ -1,0 +1,37 @@
+stage: sft
+experiment: mistral-7b-v1
+model: mistralai/Mistral-7B-Instruct-v0.3
+hardware: runpod-a6000-48gb
+date: 2026-03-09
+duration_minutes: 18
+total_steps: 300
+epochs: 3
+
+metrics:
+  train_loss_avg: 0.2621
+  eval_loss_final: 0.1395
+  best_eval_loss: 0.1395
+  best_step: 300
+
+loss_curve:
+  - {step: 10, loss: 2.471, epoch: 0.3}
+  - {step: 20, loss: 0.433, epoch: 0.7}
+  - {step: 30, loss: 0.252, epoch: 1.0}
+  - {step: 40, loss: 0.167, epoch: 1.3}
+  - {step: 50, loss: 0.150, epoch: 1.7}
+  - {step: 60, loss: 0.144, epoch: 2.0}
+  - {step: 70, loss: 0.100, epoch: 2.3}
+  - {step: 80, loss: 0.092, epoch: 2.7}
+  - {step: 90, loss: 0.087, epoch: 3.0}
+
+resources:
+  vram_peak_gb: 24.0
+  gpu: "NVIDIA RTX A6000"
+  gpu_memory_gb: 48
+
+artifacts:
+  lora_adapter_size_mb: 161
+  merged_model_size_gb: 14
+
+observations: |
+  Loss stabilized by end of epoch 1. Clean convergence, no instability.

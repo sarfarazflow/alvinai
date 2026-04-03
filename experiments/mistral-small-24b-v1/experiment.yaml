@@ -1,0 +1,12 @@
+name: mistral-small-24b-v1
+description: ""
+created: 2026-04-01
+base_model: mistralai/Mistral-Small-3-2503
+chat_template: mistral
+data_version: v1
+hardware: null
+cost_per_hour_usd: null
+total_training_hours: null
+total_cost_usd: null
+status: pending  # pending | sft_done | raft_done | dpo_done | completed
+notes: ""

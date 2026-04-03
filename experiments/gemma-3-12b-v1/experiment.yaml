@@ -1,0 +1,12 @@
+name: gemma-3-12b-v1
+description: ""
+created: 2026-04-01
+base_model: google/gemma-3-12b-it
+chat_template: gemma
+data_version: v1
+hardware: null
+cost_per_hour_usd: null
+total_training_hours: null
+total_cost_usd: null
+status: pending  # pending | sft_done | raft_done | dpo_done | completed
+notes: ""
