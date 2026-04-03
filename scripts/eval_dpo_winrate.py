@@ -41,6 +41,8 @@ def load_model(checkpoint_path, max_seq_length=4096):
 
 def generate_response(model, tokenizer, question, system_prompt=None, max_new_tokens=512):
     """Generate a response from the model."""
+    import torch
+
     messages = []
     if system_prompt:
         messages.append({"role": "system", "content": system_prompt})
@@ -50,19 +52,22 @@ def generate_response(model, tokenizer, question, system_prompt=None, max_new_to
         messages, tokenize=False, add_generation_prompt=True
     )
 
-    inputs = tokenizer(input_text, return_tensors="pt").to(model.device)
-    import torch
-    with torch.no_grad():
-        outputs = model.generate(
-            **inputs,
-            max_new_tokens=max_new_tokens,
-            temperature=0.3,
-            do_sample=True,
-            pad_token_id=tokenizer.eos_token_id,
-        )
+    # Truncate input if too long to avoid Unsloth shape mismatch
+    inputs = tokenizer(input_text, return_tensors="pt", truncation=True, max_length=3584).to(model.device)
 
-    new_tokens = outputs[0][inputs["input_ids"].shape[1]:]
-    return tokenizer.decode(new_tokens, skip_special_tokens=True).strip()
+    try:
+        with torch.no_grad():
+            outputs = model.generate(
+                **inputs,
+                max_new_tokens=max_new_tokens,
+                do_sample=False,
+                pad_token_id=tokenizer.eos_token_id,
+            )
+        new_tokens = outputs[0][inputs["input_ids"].shape[1]:]
+        return tokenizer.decode(new_tokens, skip_special_tokens=True).strip()
+    except RuntimeError as e:
+        print(f"    Generation error: {e}")
+        return "[generation failed]"
 
 
 def template_judge(question, ground_truth, response_a, response_b):
@@ -241,8 +246,8 @@ def main():
             "namespace": ex.get("namespace", "unknown"),
             "question": ex["question"],
             "ground_truth": ground_truth[:200],
-            "raft_response": raft_resp[:300],
-            "dpo_response": dpo_resp[:300],
+            "raft_response": raft_resp,
+            "dpo_response": dpo_resp,
             "winner": winner,
             "reason": reason,
         })

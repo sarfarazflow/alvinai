@@ -54,25 +54,29 @@ def generate_response(model, tokenizer, question, context=None, max_new_tokens=5
     else:
         user_msg = question
 
+    import torch
+
     messages = [{"role": "user", "content": user_msg}]
 
     input_text = tokenizer.apply_chat_template(
         messages, tokenize=False, add_generation_prompt=True
     )
 
-    inputs = tokenizer(input_text, return_tensors="pt").to(model.device)
-    import torch
-    with torch.no_grad():
-        outputs = model.generate(
-            **inputs,
-            max_new_tokens=max_new_tokens,
-            temperature=0.1,
-            do_sample=False,
-            pad_token_id=tokenizer.eos_token_id,
-        )
+    inputs = tokenizer(input_text, return_tensors="pt", truncation=True, max_length=3584).to(model.device)
 
-    new_tokens = outputs[0][inputs["input_ids"].shape[1]:]
-    return tokenizer.decode(new_tokens, skip_special_tokens=True).strip()
+    try:
+        with torch.no_grad():
+            outputs = model.generate(
+                **inputs,
+                max_new_tokens=max_new_tokens,
+                do_sample=False,
+                pad_token_id=tokenizer.eos_token_id,
+            )
+        new_tokens = outputs[0][inputs["input_ids"].shape[1]:]
+        return tokenizer.decode(new_tokens, skip_special_tokens=True).strip()
+    except RuntimeError as e:
+        print(f"    Generation error: {e}")
+        return "[generation failed]"
 
 
 def compute_faithfulness(response, context):
@@ -198,8 +202,8 @@ def main():
             ns_results.append({
                 "id": ex.get("id", f"{ns}-{i}"),
                 "question": question,
-                "response": response[:500],
-                "ground_truth": ground_truth[:300],
+                "response": response,
+                "ground_truth": ground_truth,
                 "faithfulness": round(faith, 3),
                 "answer_relevance": round(relevance, 3),
                 "context_precision": round(precision, 3),
