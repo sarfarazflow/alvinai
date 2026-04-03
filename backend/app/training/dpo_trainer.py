@@ -8,16 +8,21 @@ handle DPO's 4D attention masks.
 # chain but our DPO training never uses them. Installing mergekit causes
 # pydantic/torch conflicts on RunPod.
 import sys
-from unittest.mock import MagicMock
+import types
 
-for _mod in [
+_STUB_MODULES = [
     "mergekit", "mergekit.config", "mergekit.merge", "mergekit.card",
     "mergekit.merge_methods", "mergekit.merge_methods.multislerp",
     "mergekit.merge_methods.easy_define",
     "llm_blender",
-]:
+]
+for _mod in _STUB_MODULES:
     if _mod not in sys.modules:
-        sys.modules[_mod] = MagicMock()
+        mod = types.ModuleType(_mod)
+        mod.__spec__ = None
+        mod.__path__ = []
+        mod.__file__ = ""
+        sys.modules[_mod] = mod
 
 from unsloth import FastLanguageModel, PatchDPOTrainer
 from trl import DPOTrainer, DPOConfig
