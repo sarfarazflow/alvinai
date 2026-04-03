@@ -4,28 +4,6 @@ Uses Unsloth for model loading with instance-level forward patch to
 handle DPO's 4D attention masks.
 """
 
-# Stub mergekit and llm_blender — TRL 0.24 hard-imports them in its callback
-# chain but our DPO training never uses them. Installing mergekit causes
-# pydantic/torch conflicts on RunPod.
-import sys
-import types
-import importlib
-
-_STUB_MODULES = [
-    "mergekit", "mergekit.config", "mergekit.merge", "mergekit.card",
-    "mergekit.merge_methods", "mergekit.merge_methods.multislerp",
-    "mergekit.merge_methods.easy_define",
-    "llm_blender",
-]
-for _mod in _STUB_MODULES:
-    if _mod not in sys.modules:
-        mod = types.ModuleType(_mod)
-        mod.__spec__ = importlib.machinery.ModuleSpec(_mod, None)
-        mod.__path__ = []
-        mod.__file__ = ""
-        mod.__package__ = _mod
-        sys.modules[_mod] = mod
-
 from unsloth import FastLanguageModel, PatchDPOTrainer
 from trl import DPOTrainer, DPOConfig
 import torch
