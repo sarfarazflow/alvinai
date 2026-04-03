@@ -9,6 +9,7 @@ handle DPO's 4D attention masks.
 # pydantic/torch conflicts on RunPod.
 import sys
 import types
+import importlib
 
 _STUB_MODULES = [
     "mergekit", "mergekit.config", "mergekit.merge", "mergekit.card",
@@ -19,9 +20,10 @@ _STUB_MODULES = [
 for _mod in _STUB_MODULES:
     if _mod not in sys.modules:
         mod = types.ModuleType(_mod)
-        mod.__spec__ = None
+        mod.__spec__ = importlib.machinery.ModuleSpec(_mod, None)
         mod.__path__ = []
         mod.__file__ = ""
+        mod.__package__ = _mod
         sys.modules[_mod] = mod
 
 from unsloth import FastLanguageModel, PatchDPOTrainer
