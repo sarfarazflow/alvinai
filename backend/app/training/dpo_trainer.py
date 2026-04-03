@@ -4,34 +4,6 @@ Uses Unsloth for model loading with instance-level forward patch to
 handle DPO's 4D attention masks.
 """
 
-# Stub mergekit/llm_blender: TRL optionally imports these but we don't need them.
-# Auto-creates any submodule on access so we don't play whack-a-mole.
-import sys
-import types
-import importlib.machinery
-
-class _StubModule(types.ModuleType):
-    """Module stub that auto-creates submodules on attribute access."""
-    def __getattr__(self, name):
-        fullname = f"{self.__name__}.{name}"
-        if fullname not in sys.modules:
-            sub = _StubModule(fullname)
-            sub.__file__ = f"<stub {fullname}>"
-            sub.__path__ = []
-            sub.__package__ = self.__name__
-            sub.__spec__ = importlib.machinery.ModuleSpec(fullname, None, origin=sub.__file__)
-            sys.modules[fullname] = sub
-        return sys.modules[fullname]
-
-for _mod_name in ("mergekit", "llm_blender"):
-    if _mod_name not in sys.modules:
-        _mod = _StubModule(_mod_name)
-        _mod.__file__ = f"<stub {_mod_name}>"
-        _mod.__path__ = []
-        _mod.__package__ = _mod_name
-        _mod.__spec__ = importlib.machinery.ModuleSpec(_mod_name, None, origin=_mod.__file__)
-        sys.modules[_mod_name] = _mod
-
 from unsloth import FastLanguageModel, PatchDPOTrainer
 from trl import DPOTrainer, DPOConfig
 import torch
