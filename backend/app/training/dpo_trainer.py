@@ -9,12 +9,14 @@ handle DPO's 4D attention masks.
 # on fake modules that lack __file__/__spec__. This avoids that entirely.
 import sys
 import types
+import importlib
 for _mod_name in ("mergekit", "mergekit.merge", "llm_blender"):
     if _mod_name not in sys.modules:
         _mod = types.ModuleType(_mod_name)
         _mod.__file__ = f"<stub {_mod_name}>"
         _mod.__path__ = []
         _mod.__package__ = _mod_name.rsplit(".", 1)[0] if "." in _mod_name else _mod_name
+        _mod.__spec__ = importlib.machinery.ModuleSpec(_mod_name, None, origin=_mod.__file__)
         sys.modules[_mod_name] = _mod
 
 from unsloth import FastLanguageModel, PatchDPOTrainer
