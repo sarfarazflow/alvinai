@@ -1,0 +1,64 @@
+stage: sft
+experiment: mistral-nemo-12b-v1
+model: mistralai/Mistral-Nemo-Instruct-2407
+hardware: runpod-a40-48gb
+date: 2026-04-03
+duration_minutes: ~100
+total_steps: 882 (planned), stopped early at ~620
+epochs: 3 (planned), best checkpoint at epoch 0.34
+
+training:
+  data: data/v2/sft (9,398 train, 2,388 val)
+  batch_size: 2
+  gradient_accumulation: 16
+  effective_batch_size: 32
+  learning_rate: 1.5e-4
+  scheduler: cosine
+  lora_r: 16
+  lora_alpha: 32
+  trainable_params: 57,016,320 (0.46% of 12.3B)
+
+metrics:
+  # Train loss (logged every 10 steps)
+  train_loss_step_100: 0.561
+  train_loss_step_200: 0.335
+  train_loss_step_400: 0.274
+  train_loss_step_500: 0.271
+  train_loss_step_600: ~0.27
+
+  # Eval loss (logged every 100 steps)
+  eval_loss_step_200: 1.022   # ← BEST (epoch 0.34)
+  eval_loss_step_300: 1.071   # slight increase
+  eval_loss_step_400: 1.203   # overfitting begins
+  eval_loss_step_450: 1.283   # clear overfitting
+  eval_loss_step_600: ">1.3"  # further increased
+
+  best_checkpoint: checkpoint-200
+  best_eval_loss: 1.022
+  best_epoch: 0.34
+
+resources:
+  vram_peak_gb: 16.0
+  gpu: NVIDIA A40
+  gpu_memory_gb: 48
+  step_time_seconds: 6.6 (with Flash Attention 2)
+
+observations: |
+  Training converged rapidly — loss dropped from 3.78 to 0.56 in first 100 steps.
+  Overfitting began after epoch 0.34 (step 200): train loss continued dropping
+  (0.56→0.27) but eval loss climbed (1.02→1.28+).
+
+  Root cause: Template-based v2 training data lacks diversity. The model memorizes
+  repetitive question patterns and answer structures rather than generalizing.
+
+  Best model is checkpoint-200 (epoch 0.34, eval_loss=1.022).
+  Epochs 2 and 3 were counterproductive.
+
+  Recommendations for next run:
+  - Reduce SFT to 1 epoch (or use early stopping with patience=2)
+  - Use LLM-generated data for more diversity
+  - Increase dropout from 0.05 to 0.10
+  - Consider reducing learning rate from 1.5e-4 to 1e-4
+
+  Flash Attention 2 provided 2x speedup: 14s/step → 6.6s/step.
+  FA2 must be installed separately after pod restart (not on volume disk).

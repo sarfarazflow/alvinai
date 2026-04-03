@@ -34,8 +34,8 @@ data:
 # ─── Training ─────────────────────────────────────────────────
 training:
   num_epochs: 3
-  per_device_train_batch_size: 4        # A6000 48GB has headroom for batch=4
-  gradient_accumulation_steps: 8     # effective batch size = 32
+  per_device_train_batch_size: 2        # A40/A6000 48GB — batch=4 OOMs with 12B
+  gradient_accumulation_steps: 16    # effective batch size = 32
   learning_rate: 1.5e-4
   lr_scheduler_type: "cosine"
   warmup_ratio: 0.05

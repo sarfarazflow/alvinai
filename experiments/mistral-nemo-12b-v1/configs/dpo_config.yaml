@@ -21,8 +21,8 @@ data:
 # ─── DPO Training ────────────────────────────────────────────
 training:
   num_epochs: 1
-  per_device_train_batch_size: 4    # A6000 48GB — DPO seqs are short (1024)
-  gradient_accumulation_steps: 8    # effective batch size = 32
+  per_device_train_batch_size: 2    # A40/A6000 48GB — batch=4 OOMs with 12B
+  gradient_accumulation_steps: 16   # effective batch size = 32
   learning_rate: 8.0e-6             # conservative for preference alignment
   lr_scheduler_type: "cosine"
   warmup_ratio: 0.10
