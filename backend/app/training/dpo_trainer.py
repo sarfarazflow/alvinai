@@ -4,18 +4,31 @@ Uses Unsloth for model loading with instance-level forward patch to
 handle DPO's 4D attention masks.
 """
 
-# Pre-register mergekit/llm_blender as real-looking modules before TRL imports them.
-# TRL ≥0.23 optionally imports these; torch's patched inspect.getfile() crashes
-# on fake modules that lack __file__/__spec__. This avoids that entirely.
+# Stub mergekit/llm_blender: TRL optionally imports these but we don't need them.
+# Auto-creates any submodule on access so we don't play whack-a-mole.
 import sys
 import types
-import importlib
-for _mod_name in ("mergekit", "mergekit.merge", "llm_blender"):
+import importlib.machinery
+
+class _StubModule(types.ModuleType):
+    """Module stub that auto-creates submodules on attribute access."""
+    def __getattr__(self, name):
+        fullname = f"{self.__name__}.{name}"
+        if fullname not in sys.modules:
+            sub = _StubModule(fullname)
+            sub.__file__ = f"<stub {fullname}>"
+            sub.__path__ = []
+            sub.__package__ = self.__name__
+            sub.__spec__ = importlib.machinery.ModuleSpec(fullname, None, origin=sub.__file__)
+            sys.modules[fullname] = sub
+        return sys.modules[fullname]
+
+for _mod_name in ("mergekit", "llm_blender"):
     if _mod_name not in sys.modules:
-        _mod = types.ModuleType(_mod_name)
+        _mod = _StubModule(_mod_name)
         _mod.__file__ = f"<stub {_mod_name}>"
         _mod.__path__ = []
-        _mod.__package__ = _mod_name.rsplit(".", 1)[0] if "." in _mod_name else _mod_name
+        _mod.__package__ = _mod_name
         _mod.__spec__ = importlib.machinery.ModuleSpec(_mod_name, None, origin=_mod.__file__)
         sys.modules[_mod_name] = _mod
 
