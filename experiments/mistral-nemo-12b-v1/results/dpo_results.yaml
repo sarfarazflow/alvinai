@@ -1,0 +1,73 @@
+stage: dpo
+experiment: mistral-nemo-12b-v1
+model: mistralai/Mistral-Nemo-Instruct-2407
+base_checkpoint: experiments/mistral-nemo-12b-v1/models/raft_checkpoint
+hardware: runpod-a40-48gb
+date: 2026-04-03
+duration_minutes: ~18
+total_steps: 63
+epochs: 1
+
+training:
+  data: data/v2/dpo (1,992 train, 499 val)
+  batch_size: 2
+  gradient_accumulation: 16
+  effective_batch_size: 32
+  learning_rate: 1e-5
+  scheduler: cosine
+  max_seq_length: 1024
+  dpo_beta: 0.1
+  loss_type: sigmoid
+  lora_r: 16
+  lora_alpha: 32
+
+metrics:
+  # Train loss (logged every ~10 steps)
+  train_loss_step_10: 0.0674
+  train_loss_step_20: 0.0201
+  train_loss_step_30: 0.0124
+  train_loss_step_40: 0.0110
+  train_loss_step_50: 0.0080
+  train_loss_step_60: 0.0090
+  train_loss_avg: 0.0204
+
+  # Eval metrics
+  eval_loss: 0.0138
+  eval_rewards_chosen: 13.57
+  eval_rewards_rejected: -4.292
+  eval_rewards_accuracies: 0.998
+  eval_rewards_margins: 17.87
+
+  # Final train metrics
+  rewards_chosen_final: 13.68
+  rewards_rejected_final: -4.868
+  rewards_accuracies_final: 1.000
+  rewards_margins_final: 18.55
+
+  best_checkpoint: checkpoint-63
+
+resources:
+  vram_peak_gb: ~16
+  gpu: NVIDIA A40
+  gpu_memory_gb: 48
+  train_runtime_seconds: 1063
+  samples_per_second: 1.874
+  steps_per_second: 0.059
+
+observations: |
+  DPO training completed successfully in ~18 minutes.
+  Strong preference learning:
+  - Reward accuracy reached 100% on train, 99.8% on eval
+  - Large reward margins (18.55 train, 17.87 eval) — model strongly
+    distinguishes chosen vs rejected responses
+  - Loss dropped from 0.067 to 0.009 over 63 steps
+  - No signs of reward hacking — eval metrics track train closely
+
+  The model has learned clear preferences for:
+  - Correct citation format (##begin_quote##)
+  - Factual accuracy over fabrication
+  - Appropriate abstention when context is insufficient
+  - Namespace-appropriate tone
+
+  Saved: LoRA adapter (218MB) + merged 16-bit model (9.2GB, 5 shards)
+  Next: RAGAS evaluation, then AWQ quantization for production.

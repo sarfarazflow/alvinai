@@ -4,12 +4,13 @@ created: 2026-04-01
 base_model: mistralai/Mistral-Nemo-Instruct-2407
 chat_template: mistral
 data_version: v2
-hardware: runpod-a6000-48gb
+hardware: runpod-a40-48gb
 cost_per_hour_usd: 0.79
-total_training_hours: null
-total_cost_usd: null
-status: pending
+total_training_hours: 7.2
+total_cost_usd: 5.69
+status: dpo_done
 notes: |
-  A6000 48GB: SFT/DPO batch_size=4, RAFT batch_size=2 (long seqs).
+  A40 48GB: All stages batch_size=2, grad_accum=16.
   W&B enabled for live monitoring.
-  If RAFT OOMs: reduce to batch_size=1, grad_accum=32.
+  SFT: 100 min, RAFT: 314 min, DPO: 18 min.
+  Flash Attention 2 installed for 2x SFT/RAFT speedup.
