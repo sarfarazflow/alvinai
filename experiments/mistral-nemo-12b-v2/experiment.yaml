@@ -1,0 +1,102 @@
+name: mistral-nemo-12b-v2
+description: "Mistral Nemo 12B v2 — SOTA fine-tuning + SOTA RAG pipeline upgrade"
+created: 2026-04-09
+base_model: mistralai/Mistral-Nemo-Instruct-2407
+chat_template: mistral
+data_version: v3
+hardware: runpod-a40-48gb
+cost_per_hour_usd: 0.79
+status: planned
+
+# ─── Two-Track Upgrade ──────────────────────────────────────
+# Track 1: Fine-Tuning (SOTA training techniques + data quality)
+# Track 2: RAG Pipeline (SOTA retrieval + query intelligence)
+# Both tracks must improve together — v1 showed that fine-tuning
+# on weak data with a weak RAG pipeline produces no net gain.
+
+# ─── Track 1: Fine-Tuning Upgrades ─────────────────────────
+fine_tuning:
+  data:
+    version: v3
+    generation_method: "llm-synthetic (Claude Sonnet)"   # was: template-based
+    sft_target: 20000                                      # was: 9,398
+    raft_target: 25000                                     # was: 16,578
+    dpo_target: 5000                                       # was: 1,992
+    oracle_free_ratio: 0.40                                # was: 0.30
+    namespace_balanced: true                               # was: behavior-type balanced
+    compliance_dpo_pairs: 1000                             # was: 0
+
+  sft:
+    epochs: 1                           # was: 3 (overfit at 0.34)
+    early_stopping_patience: 3          # NEW
+    learning_rate: 1.0e-4               # was: 1.5e-4
+    dropout: 0.10                       # was: 0.05
+    neftune_noise_alpha: 5.0            # NEW — regularization
+    lora_r: 32                          # was: 16
+    lora_alpha: 64                      # was: 32
+
+  raft:
+    epochs: 2
+    learning_rate: 2.0e-5               # was: 3.0e-5
+    oracle_free_ratio: 0.40             # was: 0.30
+    harder_negatives: true              # NEW — same paragraph, different spec values
+    curriculum: true                    # NEW — easy->hard negative ordering
+
+  dpo:
+    method: "offline + iterative"       # was: offline only
+    learning_rate: 5.0e-6               # was: 1.0e-5
+    beta: 0.15                          # was: 0.1
+    pairs_per_namespace: 800            # was: behavior-type grouped
+    judge: "claude-sonnet-4-6"          # was: template-based keyword matching
+    win_rate_threshold: 0.15
+
+  evaluation:
+    judge_model: "claude-sonnet-4-6"    # was: template-based
+    ragas_with_rag: true                # was: standalone (no RAG)
+    eval_sets_per_namespace: 30         # was: 20
+
+# ─── Track 2: RAG Pipeline Upgrades ─────────────────────────
+rag_pipeline:
+  embedding_model: "nomic-ai/nomic-embed-text-v1.5"      # was: all-MiniLM-L6-v2
+  embedding_dim: 768                                       # was: 384
+  chunking: "semantic parent-child"                        # was: fixed-size
+  reranker: "cross-encoder/ms-marco-MiniLM-L-12-v2"      # was: L-6-v2
+  index_type: "HNSW"                                       # was: ivfflat
+  query_processing: "rewrite + HyDE + decomposition"      # was: raw query
+  faithfulness_verification: true                          # was: none
+  top_k_default: 7                                         # was: 5
+  adaptive_depth: true                                     # was: fixed
+
+estimated_training_hours: 10-12
+estimated_cost_compute_usd: 10-15
+estimated_cost_data_gen_usd: 50-100
+
+documentation:
+  merged: "SOTA_v2_COMPLETE_Architecture_and_Implementation_Plan.md"  # complete architecture (fine-tuning + RAG)
+  architecture: "ARCHITECTURE.md"             # RAG pipeline details
+  fine_tuning: "FINE_TUNING_PLAN.md"          # training stage details
+  implementation: "IMPLEMENTATION_PLAN.md"    # code-level changes
+
+notes: |
+  Two-track experiment addressing both v1 failures.
+
+  v1 fine-tuning problems → v2 fixes:
+  - SFT overfit at epoch 0.34 → 1 epoch, early stopping, NEFTune, 20K+ LLM-synthetic data
+  - DPO net 0% win rate → 5K namespace-balanced pairs, LLM judge (Claude)
+  - Compliance regressed -27% → 1000 compliance-specific DPO pairs
+  - Template data lacked diversity → LLM-synthetic generation (Claude Sonnet)
+  - Base model matched fine-tuned → proprietary corpus required (not Wikipedia)
+  - LoRA r=16 underparameterized → r=32 (0.93% of 12.3B, fits A40 48GB)
+  - 30% oracle-free insufficient for 12B → 40% oracle-free RAFT
+  - DPO LR/beta too aggressive → conservative 5e-6 / 0.15
+
+  v1 RAG pipeline problems → v2 fixes:
+  - MiniLM-L6 embeddings (384d, 2022) → nomic-embed-v1.5 (768d, 27% MTEB improvement)
+  - Fixed-size chunks lose context → semantic parent-child chunking
+  - Raw queries miss semantics → query rewriting + HyDE + decomposition
+  - ivfflat degrades at scale → HNSW index (no tuning needed)
+  - 5 small chunks insufficient → 7-10 parent chunks (128K context)
+  - No online verification → faithfulness check (compliance: always, others: 10%)
+
+  Key dependency: v3 training data must use proprietary corpus, not public Wikipedia.
+  See SOTA_v2_COMPLETE_Architecture_and_Implementation_Plan.md for the full merged document.
